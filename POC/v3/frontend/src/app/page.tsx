@@ -242,6 +242,7 @@ export default function DashboardPage() {
             )}
 
             <RecommendationPanel
+              patient={selectedPatient}
               patientId={selectedPatient?.patient_id || null}
               privacyMode={privacyMode}
               setPrivacyMode={setPrivacyMode}

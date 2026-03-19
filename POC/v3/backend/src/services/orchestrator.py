@@ -59,7 +59,15 @@ class OrchestrationManager:
             return rehydrator.rehydrate(result)
 
     async def record_decision(
-        self, patient_id: str, recommendation_hash: str, decision: str, physician_id: str, notes: str = ""
+        self,
+        patient_id: str,
+        recommendation_hash: str,
+        decision: str,
+        physician_id: str,
+        notes: str = "",
+        modified_tier: str | None = None,
+        rating: int | None = None,
+        feedback_comment: str | None = None,
     ) -> dict[str, Any]:
         """Records the final physician decision in audit trail."""
         logger.info(f"Recording {decision} for {patient_id}")
@@ -70,6 +78,9 @@ class OrchestrationManager:
             decision=decision,
             physician_id=physician_id,
             notes=notes,
+            modified_tier=modified_tier,
+            rating=rating,
+            feedback_comment=feedback_comment,
         )
 
         return {"status": "success", "decision_hash": hash_val, "patient_id": patient_id, "decision": decision}

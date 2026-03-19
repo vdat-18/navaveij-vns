@@ -19,7 +19,13 @@ import {
     Unlock,
     Eye,
     EyeOff,
-    Search
+    Search,
+    XCircle,
+    Edit3,
+    FileText,
+    Printer,
+    ThumbsUp,
+    ThumbsDown
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -28,8 +34,11 @@ import { cn } from "@/shared/utils";
 import { BiomarkerCharts } from "./BiomarkerCharts";
 import { LabResultsGrid } from "./LabResultsGrid";
 import { CLINICAL_DICTIONARY } from "@/shared/clinical-dictionary";
+import { ClinicalReport } from "./ClinicalReport";
+import { WorkflowVisualizer } from "./WorkflowVisualizer";
 
 interface RecommendationPanelProps {
+    patient: any;
     patientId: string | null;
     privacyMode: boolean;
     setPrivacyMode: (val: boolean) => void;
@@ -122,12 +131,16 @@ const ClinicalRiskGauge = ({ value }: { value: string }) => {
     );
 };
 
-export function RecommendationPanel({ patientId, privacyMode, setPrivacyMode, onDataLoaded, isRuleBasedForced }: RecommendationPanelProps) {
+export function RecommendationPanel({ patient, patientId, privacyMode, setPrivacyMode, onDataLoaded, isRuleBasedForced }: RecommendationPanelProps) {
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     const [isApproving, setIsApproving] = useState(false);
     const [decided, setDecided] = useState<boolean>(false);
     const [notes, setNotes] = useState("");
+    const [decisionType, setDecisionType] = useState<"Approve" | "Reject" | "Modify">("Approve");
+    const [modifiedTier, setModifiedTier] = useState<string>("");
+    const [userRating, setUserRating] = useState<number | null>(null);
+    const [isSubmittingFeedback, setIsSubmittingFeedback] = useState(false);
 
     useEffect(() => {
         if (!patientId) return;
@@ -138,6 +151,7 @@ export function RecommendationPanel({ patientId, privacyMode, setPrivacyMode, on
             try {
                 const result = await clinicalService.getRecommendation(patientId, isRuleBasedForced);
                 setData(result);
+                setModifiedTier(result.ai_recommended_tier);
                 if (onDataLoaded) onDataLoaded(result);
             } catch (error) {
                 console.error("Failed to fetch recommendation:", error);
@@ -148,17 +162,51 @@ export function RecommendationPanel({ patientId, privacyMode, setPrivacyMode, on
         fetchRecommendation();
     }, [patientId, isRuleBasedForced]);
 
-    const handleApprove = async () => {
+    const handleDecision = async () => {
         if (!data?.recommendation_hash || !patientId) return;
         setIsApproving(true);
         try {
-            await clinicalService.recordDecision(patientId, data.recommendation_hash, "Approve", notes);
+            await clinicalService.recordDecision(
+                patientId,
+                data.recommendation_hash,
+                decisionType,
+                notes,
+                decisionType === "Modify" ? modifiedTier : undefined
+            );
             setDecided(true);
+            // Attach notes to data for report
+            setData({ ...data, physician_notes: notes });
         } catch (error) {
-            console.error("Failed to approve:", error);
-            alert("Approval failed. Please check backend connection.");
+            console.error("Failed to record decision:", error);
+            alert("Action failed. Please check backend connection.");
         } finally {
             setIsApproving(false);
+        }
+    };
+
+    const handlePrint = () => {
+        window.print();
+    };
+
+    const handleFeedback = async (score: number) => {
+        if (!data?.recommendation_hash || !patientId || isSubmittingFeedback) return;
+        setUserRating(score);
+        setIsSubmittingFeedback(true);
+        try {
+            // We reuse recordDecision to send feedback for the existing decision 
+            // (The backend should handle updates to existing hash or new log entry)
+            await clinicalService.recordDecision(
+                patientId,
+                data.recommendation_hash,
+                decisionType,
+                notes,
+                decisionType === "Modify" ? modifiedTier : undefined,
+                score
+            );
+        } catch (error) {
+            console.error("Feedback failed:", error);
+        } finally {
+            setIsSubmittingFeedback(false);
         }
     };
 
@@ -181,27 +229,8 @@ export function RecommendationPanel({ patientId, privacyMode, setPrivacyMode, on
 
     if (loading) {
         return (
-            <div className="h-[650px] flex flex-col items-center justify-center navavej-card relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1 bg-navavej-teal/10 overflow-hidden">
-                    <motion.div
-                        animate={{ x: ["-100%", "100%"] }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                        className="w-1/3 h-full bg-navavej-teal"
-                    />
-                </div>
-                <motion.div
-                    animate={{ scale: [1, 1.05, 1], rotate: [0, 5, -5, 0] }}
-                    transition={{ duration: 4, repeat: Infinity }}
-                    className="relative z-10"
-                >
-                    <div className="w-28 h-28 bg-navavej-gray-light rounded-[30px] flex items-center justify-center shadow-xl border border-navavej-border">
-                        <BrainCircuit className="w-14 h-14 text-navavej-teal animate-pulse" />
-                    </div>
-                </motion.div>
-                <p className="mt-10 text-lg font-black tracking-[0.1em] text-navavej-gray-dark uppercase">
-                    Synthesizing Clinical Intelligence
-                </p>
-                <p className="text-[10px] font-bold text-navavej-gray-med uppercase tracking-widest mt-2">Checking signal store & rulesets...</p>
+            <div className="h-[650px] flex items-center justify-center p-6 bg-navavej-gray-light/30 rounded-[32px] border-2 border-dashed border-navavej-border">
+                <WorkflowVisualizer />
             </div>
         );
     }
@@ -250,18 +279,29 @@ export function RecommendationPanel({ patientId, privacyMode, setPrivacyMode, on
                             <p className="text-[9px] font-bold text-navavej-gray-med uppercase tracking-widest mt-1">PoC Proof of Privacy Demonstration</p>
                         </div>
                     </div>
-                    <button
-                        onClick={() => setPrivacyMode(!privacyMode)}
-                        className={cn(
-                            "flex items-center gap-2 px-4 py-2 rounded-full font-black text-[10px] uppercase tracking-widest transition-all shadow-md active:scale-95",
-                            privacyMode
-                                ? "bg-navavej-red text-white hover:bg-navavej-red/90"
-                                : "bg-navavej-gray-light text-navavej-gray-dark hover:bg-navavej-border"
+                    <div className="flex gap-4">
+                        {decided && (
+                            <button
+                                onClick={handlePrint}
+                                className="flex items-center gap-2 px-6 py-2 rounded-full font-black text-[10px] uppercase tracking-widest transition-all shadow-lg bg-navavej-teal text-white hover:bg-navavej-teal/90 animate-in zoom-in-95 duration-500"
+                            >
+                                <Printer className="w-4 h-4" />
+                                Export Official Report
+                            </button>
                         )}
-                    >
-                        {privacyMode ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
-                        {privacyMode ? "Switch to Physician View" : "Switch to Raw AI View"}
-                    </button>
+                        <button
+                            onClick={() => setPrivacyMode(!privacyMode)}
+                            className={cn(
+                                "flex items-center gap-2 px-4 py-2 rounded-full font-black text-[10px] uppercase tracking-widest transition-all shadow-md active:scale-95",
+                                privacyMode
+                                    ? "bg-navavej-red text-white hover:bg-navavej-red/90"
+                                    : "bg-navavej-gray-light text-navavej-gray-dark hover:bg-navavej-border"
+                            )}
+                        >
+                            {privacyMode ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                            {privacyMode ? "Switch to Physician View" : "Switch to Raw AI View"}
+                        </button>
+                    </div>
 
 
                 </div>
@@ -649,31 +689,134 @@ export function RecommendationPanel({ patientId, privacyMode, setPrivacyMode, on
 
                             {/* Physician Notes & Action */}
                             <div className="bg-navavej-gray-light rounded-[24px] p-8 border border-navavej-border flex flex-col flex-1 shadow-inner">
-                                <div className="flex items-center gap-2 mb-4 text-navavej-gray-med">
+                                <div className="flex flex-col gap-4 mb-6">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <FileText className="w-3.5 h-3.5 text-navavej-gray-med" />
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-navavej-gray-med">Select Action</span>
+                                    </div>
+                                    <div className="grid grid-cols-3 gap-2">
+                                        {[
+                                            { type: "Approve", icon: CheckCircle2, color: "text-emerald-500", bg: "bg-emerald-50" },
+                                            { type: "Modify", icon: Edit3, color: "text-amber-500", bg: "bg-amber-50" },
+                                            { type: "Reject", icon: XCircle, color: "text-navavej-red", bg: "bg-red-50" }
+                                        ].map((act) => (
+                                            <button
+                                                key={act.type}
+                                                onClick={() => setDecisionType(act.type as any)}
+                                                disabled={decided || isApproving}
+                                                className={cn(
+                                                    "flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all",
+                                                    decisionType === act.type
+                                                        ? cn("border-current shadow-md", act.bg, act.color)
+                                                        : "border-navavej-border grayscale opacity-50 hover:grayscale-0 hover:opacity-100 bg-white"
+                                                )}
+                                            >
+                                                <act.icon className="w-5 h-5 mb-1" />
+                                                <span className="text-[8px] font-black uppercase tracking-tighter">{act.type}</span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Tier Selector for Modify */}
+                                {decisionType === "Modify" && (
+                                    <div className="mb-6 animate-in slide-in-from-top-2 duration-300">
+                                        <label className="text-[9px] font-black text-navavej-gray-med uppercase tracking-widest mb-2 block">Corrected Tier Assignment</label>
+                                        <div className="grid grid-cols-3 gap-2">
+                                            {["Basic", "Advanced", "Premium"].map((tier) => (
+                                                <button
+                                                    key={tier}
+                                                    onClick={() => setModifiedTier(tier)}
+                                                    disabled={decided || isApproving}
+                                                    className={cn(
+                                                        "py-2 text-[10px] font-black rounded-lg border-2 transition-all uppercase",
+                                                        modifiedTier === tier
+                                                            ? "bg-navavej-teal text-white border-navavej-teal shadow-sm"
+                                                            : "bg-white text-navavej-gray-med border-navavej-border hover:border-navavej-teal/30"
+                                                    )}
+                                                >
+                                                    {tier}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div className="flex items-center gap-2 mb-3 text-navavej-gray-med">
                                     <Activity className="w-3.5 h-3.5" />
-                                    <span className="text-[10px] font-black uppercase tracking-widest">Execution Notes</span>
+                                    <span className="text-[10px] font-black uppercase tracking-widest">
+                                        {decisionType === "Approve" ? "Final Confirmation Notes" : "Reasoning for Variance"}
+                                    </span>
                                 </div>
                                 <textarea
                                     value={notes}
                                     onChange={(e) => setNotes(e.target.value)}
                                     disabled={decided || isApproving}
-                                    placeholder="Add clinical observation..."
-                                    className="w-full h-24 bg-white border-2 border-navavej-border rounded-xl p-4 text-[11px] font-medium outline-none transition-all resize-none shadow-sm focus:border-navavej-teal/50"
+                                    placeholder={decisionType === "Approve" ? "Add clinical observation..." : "Please justify this change for audit compliance..."}
+                                    className={cn(
+                                        "w-full h-24 bg-white border-2 rounded-xl p-4 text-[11px] font-medium outline-none transition-all resize-none shadow-sm focus:ring-4 focus:ring-navavej-teal/5",
+                                        (decisionType !== "Approve" && !notes) ? "border-amber-200" : "border-navavej-border focus:border-navavej-teal/50"
+                                    )}
                                 />
                                 <button
-                                    onClick={handleApprove}
-                                    disabled={isApproving || decided}
+                                    onClick={handleDecision}
+                                    disabled={isApproving || decided || (decisionType !== "Approve" && !notes)}
                                     className={cn(
-                                        "navavej-button-primary mt-4 w-full py-4 flex items-center justify-center gap-3 group shadow-lg",
+                                        "navavej-button-primary mt-6 w-full py-4 flex items-center justify-center gap-3 group shadow-lg transition-all active:scale-[0.98]",
                                         decided && "bg-emerald-500 hover:bg-emerald-500",
-                                        isApproving && "opacity-70 cursor-wait"
+                                        isApproving && "opacity-70 cursor-wait",
+                                        (decisionType !== "Approve" && !notes) && "opacity-50 cursor-not-allowed grayscale"
                                     )}
                                 >
                                     <span className="text-xs uppercase tracking-widest font-black">
-                                        {isApproving ? "..." : decided ? "Approved" : "Confirm Strategy"}
+                                        {isApproving ? "..." : decided ? "DECISION COMMITTED" : `Confirm ${decisionType}`}
                                     </span>
                                     {decided ? <CheckCircle2 className="w-5 h-5" /> : <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
                                 </button>
+
+                                {decided && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="mt-8 pt-8 border-t-2 border-dashed border-navavej-border flex flex-col items-center text-center"
+                                    >
+                                        <div className="bg-navavej-teal/5 px-4 py-1.5 rounded-full mb-4">
+                                            <p className="text-[9px] font-black text-navavej-teal uppercase tracking-widest">Model Tuning Feedback</p>
+                                        </div>
+                                        <h4 className="text-xs font-black text-navavej-gray-dark uppercase mb-2">Was this AI proposal clinically accurate?</h4>
+                                        <p className="text-[10px] text-navavej-gray-med mb-6 font-medium">Your feedback directly improves the recommendation engine.</p>
+
+                                        <div className="flex gap-4">
+                                            {userRating === null ? (
+                                                <>
+                                                    <button
+                                                        onClick={() => handleFeedback(1)}
+                                                        disabled={isSubmittingFeedback}
+                                                        className="flex items-center gap-2 px-6 py-2.5 rounded-xl border-2 border-emerald-100 bg-white text-emerald-600 font-black text-[10px] uppercase tracking-widest hover:bg-emerald-50 hover:border-emerald-200 transition-all active:scale-95 shadow-sm"
+                                                    >
+                                                        <ThumbsUp className="w-3.5 h-3.5" /> Correct
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleFeedback(-1)}
+                                                        disabled={isSubmittingFeedback}
+                                                        className="flex items-center gap-2 px-6 py-2.5 rounded-xl border-2 border-red-100 bg-white text-navavej-red font-black text-[10px] uppercase tracking-widest hover:bg-red-50 hover:border-red-200 transition-all active:scale-95 shadow-sm"
+                                                    >
+                                                        <ThumbsDown className="w-3.5 h-3.5" /> Needs Tuning
+                                                    </button>
+                                                </>
+                                            ) : (
+                                                <motion.div
+                                                    initial={{ scale: 0.9 }}
+                                                    animate={{ scale: 1 }}
+                                                    className="flex items-center gap-3 px-8 py-3 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100"
+                                                >
+                                                    <CheckCircle2 className="w-4 h-4" />
+                                                    <span className="text-[10px] font-black uppercase tracking-widest">Feedback Recorded for Tuning</span>
+                                                </motion.div>
+                                            )}
+                                        </div>
+                                    </motion.div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -853,7 +996,8 @@ export function RecommendationPanel({ patientId, privacyMode, setPrivacyMode, on
                         </div>
                     </div>
                 </div>
+                <ClinicalReport patient={patient} data={data} />
             </motion.div>
-        </AnimatePresence>
+        </AnimatePresence >
     );
 }

@@ -97,7 +97,10 @@ class AuditLogger:
         recommendation_hash: str,
         decision: str,
         physician_id: str,
-        notes: str = ""
+        notes: str = "",
+        modified_tier: str | None = None,
+        rating: int | None = None,
+        feedback_comment: str | None = None,
     ) -> str:
         """Record the human physician's decision linked to the AI recommendation."""
         timestamp = datetime.now(timezone.utc).isoformat()
@@ -114,7 +117,12 @@ class AuditLogger:
             },
             "why": {
                 "decision": decision,
-                "notes": notes
+                "notes": notes,
+                "modified_tier": modified_tier,
+                "model_feedback": {
+                    "rating": rating,
+                    "comment": feedback_comment
+                }
             },
             "metadata": {"environment": settings.environment},
             "previous_hash": self.last_hash,

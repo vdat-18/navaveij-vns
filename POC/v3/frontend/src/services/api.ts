@@ -28,13 +28,24 @@ export const clinicalService = {
         });
         return response.data;
     },
-    recordDecision: async (patientId: string, recommendationHash: string, decision: "Approve" | "Reject", notes: string = "") => {
+    recordDecision: async (
+        patientId: string,
+        recommendationHash: string,
+        decision: "Approve" | "Reject" | "Modify",
+        notes: string = "",
+        modifiedTier?: string,
+        rating?: number,
+        feedbackComment?: string
+    ) => {
         const response = await api.post("/clinical/approve", {
             patient_id: patientId,
             recommendation_hash: recommendationHash,
             decision: decision,
             physician_id: "dr-admin-001",
-            notes: notes
+            notes: notes,
+            modified_tier: modifiedTier,
+            rating: rating,
+            feedback_comment: feedbackComment
         });
         return response.data;
     },

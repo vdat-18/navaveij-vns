@@ -44,6 +44,9 @@ class DecisionRequest(BaseModel):
     decision: str
     physician_id: str = "dr-admin-001"
     notes: str = ""
+    modified_tier: str | None = None
+    rating: int | None = None
+    feedback_comment: str | None = None
 
 
 @router.post("/approve")
@@ -56,6 +59,9 @@ async def approve_recommendation(request: DecisionRequest):
             decision=request.decision,
             physician_id=request.physician_id,
             notes=request.notes,
+            modified_tier=request.modified_tier,
+            rating=request.rating,
+            feedback_comment=request.feedback_comment,
         )
     except Exception as e:
         logger.error(f"Decision logging failed: {e}")
