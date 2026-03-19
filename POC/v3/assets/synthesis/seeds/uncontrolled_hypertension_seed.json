@@ -1,0 +1,486 @@
+{
+  "schema_version": "signal_store_record_v1",
+  "patient_token": "tok_hmac_a1b2c3d4",
+  "computed_at": "2026-03-15T03:00:00Z",
+  "pipeline_run_id": "pipe_20260315_0300",
+  "fhir_snapshot_version": "fhir_snap_20260315",
+  "hard_constraints": {
+    "patient_token": "tok_hmac_a1b2c3d4",
+    "patient_demographics": {
+      "gender": "male",
+      "age": 54,
+      "date_of_birth_token": "dob_tok_19720301",
+      "ethnicity": "asian",
+      "bmi_threshold_profile": "asian_adjusted"
+    },
+    "eligibility_exclusions": [
+      {
+        "test_code": "mammogram",
+        "test_label": "Mammography (bilateral screening)",
+        "reason_code": "gender_male_ineligible",
+        "reason_label": "Mammography is not indicated for male patients",
+        "guideline": "USPSTF Breast Cancer Screening 2024",
+        "overridable": false
+      },
+      {
+        "test_code": "pap_smear",
+        "test_label": "Cervical cytology / Pap smear",
+        "reason_code": "gender_male_ineligible",
+        "reason_label": "Cervical cancer screening is not applicable for male patients",
+        "guideline": "USPSTF Cervical Cancer Screening 2018",
+        "overridable": false
+      }
+    ],
+    "active_safety_flags": [],
+    "tier_ceiling": null,
+    "computed_at": "2026-03-15T03:00:00Z",
+    "pipeline_run_id": "pipe_20260315_0300"
+  },
+  "clinical_signals": {
+    "patient_token": "tok_hmac_a1b2c3d4",
+    "rule_preliminary_tier": "Advanced",
+    "overall_risk_level": "High",
+    "applicable_signals": [
+      "fbs_status",
+      "hba1c_status",
+      "ldl_status",
+      "hdl_status",
+      "tg_status",
+      "alt_status",
+      "ast_status",
+      "egfr_status",
+      "tsh_status",
+      "psa_sdm_status",
+      "uric_acid_status",
+      "bp_category",
+      "bmi_status",
+      "colonoscopy_screening_gap",
+      "est_gap",
+      "echo_gap",
+      "lung_ldct_gap",
+      "influenza_vaccination_gap",
+      "hepatitis_b_vaccination_status",
+      "pneumococcal_vaccination_gap",
+      "shingrix_vaccination_gap",
+      "family_hx_premature_cad",
+      "family_hx_colon_ca",
+      "smoking_status",
+      "lung_ct_threshold",
+      "alcohol_risk",
+      "occupational_risk",
+      "dm_comorbidity",
+      "htn_comorbidity",
+      "ckd_comorbidity",
+      "dyslipidemia_comorbidity",
+      "ascvd_10yr_risk_status",
+      "dm_organ_complication_screening",
+      "fibroscan_indication",
+      "sleep_apnea_screen_result",
+      "physical_activity_level"
+    ],
+    "signals_fired": [
+      "bp_stage2_htn",
+      "bp_trend_worsening",
+      "htn_comorbidity",
+      "ascvd_risk_intermediate",
+      "bmi_overweight_asian",
+      "ldl_borderline_high",
+      "tg_borderline_high",
+      "hdl_low_male",
+      "prediabetes_confirmed",
+      "lung_ct_threshold_met",
+      "office_syndrome",
+      "hyperuricemia",
+      "family_hx_premature_cad",
+      "colonoscopy_overdue_2190d",
+      "influenza_overdue_450d"
+    ],
+    "missing_signals": [
+      "sleep_apnea_screen_result",
+      "physical_activity_level"
+    ],
+    "risk_flags": [
+      {
+        "flag_id": "bp_stage2_htn",
+        "label": "Stage 2 Hypertension (SBP ≥ 140 or DBP ≥ 90)",
+        "severity": "High",
+        "source_signals": [
+          "sbp_156_mmhg",
+          "dbp_96_mmhg"
+        ],
+        "guideline": "ACC/AHA High Blood Pressure Guideline 2017",
+        "add_on_triggers": [
+          "ambulatory_bp_monitoring",
+          "echocardiogram_surveillance"
+        ]
+      },
+      {
+        "flag_id": "bp_trend_worsening",
+        "label": "BP trend worsening over 3 readings",
+        "severity": "Moderate",
+        "source_signals": [
+          "bp_trend_slope_6_mmHg_per_year"
+        ],
+        "guideline": "ACC/AHA High Blood Pressure Guideline 2017",
+        "add_on_triggers": [
+          "exercise_stress_test_consideration"
+        ]
+      },
+      {
+        "flag_id": "ascvd_risk_intermediate",
+        "label": "ASCVD 10-year risk: Intermediate (7.5–19.9%)",
+        "severity": "Moderate",
+        "source_signals": [
+          "ascvd_10yr_risk_9_5_pct"
+        ],
+        "guideline": "ACC/AHA Pooled Cohort Equations 2013/2018",
+        "add_on_triggers": [
+          "est_consideration",
+          "statin_sdm_discussion"
+        ]
+      },
+      {
+        "flag_id": "bmi_overweight_asian",
+        "label": "Overweight — Asian-adjusted BMI ≥ 23 kg/m²",
+        "severity": "Low",
+        "source_signals": [
+          "bmi_27_1"
+        ],
+        "guideline": "WHO Asia-Pacific BMI 2000",
+        "add_on_triggers": [
+          "dietary_counseling",
+          "exercise_counseling"
+        ]
+      }
+    ],
+    "comorbidity_tags": [
+      {
+        "tag": "HTN",
+        "label": "Hypertension",
+        "onset_year": 2020,
+        "organ_risk_tags": [
+          "cv_risk_elevated"
+        ],
+        "on_treatment": true,
+        "treatment_note": "Amlodipine 10mg + Losartan 50mg"
+      },
+      {
+        "tag": "Dyslipidemia",
+        "label": "Dyslipidemia",
+        "onset_year": 2018,
+        "organ_risk_tags": [
+          "cv_risk_elevated"
+        ],
+        "on_treatment": true,
+        "treatment_note": "Atorvastatin 20mg"
+      },
+      {
+        "tag": "Prediabetes",
+        "label": "Pre-diabetes",
+        "onset_year": 2024,
+        "organ_risk_tags": [
+          "dm_progression_risk"
+        ],
+        "on_treatment": false,
+        "treatment_note": null
+      }
+    ],
+    "screening_gaps": [
+      {
+        "screening_id": "colonoscopy",
+        "label": "Colonoscopy (colorectal cancer screening)",
+        "last_performed_date": "2015-03-10",
+        "recommended_interval_months": 120,
+        "overdue_days": 2190,
+        "overdue_score": 0.98,
+        "priority_color": "Red",
+        "guideline": "USPSTF Colorectal Cancer Screening 2021",
+        "note": "Last colonoscopy 2015-03-10; > 10 years overdue."
+      }
+    ],
+    "vaccination_gaps": [
+      {
+        "vaccine_id": "influenza",
+        "label": "Influenza (seasonal)",
+        "last_administered_date": "2024-10-01",
+        "overdue_days": 166,
+        "series_complete": null,
+        "doses_received": null,
+        "doses_required": null,
+        "priority_color": "Orange",
+        "guideline": "CDC ACIP 2024",
+        "note": "Missed the 2025–2026 season."
+      }
+    ],
+    "abnormal_triggers": [
+      {
+        "trigger_id": "bp_poor_control",
+        "label": "Suboptimal BP control despite therapy",
+        "source_lab": null,
+        "source_value": null,
+        "source_unit": null,
+        "suggested_follow_up": [
+          "medication_intensification",
+          "home_bp_monitoring"
+        ],
+        "urgency": "Soon"
+      }
+    ],
+    "family_history_flags": {
+      "ca_breast": false,
+      "ca_colon": true,
+      "ca_prostate": false,
+      "premature_cad": true,
+      "premature_cad_detail": "Father MI age 50 (<55 male threshold)",
+      "ca_colon_detail": "Brother colon cancer age 52"
+    },
+    "behavioral_flags": {
+      "smoking": {
+        "status": "former",
+        "pack_years": 25.0,
+        "quit_years_ago": 4.0,
+        "lung_ct_threshold_met": true
+      },
+      "alcohol": {
+        "audit_c_score": 3.0,
+        "risk_level": "borderline",
+        "fibroscan_indicated": false,
+        "note": "Borderline AUDIT-C; monitor."
+      },
+      "occupational": {
+        "tags": [
+          "office_syndrome"
+        ],
+        "add_ons_triggered": [
+          "msk_assessment",
+          "vision_check_annual"
+        ]
+      },
+      "physical_activity": {
+        "days_per_week": 1,
+        "level": "insufficient",
+        "add_ons_triggered": [
+          "exercise_counseling"
+        ]
+      }
+    },
+    "symptom_tags": [
+      "headache",
+      "mild_dyspnea_on_exertion"
+    ],
+    "computed_at": "2026-03-15T03:00:00Z",
+    "pipeline_run_id": "pipe_20260315_0300"
+  },
+  "biomarker_trends": {
+    "patient_token": "tok_hmac_a1b2c3d4",
+    "bmi": {
+      "current": 27.1,
+      "unit": "kg/m2",
+      "threshold_profile": "asian_adjusted",
+      "category": "Overweight",
+      "trend_direction": "increasing",
+      "slope_per_year": 0.9,
+      "history": [
+        {
+          "date": "2023-08-01",
+          "value": 25.3
+        },
+        {
+          "date": "2024-11-20",
+          "value": 26.2
+        },
+        {
+          "date": "2026-02-20",
+          "value": 27.1
+        }
+      ],
+      "alert": "BMI increasing at 0.9 kg/m²/year (Asian-adjusted threshold ≥ 23)."
+    },
+    "blood_pressure": {
+      "latest": {
+        "sbp": 156,
+        "dbp": 96,
+        "date": "2026-02-20"
+      },
+      "unit": "mmHg",
+      "category": "Stage2_HTN",
+      "category_label": "Stage 2 Hypertension (SBP ≥ 140 or DBP ≥ 90)",
+      "trend_direction": "increasing",
+      "sbp_slope_per_year": 6.0,
+      "history": [
+        {
+          "date": "2023-08-01",
+          "sbp": 138,
+          "dbp": 88
+        },
+        {
+          "date": "2024-11-20",
+          "sbp": 146,
+          "dbp": 92
+        },
+        {
+          "date": "2026-02-20",
+          "sbp": 156,
+          "dbp": 96
+        }
+      ],
+      "alert": "BP worsening despite dual therapy."
+    },
+    "egfr": {
+      "current": 68.0,
+      "unit": "mL/min/1.73m2",
+      "loinc_code": "62238-1",
+      "ckd_stage": "G2",
+      "ckd_stage_label": "CKD Stage G2 — mildly decreased",
+      "annual_slope": -2.0,
+      "rapid_progression": false,
+      "rapid_progression_threshold": -5.0,
+      "history": [
+        {
+          "date": "2023-08-01",
+          "value": 74.0
+        },
+        {
+          "date": "2024-11-20",
+          "value": 71.0
+        },
+        {
+          "date": "2026-02-20",
+          "value": 68.0
+        }
+      ],
+      "alert": null
+    },
+    "labs": [
+      {
+        "lab_id": "fbs",
+        "label": "Fasting Blood Glucose",
+        "loinc_code": "1558-6",
+        "current_value": 112.0,
+        "unit": "mg/dL",
+        "reference_range": {
+          "low": 70.0,
+          "high": 99.0
+        },
+        "interpretation": "H",
+        "category": "Prediabetic",
+        "velocity_per_year": 5.0,
+        "trend_direction": "increasing",
+        "trend_flag": "worsening",
+        "history": [
+          {
+            "date": "2023-08-01",
+            "value": 99.0
+          },
+          {
+            "date": "2024-11-20",
+            "value": 106.0
+          },
+          {
+            "date": "2026-02-20",
+            "value": 112.0
+          }
+        ],
+        "alert": "FBS in pre-diabetic range, rising over 3 years."
+      },
+      {
+        "lab_id": "hba1c",
+        "label": "HbA1c",
+        "loinc_code": "4548-4",
+        "current_value": 6.1,
+        "unit": "%",
+        "reference_range": {
+          "high": 5.7
+        },
+        "interpretation": "H",
+        "category": "Prediabetic (5.7–6.4%)",
+        "velocity_per_year": 0.15,
+        "trend_direction": "increasing",
+        "trend_flag": "worsening",
+        "history": [
+          {
+            "date": "2024-11-20",
+            "value": 5.9
+          },
+          {
+            "date": "2026-02-20",
+            "value": 6.1
+          }
+        ],
+        "alert": null
+      },
+      {
+        "lab_id": "ldl",
+        "label": "LDL Cholesterol",
+        "loinc_code": "13457-7",
+        "current_value": 152.0,
+        "unit": "mg/dL",
+        "reference_range": {
+          "optimal": 100.0,
+          "borderline_high_low": 130.0,
+          "borderline_high_high": 159.0
+        },
+        "interpretation": "H",
+        "category": "Borderline High (130–159 mg/dL)",
+        "velocity_per_year": 10.0,
+        "trend_direction": "increasing",
+        "trend_flag": "worsening",
+        "history": [
+          {
+            "date": "2023-08-01",
+            "value": 132.0
+          },
+          {
+            "date": "2024-11-20",
+            "value": 142.0
+          },
+          {
+            "date": "2026-02-20",
+            "value": 152.0
+          }
+        ],
+        "alert": null
+      }
+    ],
+    "ascvd_10yr_risk": {
+      "score": 0.095,
+      "score_pct": 9.5,
+      "category": "Intermediate",
+      "category_label": "Intermediate risk (7.5–19.9%)",
+      "inputs_used": {
+        "age": 54,
+        "sex": "male",
+        "race": "other",
+        "total_cholesterol": 218,
+        "hdl": 42,
+        "systolic_bp": 156,
+        "bp_treatment": true,
+        "diabetes": false,
+        "smoking": "former"
+      },
+      "guideline": "ACC/AHA Pooled Cohort Equations 2013/2018",
+      "note": "Intermediate ASCVD risk; consider EST and statin intensification."
+    },
+    "waist_circumference": {
+      "value": 94.0,
+      "unit": "cm",
+      "threshold_male_asian": 90.0,
+      "category": "Above threshold",
+      "note": "Abdominal obesity; increased cardiometabolic risk."
+    },
+    "computed_at": "2026-03-15T03:00:00Z",
+    "pipeline_run_id": "pipe_20260315_0300"
+  },
+  "metadata": {
+    "data_completeness_ratio": 0.88,
+    "total_key_fields": 42,
+    "populated_key_fields": 37,
+    "missing_data_fields": [
+      "sleep_apnea_screen_result",
+      "physical_activity_level",
+      "dm_organ_complication_screening",
+      "fibroscan_indication",
+      "pneumococcal_vaccination_gap"
+    ]
+  }
+}

@@ -1,0 +1,432 @@
+{
+  "schema_version": "signal_store_record_v1",
+  "patient_token": "tok_hmac_a9b8c7d6",
+  "computed_at": "2026-03-15T03:00:00Z",
+  "pipeline_run_id": "pipe_20260315_0300",
+  "fhir_snapshot_version": "fhir_snap_20260315",
+  "hard_constraints": {
+    "patient_token": "tok_hmac_a9b8c7d6",
+    "patient_demographics": {
+      "gender": "male",
+      "age": 34,
+      "date_of_birth_token": "dob_tok_19910712",
+      "ethnicity": "asian",
+      "bmi_threshold_profile": "asian_adjusted",
+      "name": "Chaiyo Siriwat"
+    },
+    "eligibility_exclusions": [
+      {
+        "test_code": "mammogram",
+        "test_label": "Mammography (bilateral screening)",
+        "reason_code": "gender_male_ineligible",
+        "reason_label": "Mammography is not indicated for male patients",
+        "guideline": "USPSTF Breast Cancer Screening 2024",
+        "overridable": false
+      },
+      {
+        "test_code": "pap_smear",
+        "test_label": "Cervical cytology / Pap smear",
+        "reason_code": "gender_male_ineligible",
+        "reason_label": "Cervical cancer screening is not applicable for male patients",
+        "guideline": "USPSTF Cervical Cancer Screening 2018",
+        "overridable": false
+      }
+    ],
+    "active_safety_flags": [],
+    "tier_ceiling": null,
+    "computed_at": "2026-03-15T03:00:00Z",
+    "pipeline_run_id": "pipe_20260315_0300",
+    "patient_id": "id_a9b8c7d6"
+  },
+  "clinical_signals": {
+    "patient_token": "tok_hmac_a9b8c7d6",
+    "rule_preliminary_tier": "Standard",
+    "overall_risk_level": "Low",
+    "applicable_signals": [
+      "alcohol_risk",
+      "alt_status",
+      "ascvd_10yr_risk_status",
+      "ast_status",
+      "bmi_normal_asian",
+      "bmi_status",
+      "bp_category",
+      "bp_normal",
+      "ckd_comorbidity",
+      "dm_comorbidity",
+      "dm_organ_complication_screening",
+      "dyslipidemia_comorbidity",
+      "egfr_status",
+      "family_hx_colon_ca",
+      "family_hx_premature_cad",
+      "fbs_status",
+      "fibroscan_indication",
+      "hba1c_status",
+      "hdl_status",
+      "hepatitis_b_vaccination_status",
+      "htn_comorbidity",
+      "influenza_vaccination_gap",
+      "ldl_status",
+      "lung_ct_threshold",
+      "occupational_risk",
+      "physical_activity_level",
+      "psa_sdm_status",
+      "sleep_apnea_screen_result",
+      "smoking_status",
+      "tg_status",
+      "tsh_status",
+      "uric_acid_status"
+    ],
+    "signals_fired": [
+      "bmi_normal_asian",
+      "bp_normal"
+    ],
+    "missing_signals": [
+      "sleep_apnea_screen_result",
+      "dm_organ_complication_screening",
+      "fibroscan_indication"
+    ],
+    "risk_flags": [],
+    "comorbidity_tags": [],
+    "screening_gaps": [],
+    "vaccination_gaps": [
+      {
+        "vaccine_id": "influenza",
+        "label": "Influenza (seasonal)",
+        "last_administered_date": "2025-09-15",
+        "overdue_days": 181,
+        "recommended_annual": null,
+        "series_complete": null,
+        "doses_received": null,
+        "doses_required": null,
+        "eligible_since_age": null,
+        "age_at_evaluation": null,
+        "years_until_due": null,
+        "priority_color": "Yellow",
+        "guideline": "CDC ACIP 2024",
+        "note": "Last seasonal flu vaccine ~6 months ago; due for annual shot later this year, typically in Fall.",
+        "anti_hbs_checked": null
+      }
+    ],
+    "abnormal_triggers": [],
+    "family_history_flags": {
+      "ca_breast": false,
+      "ca_colon": false,
+      "ca_prostate": false,
+      "premature_cad": false,
+      "premature_cad_detail": null,
+      "ca_colon_detail": null
+    },
+    "behavioral_flags": {
+      "smoking": {
+        "status": "never",
+        "pack_years": null,
+        "quit_years_ago": null,
+        "lung_ct_threshold_met": false
+      },
+      "alcohol": {
+        "audit_c_score": 1.0,
+        "risk_level": "none",
+        "fibroscan_indicated": false,
+        "note": "Drinks socially, adhering to low-risk consumption guidelines."
+      },
+      "occupational": {
+        "tags": [],
+        "add_ons_triggered": []
+      },
+      "physical_activity": {
+        "days_per_week": 4,
+        "level": "active",
+        "add_ons_triggered": []
+      }
+    },
+    "symptom_tags": [],
+    "computed_at": "2026-03-15T03:00:00Z",
+    "pipeline_run_id": "pipe_20260315_0300"
+  },
+  "biomarker_trends": {
+    "patient_token": "tok_hmac_a9b8c7d6",
+    "bmi": {
+      "current": 21.6,
+      "unit": "kg/m2",
+      "threshold_profile": "asian_adjusted",
+      "category": "Normal",
+      "trend_direction": "stable",
+      "slope_per_year": 0.0,
+      "history": [
+        {
+          "date": "2023-06-10",
+          "value": 21.5
+        },
+        {
+          "date": "2024-07-25",
+          "value": 21.7
+        },
+        {
+          "date": "2026-02-20",
+          "value": 21.6
+        }
+      ],
+      "alert": null
+    },
+    "blood_pressure": {
+      "latest": {
+        "sbp": 117,
+        "dbp": 73,
+        "date": "2026-02-20"
+      },
+      "unit": "mmHg",
+      "category": "Normal",
+      "category_label": "Normal blood pressure (<120/<80)",
+      "trend_direction": "stable",
+      "sbp_slope_per_year": 0.0,
+      "history": [
+        {
+          "date": "2023-06-10",
+          "sbp": 115,
+          "dbp": 71
+        },
+        {
+          "date": "2024-07-25",
+          "sbp": 116,
+          "dbp": 72
+        },
+        {
+          "date": "2026-02-20",
+          "sbp": 117,
+          "dbp": 73
+        }
+      ],
+      "alert": null
+    },
+    "egfr": {
+      "current": 97.5,
+      "unit": "mL/min/1.73m2",
+      "loinc_code": "62238-1",
+      "ckd_stage": "G1",
+      "ckd_stage_label": "CKD Stage G1 — normal or high",
+      "annual_slope": -0.7,
+      "rapid_progression": false,
+      "rapid_progression_threshold": -5.0,
+      "history": [
+        {
+          "date": "2023-06-10",
+          "value": 99.2
+        },
+        {
+          "date": "2024-07-25",
+          "value": 98.1
+        },
+        {
+          "date": "2026-02-20",
+          "value": 97.5
+        }
+      ],
+      "alert": null
+    },
+    "labs": [
+      {
+        "lab_id": "fbs",
+        "label": "Fasting Blood Glucose",
+        "loinc_code": "1558-6",
+        "current_value": 87.3,
+        "unit": "mg/dL",
+        "reference_range": {
+          "low": 70.0,
+          "high": 99.0,
+          "optimal": null,
+          "borderline_high_low": null,
+          "borderline_high_high": null,
+          "normal_high": null,
+          "borderline_high": null,
+          "uln": null,
+          "uln_male": null,
+          "low_male": null,
+          "protective": null,
+          "desirable_high": null,
+          "age_adjusted_uln_50s": null
+        },
+        "interpretation": "N",
+        "category": "Normal",
+        "velocity_per_year": 0.0,
+        "trend_direction": "stable",
+        "trend_flag": "stable",
+        "history": [
+          {
+            "date": "2023-06-10",
+            "value": 86.4
+          },
+          {
+            "date": "2024-07-25",
+            "value": 88.0
+          },
+          {
+            "date": "2026-02-20",
+            "value": 87.3
+          }
+        ],
+        "alert": null,
+        "trend_data_note": null,
+        "sdm_note": null
+      },
+      {
+        "lab_id": "hba1c",
+        "label": "HbA1c",
+        "loinc_code": "4548-4",
+        "current_value": 5.3,
+        "unit": "%",
+        "reference_range": {
+          "low": null,
+          "high": 5.7,
+          "optimal": null,
+          "borderline_high_low": null,
+          "borderline_high_high": null,
+          "normal_high": null,
+          "borderline_high": null,
+          "uln": null,
+          "uln_male": null,
+          "low_male": null,
+          "protective": null,
+          "desirable_high": null,
+          "age_adjusted_uln_50s": null
+        },
+        "interpretation": "N",
+        "category": "Normal",
+        "velocity_per_year": 0.0,
+        "trend_direction": "stable",
+        "trend_flag": "stable",
+        "history": [
+          {
+            "date": "2024-07-25",
+            "value": 5.4
+          },
+          {
+            "date": "2026-02-20",
+            "value": 5.3
+          }
+        ],
+        "alert": null,
+        "trend_data_note": null,
+        "sdm_note": null
+      },
+      {
+        "lab_id": "ldl",
+        "label": "LDL Cholesterol",
+        "loinc_code": "13457-7",
+        "current_value": 105.1,
+        "unit": "mg/dL",
+        "reference_range": {
+          "low": null,
+          "high": null,
+          "optimal": 100.0,
+          "borderline_high_low": 130.0,
+          "borderline_high_high": 159.0,
+          "normal_high": null,
+          "borderline_high": null,
+          "uln": null,
+          "uln_male": null,
+          "low_male": null,
+          "protective": null,
+          "desirable_high": null,
+          "age_adjusted_uln_50s": null
+        },
+        "interpretation": "N",
+        "category": "Near-optimal",
+        "velocity_per_year": 0.0,
+        "trend_direction": "stable",
+        "trend_flag": "stable",
+        "history": [
+          {
+            "date": "2023-06-10",
+            "value": 108.3
+          },
+          {
+            "date": "2024-07-25",
+            "value": 106.9
+          },
+          {
+            "date": "2026-02-20",
+            "value": 105.1
+          }
+        ],
+        "alert": null,
+        "trend_data_note": null,
+        "sdm_note": null
+      },
+      {
+        "lab_id": "hdl",
+        "label": "HDL Cholesterol",
+        "loinc_code": "2085-9",
+        "current_value": 61.2,
+        "unit": "mg/dL",
+        "reference_range": {
+          "low": null,
+          "high": null,
+          "optimal": null,
+          "borderline_high_low": null,
+          "borderline_high_high": null,
+          "normal_high": null,
+          "borderline_high": null,
+          "uln": null,
+          "uln_male": null,
+          "low_male": null,
+          "protective": 60.0,
+          "desirable_high": null,
+          "age_adjusted_uln_50s": null
+        },
+        "interpretation": "N",
+        "category": "Protective",
+        "velocity_per_year": null,
+        "trend_direction": "insufficient_data",
+        "trend_flag": null,
+        "history": [
+          {
+            "date": "2026-02-20",
+            "value": 61.2
+          }
+        ],
+        "alert": null,
+        "trend_data_note": null,
+        "sdm_note": null
+      }
+    ],
+    "ascvd_10yr_risk": {
+      "score": 0.017,
+      "score_pct": 1.7,
+      "category": "Low",
+      "category_label": "Low risk (<5%)",
+      "inputs_used": {
+        "age": 34,
+        "sex": "male",
+        "race": "asian",
+        "total_cholesterol": 174.5,
+        "hdl": 61.2,
+        "systolic_bp": 117,
+        "bp_treatment": false,
+        "diabetes": false,
+        "smoking": "never"
+      },
+      "guideline": "ACC/AHA Pooled Cohort Equations 2013/2018",
+      "note": "Low ASCVD risk; lifestyle reinforcement only."
+    },
+    "waist_circumference": {
+      "value": 79.1,
+      "unit": "cm",
+      "threshold_male_asian": 90.0,
+      "category": "Normal",
+      "note": null
+    },
+    "computed_at": "2026-03-15T03:00:00Z",
+    "pipeline_run_id": "pipe_20260315_0300"
+  },
+  "metadata": {
+    "data_completeness_ratio": 0.9285714,
+    "total_key_fields": 42,
+    "populated_key_fields": 39,
+    "missing_data_fields": [
+      "sleep_apnea_screen_result",
+      "dm_organ_complication_screening",
+      "fibroscan_indication"
+    ]
+  },
+  "patient_id": "id_a9b8c7d6"
+}

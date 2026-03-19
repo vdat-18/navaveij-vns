@@ -1,0 +1,354 @@
+{
+  "snapshot": {
+    "snapshot_at": "2026-03-14T07:00:00Z",
+    "refresh_interval_seconds": 30,
+    "active_users_now": 7,
+    "sessions_today": 43,
+    "patient_records_accessed_today": 118,
+    "ai_recommendations_generated_today": 31,
+    "alert_counts": {
+      "critical": 0,
+      "high": 2,
+      "medium": 5,
+      "low": 11
+    },
+    "safety_validator_failures_today": 0,
+    "top_active_departments": [
+      { "department": "Health Checkup Center", "active_users": 4 },
+      { "department": "Internal Medicine", "active_users": 2 },
+      { "department": "Cardiology", "active_users": 1 }
+    ]
+  },
+  "anomaly_alerts": [
+    {
+      "alert_id": "anm-20260314-001",
+      "user_id": "usr-nurse-74920183",
+      "user_display_name": "Nurse Supawan K.",
+      "department": "Health Checkup Center",
+      "alert_type": "high_volume",
+      "severity": "High",
+      "triggered_at": "2026-03-14T02:31:00Z",
+      "detail": {
+        "session_record_count": 18,
+        "baseline_avg": 4.2,
+        "ratio": 4.3,
+        "threshold": 3.0,
+        "session_id": "sess-20260314-74920183-001",
+        "affected_patient_tokens_masked": ["tok_hmac_562****47", "tok_hmac_831****12"]
+      },
+      "status": "Open",
+      "acknowledged_by": null,
+      "acknowledged_at": null,
+      "resolved_by": null,
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "alert_id": "anm-20260313-002",
+      "user_id": "usr-pharm-38201947",
+      "user_display_name": "Pharmacist Narin T.",
+      "department": "Pharmacy",
+      "alert_type": "out_of_department",
+      "severity": "High",
+      "triggered_at": "2026-03-13T23:14:00Z",
+      "detail": {
+        "accessed_department": "Health Checkup Center",
+        "user_home_department": "Pharmacy",
+        "records_accessed_outside_dept": 3,
+        "session_id": "sess-20260313-38201947-001",
+        "affected_patient_tokens_masked": ["tok_hmac_291****08"]
+      },
+      "status": "Acknowledged",
+      "acknowledged_by": "usr-admin-10029374",
+      "acknowledged_at": "2026-03-14T01:05:00Z",
+      "resolved_by": null,
+      "resolved_at": null,
+      "resolution_note": "Under investigation — pharmacist reports cross-coverage request from checkup coordinator."
+    },
+    {
+      "alert_id": "anm-20260313-003",
+      "user_id": "usr-dr-29102847",
+      "user_display_name": "Dr. Kanya Srisuk",
+      "department": "Internal Medicine",
+      "alert_type": "off_hours",
+      "severity": "Medium",
+      "triggered_at": "2026-03-13T20:47:00Z",
+      "detail": {
+        "access_time_local": "2026-03-14T03:47:00+07:00",
+        "off_hours_definition": "22:00–06:00 ICT",
+        "records_accessed": 4,
+        "session_id": "sess-20260313-29102847-002"
+      },
+      "status": "Open",
+      "acknowledged_by": null,
+      "acknowledged_at": null,
+      "resolved_by": null,
+      "resolved_at": null,
+      "resolution_note": null
+    }
+  ],
+  "audit_logs": [
+    {
+      "entry_id": "alog-20260311-001847",
+      "prev_entry_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "who": {
+        "user_id": "usr-dr-98102847",
+        "user_display_name": "Dr. Arisa Thanapon",
+        "user_role": "physician",
+        "department": "Internal Medicine"
+      },
+      "when": {
+        "iso_timestamp_utc": "2026-03-11T08:42:17Z",
+        "local_timestamp_ict": "2026-03-11T15:42:17+07:00"
+      },
+      "where": {
+        "service_id": "recommendation-dashboard-ui",
+        "source_ip_hash": "sha256_source_ip_001",
+        "request_id": "req-20260311-084217-001",
+        "user_agent_class": "web_browser"
+      },
+      "what": {
+        "action_type": "View",
+        "resource_type": "RecommendationOutput",
+        "patient_token": "tok_hmac_56291047",
+        "patient_token_masked": "tok_hmac_562****47",
+        "model_id": "claude-sonnet-4-6",
+        "template_version": "v3.1",
+        "latency_ms": 2847,
+        "safety_validator_result": "pass",
+        "recommendation_source": "AI"
+      },
+      "why": {
+        "request_context": "Annual checkup recommendation — patient initiated",
+        "indication_code": "annual_checkup_rec"
+      },
+      "retention_expiry": "2029-03-11"
+    },
+    {
+      "entry_id": "alog-20260311-003291",
+      "prev_entry_hash": "placeholder",
+      "who": {
+        "user_id": "usr-nurse-74920183",
+        "user_display_name": "Nurse Supawan K.",
+        "user_role": "nurse",
+        "department": "Health Checkup Center"
+      },
+      "when": {
+        "iso_timestamp_utc": "2026-03-11T09:15:04Z",
+        "local_timestamp_ict": "2026-03-11T16:15:04+07:00"
+      },
+      "where": {
+        "service_id": "recommendation-dashboard-ui",
+        "source_ip_hash": "sha256_source_ip_002",
+        "request_id": "req-20260311-091504-002",
+        "user_agent_class": "web_browser"
+      },
+      "what": {
+        "action_type": "Export",
+        "resource_type": "RecommendationOutput",
+        "patient_token": "tok_hmac_56291047",
+        "patient_token_masked": "tok_hmac_562****47",
+        "model_id": null,
+        "template_version": null,
+        "latency_ms": 312,
+        "safety_validator_result": null,
+        "recommendation_source": null
+      },
+      "why": {
+        "request_context": "Printed for patient counselling session",
+        "indication_code": "patient_counselling_export"
+      },
+      "retention_expiry": "2029-03-11"
+    },
+    {
+      "entry_id": "alog-20260312-007403",
+      "prev_entry_hash": "placeholder",
+      "who": {
+        "user_id": "usr-dr-98102847",
+        "user_display_name": "Dr. Arisa Thanapon",
+        "user_role": "physician",
+        "department": "Internal Medicine"
+      },
+      "when": {
+        "iso_timestamp_utc": "2026-03-12T07:30:22Z",
+        "local_timestamp_ict": "2026-03-12T14:30:22+07:00"
+      },
+      "where": {
+        "service_id": "recommendation-dashboard-ui",
+        "source_ip_hash": "sha256_source_ip_001",
+        "request_id": "req-20260312-073022-003",
+        "user_agent_class": "web_browser"
+      },
+      "what": {
+        "action_type": "View",
+        "resource_type": "PatientTrend",
+        "patient_token": "tok_hmac_56291047",
+        "patient_token_masked": "tok_hmac_562****47",
+        "model_id": null,
+        "template_version": null,
+        "latency_ms": 487,
+        "safety_validator_result": null,
+        "recommendation_source": null
+      },
+      "why": {
+        "request_context": "Follow-up biomarker trend review",
+        "indication_code": "trend_review"
+      },
+      "retention_expiry": "2029-03-12"
+    }
+  ],
+  "rbac_roles": [
+    {
+      "role_id": "physician",
+      "label": "Physician",
+      "permissions": {
+        "RecommendationOutput": ["read"],
+        "PatientTrend": ["read"],
+        "ClinicalSignals": ["read"],
+        "AuditLog": [],
+        "RulesetConfig": [],
+        "UserRoles": []
+      }
+    },
+    {
+      "role_id": "nurse",
+      "label": "Nurse",
+      "permissions": {
+        "RecommendationOutput": ["read", "export"],
+        "PatientTrend": ["read"],
+        "ClinicalSignals": ["read"],
+        "AuditLog": [],
+        "RulesetConfig": [],
+        "UserRoles": []
+      }
+    },
+    {
+      "role_id": "pharmacist",
+      "label": "Pharmacist",
+      "permissions": {
+        "RecommendationOutput": ["read"],
+        "PatientTrend": [],
+        "ClinicalSignals": [],
+        "AuditLog": [],
+        "RulesetConfig": [],
+        "UserRoles": []
+      }
+    },
+    {
+      "role_id": "admin",
+      "label": "System Admin",
+      "permissions": {
+        "RecommendationOutput": [],
+        "PatientTrend": [],
+        "ClinicalSignals": [],
+        "AuditLog": ["read", "export"],
+        "RulesetConfig": ["read", "write"],
+        "UserRoles": ["read", "write"]
+      }
+    },
+    {
+      "role_id": "dpo",
+      "label": "Data Protection Officer",
+      "permissions": {
+        "RecommendationOutput": [],
+        "PatientTrend": [],
+        "ClinicalSignals": [],
+        "AuditLog": ["read", "export", "audit_of_audit"],
+        "RulesetConfig": ["read"],
+        "UserRoles": ["read"]
+      }
+    }
+  ],
+  "mapping_codes": [
+    {
+      "mapping_id": "map-0001",
+      "local_code": "FBS",
+      "local_system": "HIS_LAB",
+      "local_label": "Fasting Blood Sugar",
+      "target_code": "1558-6",
+      "target_system": "LOINC",
+      "target_label": "Glucose [Mass/volume] in Serum or Plasma --Fasting",
+      "mapping_type": "exact",
+      "status": "active",
+      "validated_by_user_id": "usr-admin-00001",
+      "validated_at": "2026-03-14T09:30:00Z",
+      "last_updated_by_user_id": "usr-admin-00001",
+      "last_updated_at": "2026-03-14T09:30:00Z",
+      "notes": "Verified with laboratory terminology committee"
+    },
+    {
+      "mapping_id": "map-0002",
+      "local_code": "HBA1C",
+      "local_system": "HIS_LAB",
+      "local_label": "HbA1c",
+      "target_code": "4548-4",
+      "target_system": "LOINC",
+      "target_label": "Hemoglobin A1c/Hemoglobin.total in Blood",
+      "mapping_type": "exact",
+      "status": "active",
+      "validated_by_user_id": "usr-admin-00001",
+      "validated_at": "2026-03-14T09:35:00Z",
+      "last_updated_by_user_id": "usr-admin-00001",
+      "last_updated_at": "2026-03-14T09:35:00Z",
+      "notes": "Core diabetes monitoring code"
+    },
+    {
+      "mapping_id": "map-0003",
+      "local_code": "DX_DM2",
+      "local_system": "HIS_DIAG",
+      "local_label": "Type 2 Diabetes Mellitus",
+      "target_code": "E11.9",
+      "target_system": "ICD10",
+      "target_label": "Type 2 diabetes mellitus without complications",
+      "mapping_type": "exact",
+      "status": "active",
+      "validated_by_user_id": "usr-dpo-00001",
+      "validated_at": "2026-03-14T10:10:00Z",
+      "last_updated_by_user_id": "usr-dpo-00001",
+      "last_updated_at": "2026-03-14T10:10:00Z",
+      "notes": "Diagnosis coding reference for chronic registry"
+    },
+    {
+      "mapping_id": "map-0004",
+      "local_code": "DX_HT",
+      "local_system": "HIS_DIAG",
+      "local_label": "Essential Hypertension",
+      "target_code": "59621000",
+      "target_system": "SNOMED_CT",
+      "target_label": "Essential hypertension (disorder)",
+      "mapping_type": "narrow",
+      "status": "active",
+      "validated_by_user_id": "usr-dpo-00001",
+      "validated_at": "2026-03-14T10:20:00Z",
+      "last_updated_by_user_id": "usr-admin-00001",
+      "last_updated_at": "2026-03-14T10:20:00Z",
+      "notes": "Preferred SNOMED term for interoperability exchange"
+    },
+    {
+      "mapping_id": "map-0005",
+      "local_code": "COLONOSCOPY_DX",
+      "local_system": "HIS_PROC",
+      "local_label": "Colonoscopy diagnostic",
+      "target_code": "45378",
+      "target_system": "CPT",
+      "target_label": "Diagnostic colonoscopy",
+      "mapping_type": "exact",
+      "status": "active",
+      "validated_by_user_id": "usr-admin-00001",
+      "validated_at": "2026-03-14T10:45:00Z",
+      "last_updated_by_user_id": "usr-admin-00001",
+      "last_updated_at": "2026-03-14T10:45:00Z",
+      "notes": "Procedure mapping for screening workflow"
+    }
+  ],
+  "master_programs": [
+    { "program_code": "BASIC_16", "program_name": "Basic (16 items)", "price_thb": 2871, "target_ages": "15+", "gender": "any", "status": "active" },
+    { "program_code": "AFTERNOON_18", "program_name": "Afternoon (18 items)", "price_thb": 3690, "target_ages": "15+", "gender": "any", "status": "active" },
+    { "program_code": "GOLD_ANY", "program_name": "Gold", "price_thb": 5900, "target_ages": "20–35", "gender": "any", "status": "active" },
+    { "program_code": "PLAT_M", "program_name": "Platinum — Men", "price_thb": 8700, "target_ages": "35+", "gender": "male", "status": "active" },
+    { "program_code": "PLAT_F", "program_name": "Platinum — Women", "price_thb": 13500, "target_ages": "35+", "gender": "female", "status": "active" },
+    { "program_code": "DIAM_M", "program_name": "Diamond — Men", "price_thb": 15000, "target_ages": "40+", "gender": "male", "status": "active" },
+    { "program_code": "DIAM_F", "program_name": "Diamond — Women (47 items)", "price_thb": 19000, "target_ages": "40+", "gender": "female", "status": "active" },
+    { "program_code": "DIAM_COUPLE", "program_name": "Diamond Couple", "price_thb": 26000, "target_ages": "40+", "gender": "couple", "status": "active" }
+  ]
+}

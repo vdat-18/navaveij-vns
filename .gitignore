@@ -188,6 +188,15 @@ logs/
 external/
 baml_client/
 # Web / Frontend stuff
+**/frontend/node_modules/
+**/frontend/.next/
+**/frontend/out/
+**/frontend/build/
+**/frontend/.vercel
+**/frontend/*.tsbuildinfo
+**/frontend/next-env.d.ts
+**/frontend/.pnp*
+**/frontend/.yarn/
 frontend/node_modules/
 frontend/.next/
 frontend/out/
@@ -197,3 +206,10 @@ frontend/*.tsbuildinfo
 frontend/next-env.d.ts
 frontend/.pnp*
 frontend/.yarn/
+.agents/*
+.claude/*
+**/.agents/skills/
+**/.claude/skills/
+**/backend/**/__pycache__/
+**/frontend/node_modules/
+**/frontend/.next/

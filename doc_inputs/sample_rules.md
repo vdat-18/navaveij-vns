@@ -1,0 +1,134 @@
+Package	Level	Rules
+Annual Checkup	Basic	- Ages 15+
+Annual Checkup	Basic plus	- Ages 15+
+Annual Checkup	Gold	- Ages 20-35
+Annual Checkup	Platinum Male	"- Ages 35+
+- Male"
+Annual Checkup	Platinum Female	"- Ages 35+
+- Female"
+Annual Checkup	Diamond Male	"- Ages 40+
+- Male"
+Annual Checkup	Diamond Female	"- Ages 40+
+- Female"
+Annual Checkup	Diamond Couple	"- Ages 40+
+- For couple"
+Add-on Programs	Excercise Stress Test (EST)	"- High blood pressure (Hyper tension)
+- High FAT (cholesterol levels, LDL)
+- High blood sugar
+- Historical of Chest pain especially during exercise
+- Overdue  EST test"
+Add-on Programs	Echocardiogram (ECHO)	"- High blood pressure (Hyper tension)
+- High FAT (cholesterol levels, LDL)
+- High blood sugar
+- Historical of Chest pain especially during exercise
+- Overdue  ECHO test
+- Have family history of early heart attack (Male < 55, Female < 65)"
+Add-on Programs	Coronary Artery Calcium Scoring (CT-CAC)	"- High blood pressure (Hyper tension)
+- High FAT (cholesterol levels, LDL)
+- Historical of Chest pain especially during exercise
+- Have family history of early heart attack (Male < 55, Female < 65)
+- Any male with age 40+"
+Add-on Programs	48-hour Cardiac Patch Monitor (S-Patch EX)	- Have history of lose concious
+Add-on Programs	Arrhythmia Screening Program	"- Have history of lose concious
+- Have family member die due to sudden death (age < 40-50)"
+Add-on Programs	Lose-dose CT Chest (PM2.5/ Lung Screening)	"- Smoking > 20 years and Age > 50
+- Have family history of lung cancer"
+Diabetes & Endocrine	Diabetes Screen Pro 1	"- Fasting Blood Sugar(FBS) upward trend
+- Overweight trend (High BMI)"
+Diabetes & Endocrine	Menopause Screening	- Perimenopausal women in female age 40+
+Diabetes & Endocrine	Male Hormone Assessment	"- Male age 40+
+- Have fatigue history
+- Have mood swing issue"
+Gastrointestinal & Liver	Hepatitis A,B,C Screening	- Overdue Heapatitis B vaccination
+Gastrointestinal & Liver	GI/Liver Screen Package	"- Abnormal ALT/AST
+- Alcohol heavy use"
+Gastrointestinal & Liver	FibroTouch (Liver Fat/ Fibrosis, Non invasive)	"- Fatty liver diagnosis
+- Liver Function Tests (LFTs) prompt a doctor to order a FibroScan"
+Gastrointestinal & Liver	Endoscopy Package	"- Overdue colonoscopy
+- Upper GI complaints
+- Or have stomach issue with weight loss
+- Or having blood in stool (Either red or black)
+- Or having vomit with blood"
+Internal Medicine	Kidney Disease Screending	"- eGFR slope > -5ML/Min/1.73m2/yr
+- DM comorbidity (Kidney Risk)
+- Creatinine Trend"
+Internal Medicine	Lung Cancer Screening (Low-dose CT)	"- Smoking > 20 years and Age > 50
+- Have family history of lung cancer"
+Internal Medicine	Influenza Vaccine (3-strain)	- Overdue influenza Vaccination
+Internal Medicine	Senior Flu Vaccine	"- Overdue influenza Vaccination
+- Age > 60"
+Imaging & Cancer screening	Mammogram	"- Female 40+
+- Overdue Mammogram"
+Imaging & Cancer screening	Breast Ultrasound	"- Female < 40
+- Dense-tissue Mammogram follow-up"
+Imaging & Cancer screening	Pap Smear + HPV DNA	"- Female
+- Overdue Cervical Cancer screening"
+Imaging & Cancer screening	Prostate & Bladder Ultrasound	"- Male 50+
+- Prostate screening"
+Imaging & Cancer screening	Abdominal Ultrasound (Full)	"- Fatty liver
+- Alcohol heavy user
+- Abdominal symptoms"
+Imaging & Cancer screening	Abdominal Ultrasound (Single Region)	- Follow-up
+Imaging & Cancer screening	Bone Density Scan DEXA (2 areas)	"- Low BMI
+- Steroid use
+- Or female with Post-menupausal"
+Imaging & Cancer screening	Carotid Artery Ultrasound	"- Hypertension stage 2
+- Premature CAD
+- Have family member with hypertension
+- Age 50+"
+Imaging & Cancer screening	Multi-Cancer Screening SPOT-MAS	"- Family history with breast/colon/prostate cancer
+- Unexplained weight loss"
+Imaging & Cancer screening	Nasal Endoscopy	"- Chronic sinus symptoms
+- Occupational chemical exposure"
+Imaging & Cancer screening	Sinus CT (Low-dose)	"- Recurrent sinusitis
+- Nasal symtomns"
+Imaging & Cancer screening	Spine MRI (cervical or lumbar)	"- Prolong computer work (Office syndrome)
+- Chronic back pain"
+Women's health	Cervical Cancer + HPV Screening	- Female overdue pap smear
+Women's health	Menopause Screening Pro Premium (19 items)	"- Perimenopausal symptoms
+- Hormonal contraception history"
+Women's health	Pre-marriage/Family planning check	- Reproductive history intake
+Women's health	4D Ultrasound	"- Obstetic
+- Pregnancy Monitoring"
+Bone & joint	Osteoporosis Screening (DEXA)	"- Post-menopausal women
+- Low BMI
+- Steroid history"
+Bone & joint	Spine MRI	"- Chonic bac pain symptom
+- Office syndrome
+- Occupational risk"
+Bone & joint	PRP Joint injection (1 shot)	"- Osteoarthritis
+- Joint pain follow-up"
+Bone & joint	PRP-HA Combined Joint Therapy	- Severe Osteoarthritis
+Brain & Nervous System	Full sleep Test - 1 night PSG	"- Night shift worker
+- Lack of sleep
+- Snoring
+- Fatigue when wake up"
+Brain & Nervous System	Sleep Apnea Testing with CPAP Trial	"- High BMI and Snoring issue
+- Hypertension
+- Sleep conplaints"
+Brain & Nervous System	Demenita/ Cognitive Decline Screening	"- Ages 65+
+- Have family history of dementia"
+Brain & Nervous System	Chronic Headache Assessment	- Unexplained chronic headache symptom
+Thyroid	Thyroid Pro 1	"- Palpitation sympton
+- Unexplained weight change
+- Lump or swelling on neck"
+Thyroid	Thyroid Pro 2	"- Abnormal TSH on basic panel
+- Thyroid nodule"
+Allergy & Skin	Food allergy Test (20 items)	- Patient-reported food intolerance
+Allergy & Skin	Airborne allergy test (20 items)	- Occupational/ Envisonmental exposure risk
+Allergy & Skin	Combined allergy Panel (40 Items)	- Comprehensive allergy workup
+Pediatric & Vaccine	Influenza Vaccine	- Overdue annual vaccination
+Pediatric & Vaccine	Dengue Vaccine	"- Overdue Dengue vaccination
+- Ages 4+"
+Pediatric & Vaccine	HPV Vaccine	"- Overdue HPV vaccination
+- Ages 9-45"
+Pediatric & Vaccine	Pneumococcal Vaccine	"- Overdue Pneumoccocal Vaacine
+- Ages 65+"
+Pediatric & Vaccine	Heepatitis B Vaccine	- Non-immune to Hepatitis B (Screening-Triggered)
+Pediatric & Vaccine	Pay & Learn Health Check	"- Ages 5-14
+- Pediatric annual checkup"
+Occupational/ Pre-employment	Medical Certificate - 5 Diseases	- Pre-employment (Childcare/Elderly care workers)
+Occupational/ Pre-employment	Toxicology Screening (Heavy Metal)	- Factory/ Occupational risk
+Occupational/ Pre-employment	Cortisol/ Stress Hormone	"- Night shift
+- Insufficient sleep
+- Occupational risk"

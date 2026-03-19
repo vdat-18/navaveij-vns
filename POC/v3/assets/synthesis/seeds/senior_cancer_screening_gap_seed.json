@@ -1,0 +1,355 @@
+{
+  "schema_version": "signal_store_record_v1",
+  "patient_token": "tok_hmac_f7e6d5c4",
+  "computed_at": "2026-03-15T03:00:00Z",
+  "pipeline_run_id": "pipe_20260315_0300",
+  "fhir_snapshot_version": "fhir_snap_20260315",
+  "hard_constraints": {
+    "patient_token": "tok_hmac_f7e6d5c4",
+    "patient_demographics": {
+      "gender": "female",
+      "age": 68,
+      "date_of_birth_token": "dob_tok_19580215",
+      "ethnicity": "asian",
+      "bmi_threshold_profile": "asian_adjusted"
+    },
+    "eligibility_exclusions": [],
+    "active_safety_flags": [],
+    "tier_ceiling": null,
+    "computed_at": "2026-03-15T03:00:00Z",
+    "pipeline_run_id": "pipe_20260315_0300"
+  },
+  "clinical_signals": {
+    "patient_token": "tok_hmac_f7e6d5c4",
+    "rule_preliminary_tier": "Standard",
+    "overall_risk_level": "Moderate",
+    "applicable_signals": [
+      "fbs_status",
+      "hba1c_status",
+      "ldl_status",
+      "hdl_status",
+      "tg_status",
+      "alt_status",
+      "ast_status",
+      "egfr_status",
+      "tsh_status",
+      "uric_acid_status",
+      "bp_category",
+      "bmi_status",
+      "colonoscopy_screening_gap",
+      "mammogram_screening_gap",
+      "pap_smear_screening_gap",
+      "lung_ldct_gap",
+      "dexa_screening_gap",
+      "est_gap",
+      "echo_gap",
+      "influenza_vaccination_gap",
+      "hepatitis_b_vaccination_status",
+      "hpv_vaccination_gap",
+      "pneumococcal_vaccination_gap",
+      "shingrix_vaccination_gap",
+      "family_hx_premature_cad",
+      "family_hx_colon_ca",
+      "smoking_status",
+      "lung_ct_threshold",
+      "alcohol_risk",
+      "occupational_risk",
+      "dm_comorbidity",
+      "htn_comorbidity",
+      "ckd_comorbidity",
+      "dyslipidemia_comorbidity",
+      "ascvd_10yr_risk_status",
+      "dm_organ_complication_screening",
+      "fibroscan_indication",
+      "sleep_apnea_screen_result",
+      "physical_activity_level",
+      "reproductive_history",
+      "frax_bone_density_risk"
+    ],
+    "signals_fired": [
+      "colonoscopy_overdue_3650d",
+      "dexa_screening_gap",
+      "mammogram_overdue_1095d",
+      "bmi_overweight_asian",
+      "ascvd_risk_borderline"
+    ],
+    "missing_signals": [
+      "sleep_apnea_screen_result",
+      "physical_activity_level",
+      "hpv_vaccination_gap",
+      "dm_organ_complication_screening",
+      "fibroscan_indication"
+    ],
+    "risk_flags": [
+      {
+        "flag_id": "colonoscopy_screening_gap",
+        "label": "Colorectal cancer screening overdue",
+        "severity": "High",
+        "source_signals": ["colonoscopy_overdue_3650d"],
+        "guideline": "USPSTF Colorectal Cancer Screening 2021",
+        "add_on_triggers": ["colonoscopy_now"]
+      }
+    ],
+    "comorbidity_tags": [],
+    "screening_gaps": [
+      {
+        "screening_id": "colonoscopy",
+        "label": "Colonoscopy (colorectal cancer screening)",
+        "last_performed_date": "2014-03-01",
+        "recommended_interval_months": 120,
+        "overdue_days": 3650,
+        "overdue_score": 1.0,
+        "priority_color": "Red",
+        "guideline": "USPSTF Colorectal Cancer Screening 2021",
+        "note": "Last colonoscopy > 10 years ago; patient age 68 (A-grade screening window)."
+      },
+      {
+        "screening_id": "mammogram",
+        "label": "Mammography (breast cancer screening)",
+        "last_performed_date": "2021-02-01",
+        "recommended_interval_months": 24,
+        "overdue_days": 770,
+        "overdue_score": 0.8,
+        "priority_color": "Orange",
+        "guideline": "USPSTF Breast Cancer Screening 2024",
+        "note": "Last mammogram > 2 years ago (recommended biennial 40–74)."
+      },
+      {
+        "screening_id": "dexa",
+        "label": "Bone density DEXA",
+        "last_performed_date": null,
+        "recommended_interval_months": 24,
+        "overdue_days": null,
+        "overdue_score": 1.0,
+        "priority_color": "Red",
+        "guideline": "USPSTF Osteoporosis Screening 2018",
+        "note": "Female ≥65 with no prior DEXA → screening indicated."
+      }
+    ],
+    "vaccination_gaps": [
+      {
+        "vaccine_id": "influenza",
+        "label": "Influenza (seasonal)",
+        "last_administered_date": "2024-10-10",
+        "overdue_days": 156,
+        "series_complete": null,
+        "doses_received": null,
+        "doses_required": null,
+        "priority_color": "Orange",
+        "guideline": "CDC ACIP 2024",
+        "note": "Missed current-season vaccine; due this year."
+      },
+      {
+        "vaccine_id": "pneumococcal",
+        "label": "Pneumococcal (PCV20/PCV15+PPSV23)",
+        "last_administered_date": null,
+        "doses_received": 0,
+        "doses_required": 1,
+        "overdue_days": null,
+        "series_complete": false,
+        "priority_color": "Orange",
+        "guideline": "CDC ACIP 2022",
+        "note": "Age ≥65 with no documented pneumococcal vaccination."
+      },
+      {
+        "vaccine_id": "shingrix",
+        "label": "Shingles (RZV/Shingrix)",
+        "last_administered_date": "2025-01-15",
+        "doses_received": 1,
+        "doses_required": 2,
+        "overdue_days": 60,
+        "series_complete": false,
+        "priority_color": "Yellow",
+        "guideline": "CDC ACIP 2017",
+        "note": "Second Shingrix dose overdue by ~2 months."
+      }
+    ],
+    "abnormal_triggers": [],
+    "family_history_flags": {
+      "ca_breast": false,
+      "ca_colon": false,
+      "ca_prostate": false,
+      "premature_cad": false,
+      "premature_cad_detail": null,
+      "ca_colon_detail": null
+    },
+    "behavioral_flags": {
+      "smoking": {
+        "status": "never",
+        "pack_years": null,
+        "quit_years_ago": null,
+        "lung_ct_threshold_met": false
+      },
+      "alcohol": {
+        "audit_c_score": 1.0,
+        "risk_level": "none",
+        "fibroscan_indicated": false,
+        "note": null
+      },
+      "occupational": {
+        "tags": [],
+        "add_ons_triggered": []
+      },
+      "physical_activity": {
+        "days_per_week": 2,
+        "level": "insufficient",
+        "add_ons_triggered": ["exercise_counseling"]
+      }
+    },
+    "symptom_tags": [],
+    "computed_at": "2026-03-15T03:00:00Z",
+    "pipeline_run_id": "pipe_20260315_0300"
+  },
+  "biomarker_trends": {
+    "patient_token": "tok_hmac_f7e6d5c4",
+    "bmi": {
+      "current": 24.8,
+      "unit": "kg/m2",
+      "threshold_profile": "asian_adjusted",
+      "category": "Overweight",
+      "trend_direction": "stable",
+      "slope_per_year": 0.1,
+      "history": [
+        { "date": "2023-07-10", "value": 24.5 },
+        { "date": "2024-08-20", "value": 24.8 },
+        { "date": "2026-02-20", "value": 24.8 }
+      ],
+      "alert": null
+    },
+    "blood_pressure": {
+      "latest": {
+        "sbp": 128,
+        "dbp": 78,
+        "date": "2026-02-20"
+      },
+      "unit": "mmHg",
+      "category": "Elevated",
+      "category_label": "Elevated BP (120–129/<80)",
+      "trend_direction": "stable",
+      "sbp_slope_per_year": 1.0,
+      "history": [
+        { "date": "2023-07-10", "sbp": 126, "dbp": 78 },
+        { "date": "2024-08-20", "sbp": 128, "dbp": 78 },
+        { "date": "2026-02-20", "sbp": 128, "dbp": 78 }
+      ],
+      "alert": null
+    },
+    "egfr": {
+      "current": 72.0,
+      "unit": "mL/min/1.73m2",
+      "loinc_code": "62238-1",
+      "ckd_stage": "G2",
+      "ckd_stage_label": "CKD Stage G2 — mildly decreased",
+      "annual_slope": -1.0,
+      "rapid_progression": false,
+      "rapid_progression_threshold": -5.0,
+      "history": [
+        { "date": "2023-07-10", "value": 75.0 },
+        { "date": "2024-08-20", "value": 73.0 },
+        { "date": "2026-02-20", "value": 72.0 }
+      ],
+      "alert": null
+    },
+    "labs": [
+      {
+        "lab_id": "fbs",
+        "label": "Fasting Blood Glucose",
+        "loinc_code": "1558-6",
+        "current_value": 96.0,
+        "unit": "mg/dL",
+        "reference_range": { "low": 70.0, "high": 99.0 },
+        "interpretation": "N",
+        "category": "Normal",
+        "velocity_per_year": 0.0,
+        "trend_direction": "stable",
+        "trend_flag": "stable",
+        "history": [
+          { "date": "2023-07-10", "value": 95.0 },
+          { "date": "2024-08-20", "value": 97.0 },
+          { "date": "2026-02-20", "value": 96.0 }
+        ],
+        "alert": null
+      },
+      {
+        "lab_id": "hba1c",
+        "label": "HbA1c",
+        "loinc_code": "4548-4",
+        "current_value": 5.6,
+        "unit": "%",
+        "reference_range": { "high": 5.7 },
+        "interpretation": "N",
+        "category": "Normal",
+        "velocity_per_year": 0.0,
+        "trend_direction": "stable",
+        "trend_flag": "stable",
+        "history": [
+          { "date": "2024-08-20", "value": 5.6 },
+          { "date": "2026-02-20", "value": 5.6 }
+        ],
+        "alert": null
+      },
+      {
+        "lab_id": "ldl",
+        "label": "LDL Cholesterol",
+        "loinc_code": "13457-7",
+        "current_value": 124.0,
+        "unit": "mg/dL",
+        "reference_range": {
+          "optimal": 100.0,
+          "borderline_high_low": 130.0,
+          "borderline_high_high": 159.0
+        },
+        "interpretation": "N",
+        "category": "Near-optimal",
+        "velocity_per_year": 0.0,
+        "trend_direction": "stable",
+        "trend_flag": "stable",
+        "history": [
+          { "date": "2023-07-10", "value": 126.0 },
+          { "date": "2024-08-20", "value": 124.0 },
+          { "date": "2026-02-20", "value": 124.0 }
+        ],
+        "alert": null
+      }
+    ],
+    "ascvd_10yr_risk": {
+      "score": 0.065,
+      "score_pct": 6.5,
+      "category": "Borderline",
+      "category_label": "Borderline risk (5–7.5%)",
+      "inputs_used": {
+        "age": 68,
+        "sex": "female",
+        "race": "other",
+        "total_cholesterol": 208,
+        "hdl": 55,
+        "systolic_bp": 128,
+        "bp_treatment": false,
+        "diabetes": false,
+        "smoking": "never"
+      },
+      "guideline": "ACC/AHA Pooled Cohort Equations 2013/2018",
+      "note": "Borderline ASCVD risk; main concern is overdue cancer and bone screening."
+    },
+    "waist_circumference": {
+      "value": 88.0,
+      "unit": "cm",
+      "threshold_male_asian": null,
+      "category": "Mildly increased",
+      "note": "Central adiposity but not extreme."
+    },
+    "computed_at": "2026-03-15T03:00:00Z",
+    "pipeline_run_id": "pipe_20260315_0300"
+  },
+  "metadata": {
+    "data_completeness_ratio": 0.9,
+    "total_key_fields": 44,
+    "populated_key_fields": 40,
+    "missing_data_fields": [
+      "sleep_apnea_screen_result",
+      "physical_activity_level",
+      "hpv_vaccination_gap",
+      "dm_organ_complication_screening"
+    ]
+  }
+}

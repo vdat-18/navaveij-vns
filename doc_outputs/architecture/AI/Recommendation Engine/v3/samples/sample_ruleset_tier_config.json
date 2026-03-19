@@ -174,10 +174,11 @@
             "night_shift_worker",
             "uric_acid_hyperuricemia",
             "dyslipidemia_active",
-            "fibroscan_indication"
+            "fibroscan_indication",
+            "fbs_upward_trend"
           ],
           "min_count": 2,
-          "description": "≥ 2 of 13 low-to-moderate severity signals active simultaneously — combined risk burden warrants enhanced screening beyond Standard.",
+          "description": "≥ 2 of 14 low-to-moderate severity signals active simultaneously — combined risk burden warrants enhanced screening beyond Standard.",
           "_signal_pool_rationale": {
             "bmi_overweight_asian": "Asian-adjusted overweight (BMI ≥ 23); elevated metabolic risk",
             "low_hdl": "HDL < 40 (M) / < 50 (F); CV risk factor",
@@ -185,6 +186,7 @@
             "high_ldl": "LDL ≥ 160 mg/dL; CV risk",
             "bp_stage1_htn": "SBP 130–139 or DBP 80–89 (ACC/AHA 2017 Stage 1); not yet active comorbidity",
             "bp_worsening": "BP trend worsening over serial readings",
+            "fbs_upward_trend": "Fasting Blood Sugar upward trend (>5mg/dL/yr); metabolic risk",
             "family_hx_premature_cad": "First-degree premature CAD; ACC/AHA risk enhancer",
             "at_risk_alcohol_use": "AUDIT-C ≥ 3 (F) / ≥ 4 (M); liver + metabolic risk",
             "office_syndrome": "Prolonged sedentary desk work; MSK + metabolic risk",

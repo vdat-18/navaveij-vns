@@ -1,45 +1,54 @@
-# Navavej ROC (Recommendation & Orchestration Center) 🏥
+# Navaveij Clinical Recommendation Engine 🏥
 
-![Navavej ROC Logo](https://navavej.com/wp-content/themes/navavej/assets/images/logo.png)
-
-Welcome to the **Navavej ROC**, an enterprise-grade AI Clinical Decision Support System (CDSS) designed for **Navavej International Hospital**. 
-
-This platform empowers physicians to provide personalized, data-driven health checkup strategies by combining advanced AI reasoning (LLMs) with strict clinical rulesets and an immutable audit trail.
+Welcome to **Navaveij**, an AI-powered system designed to help doctors suggest the best health checkup plans for their patients. This system uses advanced AI and clinical rules to analyze medical data safely and accurately.
 
 ---
 
-## 🚀 Key Features
+## 🚀 What does this system do?
 
-### 1. Clinical AI Reasoning HUD
-- **Neural Reasoning Trace**: Transparent AI thought process explainability for doctors.
-- **Smart Tier Selection**: Automatic mapping to Standard (Gold), Advanced (Platinum), or Premium (Diamond) packages based on risk profile.
-- **Risk Indicator HUD**: Real-time visualization of entity risk levels (High/Moderate/Low).
+Think of Navaveij as an **"AI Medical Assistant."** It follows a specific path to give a recommendation:
 
-### 2. Biomarker Evolution Trends 📈
-- **Interactive Charts**: Powered by Recharts, visualizing 3-year historical trends for Blood Pressure (SBP/DBP) and BMI.
-- **Micro-Trend Analysis**: Automatic detection of increasing/decreasing velocities in clinical signals.
-
-### 3. Physician Governance & Immutable Audit Log 🛡️
-- **Immutable Ledger**: Every decision is hashed using SHA-256 and chained to previous records for absolute data integrity.
-- **Approval Workflow**: Physicians can record "Approve/Reject" decisions with custom clinical notes.
-- **Governance Dashboard**: A dedicated administrative view to search and verify historical clinical traces.
-
-### 4. Privacy-First Architecture
-- **PII Masking**: Automatic pseudonymization of patient identity before cloud-AI processing.
-- **HMAC Tokens**: Security-first tokenization for cross-system data exchange.
+1.  **Get Data**: It connects to hospital records to get patient info (blood tests, heart rate, etc.).
+2.  **Protect Privacy**: It hides the patient's name and ID so the AI doesn't know who they are.
+3.  **Analyze Trends**: It looks at how a patient's health changed over the last 3 years.
+4.  **AI Reasoning**: It asks a smart AI (LLM) to choose the best checkup package (Standard, Advanced, or Premium).
+5.  **Explain Why**: It provides a clear medical reason for its choice.
 
 ---
 
-## 🏗️ System Architecture
+## 🏗️ Project Structure (How code is organized)
 
-- **Frontend**: Next.js 15+, Tailwind CSS, Framer Motion, Recharts, Lucide Icons.
-- **Backend API**: Python 3.10+, FastAPI, Loguru.
-- **Intelligence Layer**: BAML (Structured LLM prompting), Model Context Protocol (MCP).
-- **Data Governance**: SHA-256 Hash Chaining Auditor.
+The code is split into logical "layers" to keep it clean and professional:
+
+*   📂 `src/api/`: The **Entry Point**. This is where the website or mobile app talks to the system.
+*   📂 `src/orchestrator/`: The **Brain**.
+    *   `manager.py`: Controls the whole process from start to finish.
+    *   `workflows/`: Steps of medical reasoning.
+    *   `infrastructure/`: Handles the connection to medical databases (MCP).
+    *   `privacy/`: Masks private information (names, IDs).
+    *   `safety/`: Double-checks AI advice to make sure it is medically safe.
+*   📂 `src/mcp_server/`: The **Data Connector**. It fetches real medical data using the Model Context Protocol (MCP).
+*   📂 `src/synthesis/`: The **Data Factory**. It uses AI to create "fake patients" with real medical logic for testing.
+*   📂 `src/shared/`: Common tools like error handling (Exceptions) and settings.
 
 ---
 
-## 🛠️ Getting Started
+## 🛠️ Technology Stack (What we use)
+
+We use modern and professional tools:
+
+| Tool | Purpose |
+| :--- | :--- |
+| **Python 3.10+** | The main language. |
+| **FastAPI** | Makes the system fast and easy to talk to over the internet. |
+| **BAML** | A special tool to make sure the AI always gives us clean, structured data. |
+| **MCP** | "Model Context Protocol" – a new way to connect AI to databases. |
+| **Pydantic** | Ensures all data (numbers, dates) is in the correct format. |
+| **Loguru** | Helps us see what's happening inside the system by writing clear logs. |
+
+---
+
+## 🔬 Scientific Logic (The 5-Phase Workflow)
 
 ### 0. Run with Docker (Recommended for PoC) 🐳
 The easiest way to launch the entire ecosystem is using Docker Compose. Ensure you have Docker and Docker Compose installed.
@@ -56,14 +65,17 @@ docker-compose up --build
 ```bash
 # Install dependencies
 uv sync
+When the system analyzes a patient, it follows these 5 steps:
 
-# Generate BAML client
-baml-cli generate
+1.  **Baseline**: Get the basic profile (age, gender, history).
+2.  **Signals**: Find medical alerts (e.g., "Blood pressure is too high!").
+3.  **Trends**: Look at changes (e.g., "Is the patient getting heavier every year?").
+4.  **AI Inference**: The AI considers everything and picks a checkup tier.
+5.  **Finalize**: Combine everything into a final report for the doctor.
 
-# Start the API Server
-PYTHONPATH=.:./backend uv run python -m src.api.main
-```
-*API will be available at `http://localhost:8000`*
+---
+
+## 🧪 How to Test and Run
 
 ### 2. MCP Inspector (PoC & Debugging) 🛡️
 Visualizes the secure clinical data layer and AI tool orchestration:
@@ -77,35 +89,29 @@ npx @modelcontextprotocol/inspector uv run python -m src.mcp_server.server
 
 
 ### 3. Frontend Setup & Run
+### 1. Generating Test Data
+You can create fake patients to test the system:
 ```bash
-cd frontend
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
+uv run python -m src.synthesis --count 1
 ```
-*Web dashboard will be available at `http://localhost:3000`*
+
+### 2. Running the API
+To start the system server:
+```bash
+uv run python -m src.api.main
+```
+
+### 3. Running Tests
+To make sure everything is working correctly:
+```bash
+pytest
+```
 
 ---
 
-## 📂 Repository Structure
-
-- `backend/src/`: Core Python logic (API, Orchestrator, MCP).
-- `baml_src/`: BAML prompt templates and LLM schema definitions (at root).
-- `baml_client/`: Auto-generated BAML client for Python (at root).
-- `frontend/`: Next.js frontend application.
-- `scripts/`: Integration tests and helper scripts.
-- `assets/`: Clinical Signal Store (JSON database).
-- `doc_outputs/`: Ruleset configurations and clinical samples.
-- `logs/audit.jsonl`: The immutable ledger of all clinical decisions.
+## 🛡️ Error Policy
+We follow a simple rule: **"Let it crash."** We don't hide errors with complicated `try/except` blocks. If something goes wrong, the system shows us the exact error immediately so we can fix it.
 
 ---
 
-## 🛡️ Governance & Security
-This system adheres to the **"Let it crash"** error policy for fail-fast reliability and uses **SHA-256 Hash Chaining** in the `AuditLogger` to ensure that once a clinical decision is recorded, it is permanent and tamper-proof.
-
----
-
-*Developed with ❤️ for the future of clinical excellence at Navavej International Hospital.*
+*Developed with ❤️ for Navavej International Hospital.*

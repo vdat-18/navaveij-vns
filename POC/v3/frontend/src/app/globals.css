@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navavej-teal: #00ABC7;
+  --color-navavej-red: #9D0A31;
+  --color-navavej-gray-dark: #333333;
+  --color-navavej-gray-med: #666666;
+  --color-navavej-gray-light: #F8F9FA;
+  --color-navavej-border: #E9ECEF;
+
+  --color-risk-high: #9D0A31;
+  --color-risk-mod: #F59E0B;
+  --color-risk-low: #10B981;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #333333;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Navavej Premium Components */
+.navavej-card {
+  background: #FFFFFF;
+  border-radius: 15px;
+  border: 1px solid #E9ECEF;
+  box-shadow: 3px 3px 6px 0px rgba(33, 33, 33, 0.08);
+  transition: all 0.3s ease;
+}
+
+.navavej-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 171, 199, 0.1);
+  border-color: #00ABC7;
+}
+
+.navavej-button-primary {
+  background-color: #00ABC7;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  padding: 10px 24px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.navavej-button-primary:hover {
+  background-color: #008AA1;
+  box-shadow: 0 4px 12px rgba(0, 171, 199, 0.3);
+  transform: translateY(-1px);
+}
+
+.navavej-text-teal {
+  color: #00ABC7;
+}
+
+.navavej-bg-teal {
+  background-color: #00ABC7;
+}
+
+.navavej-section-bg {
+  background-color: #F8F9FA;
+}
+
+/* Scrollbar Utility */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8F9FA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00ABC7;
+  border-radius: 10px;
+}

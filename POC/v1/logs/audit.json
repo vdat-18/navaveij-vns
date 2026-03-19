@@ -1,0 +1,1263 @@
+[
+  {
+    "timestamp": "2026-03-13T13:59:03.458567+00:00",
+    "who": {
+      "patient_id": "pt-001"
+    },
+    "what": {
+      "input_context_snapshot": {
+        "get_patient_context": "{\n  \"name\": \"Somchai W.\",\n  \"gender\": \"male\",\n  \"age\": 54,\n  \"birth_date\": \"1971-08-14\",\n  \"mrn\": \"MRN-20190847\",\n  \"fhir_patient_id\": \"Patient/patient-56291047\"\n}",
+        "get_hard_constraints": "Gender-specific: Exclude female-only screenings (e.g., Mammogram, Pap Smear).",
+        "get_clinical_signals": "{\n  \"prediabetes_alert\": true,\n  \"dyslipidemia_alert\": true,\n  \"hypertension_alert\": true,\n  \"obesity_risk\": \"High\"\n}",
+        "get_biomarker_trends": "{\n  \"bmi_trend\": [\n    {\n      \"date\": \"2026-02-15\",\n      \"value\": 26.7\n    },\n    {\n      \"date\": \"2024-11-20\",\n      \"value\": 25.8\n    },\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": 24.9\n    }\n  ],\n  \"glucose_trend\": [\n    {\n      \"date\": \"2026-02-15\",\n      \"value\": 108\n    },\n    {\n      \"date\": \"2024-11-20\",\n      \"value\": 102\n    },\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": 96\n    }\n  ],\n  \"note\": \"Increasing trend observed in both BMI and Glucose over the last 3 years.\"\n}",
+        "get_program_ruleset": "{\n  \"Standard\": \"Default for low-risk patients under 35.\",\n  \"Advanced\": \"Recommended for age > 40 or presence of 1-2 mild clinical signals.\",\n  \"Premium\": \"Recommended for age > 50 or presence of multiple high-risk signals (e.g., Prediabetes + Hypertension).\"\n}"
+      }
+    },
+    "why": {
+      "reasoning_trace": "Patient W. is a 54-year-old male with multiple clinical signals indicating an increased risk of chronic diseases, including prediabetes and hypertension. Given his age (54) and the presence of these conditions, we recommend the Advanced checkup package.",
+      "decision": "Advanced"
+    },
+    "how": {
+      "model_provider": "local",
+      "model_id": "meta-llama-3.1-8b-instruct"
+    },
+    "confidence": 0.85,
+    "metadata": {
+      "environment": "dev"
+    },
+    "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "current_hash": "4dd59f98b44046ab819cf5cd45f5f0538e6ed45af059161333195a2ae56376b7"
+  },
+  {
+    "timestamp": "2026-03-13T13:59:50.361606+00:00",
+    "who": {
+      "patient_id": "pt-001"
+    },
+    "what": {
+      "input_context_snapshot": {
+        "get_patient_context": "{\n  \"name\": \"Somchai W.\",\n  \"gender\": \"male\",\n  \"age\": 54,\n  \"birth_date\": \"1971-08-14\",\n  \"mrn\": \"MRN-20190847\",\n  \"fhir_patient_id\": \"Patient/patient-56291047\"\n}",
+        "get_hard_constraints": "Gender-specific: Exclude female-only screenings (e.g., Mammogram, Pap Smear).",
+        "get_clinical_signals": "{\n  \"prediabetes_alert\": true,\n  \"dyslipidemia_alert\": true,\n  \"hypertension_alert\": true,\n  \"obesity_risk\": \"High\"\n}",
+        "get_biomarker_trends": "{\n  \"bmi_trend\": [\n    {\n      \"date\": \"2026-02-15\",\n      \"value\": 26.7\n    },\n    {\n      \"date\": \"2024-11-20\",\n      \"value\": 25.8\n    },\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": 24.9\n    }\n  ],\n  \"glucose_trend\": [\n    {\n      \"date\": \"2026-02-15\",\n      \"value\": 108\n    },\n    {\n      \"date\": \"2024-11-20\",\n      \"value\": 102\n    },\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": 96\n    }\n  ],\n  \"note\": \"Increasing trend observed in both BMI and Glucose over the last 3 years.\"\n}",
+        "get_program_ruleset": "{\n  \"Standard\": \"Default for low-risk patients under 35.\",\n  \"Advanced\": \"Recommended for age > 40 or presence of 1-2 mild clinical signals.\",\n  \"Premium\": \"Recommended for age > 50 or presence of multiple high-risk signals (e.g., Prediabetes + Hypertension).\"\n}"
+      }
+    },
+    "why": {
+      "reasoning_trace": "Patient Somchai W. clinical signals indicating an increased risk of chronic diseases, including prediabetes and hypertension. Given his age (54) and the presence of these conditions, we recommend the Advanced checkup package.",
+      "decision": "Advanced"
+    },
+    "how": {
+      "model_provider": "local",
+      "model_id": "meta-llama-3.1-8b-instruct"
+    },
+    "confidence": 0.85,
+    "metadata": {
+      "environment": "dev"
+    },
+    "previous_hash": "4dd59f98b44046ab819cf5cd45f5f0538e6ed45af059161333195a2ae56376b7",
+    "current_hash": "4afeae951a0e9539b2a3af3a9240732c904daa4dbc535462076424c059de5a99"
+  },
+  {
+    "timestamp": "2026-03-13T14:05:08.368037+00:00",
+    "who": {
+      "patient_id": "pt-001"
+    },
+    "what": {
+      "input_context_snapshot": {
+        "get_patient_context": "{\n  \"name\": \"Somchai W.\",\n  \"gender\": \"male\",\n  \"age\": 54,\n  \"birth_date\": \"1971-08-14\",\n  \"mrn\": \"MRN-20190847\",\n  \"fhir_patient_id\": \"Patient/patient-56291047\"\n}",
+        "get_hard_constraints": "Gender-specific: Exclude female-only screenings (e.g., Mammogram, Pap Smear).",
+        "get_clinical_signals": "{\n  \"prediabetes_alert\": true,\n  \"dyslipidemia_alert\": true,\n  \"hypertension_alert\": true,\n  \"obesity_risk\": \"High\"\n}",
+        "get_biomarker_trends": "{\n  \"bmi_trend\": [\n    {\n      \"date\": \"2026-02-15\",\n      \"value\": 26.7\n    },\n    {\n      \"date\": \"2024-11-20\",\n      \"value\": 25.8\n    },\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": 24.9\n    }\n  ],\n  \"glucose_trend\": [\n    {\n      \"date\": \"2026-02-15\",\n      \"value\": 108\n    },\n    {\n      \"date\": \"2024-11-20\",\n      \"value\": 102\n    },\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": 96\n    }\n  ],\n  \"note\": \"Increasing trend observed in both BMI and Glucose over the last 3 years.\"\n}",
+        "get_program_ruleset": "{\n  \"Standard\": \"Default for low-risk patients under 35.\",\n  \"Advanced\": \"Recommended for age > 40 or presence of 1-2 mild clinical signals.\",\n  \"Premium\": \"Recommended for age > 50 or presence of multiple high-risk signals (e.g., Prediabetes + Hypertension).\"\n}"
+      }
+    },
+    "why": {
+      "reasoning_trace": "Patient Somchai W. is a 54-year-old male with multiple clinical signals, including prediabetes alert, dyslipidemia alert, hypertension alert, and high obesity risk. Although he does not meet the age criteria for Premium tier (age > 50), his biomarker trends show an increasing trend in both BMI and Glucose over the last 3 years, which warrants an upgrade to Advanced tier.",
+      "decision": "Advanced"
+    },
+    "how": {
+      "model_provider": "local",
+      "model_id": "meta-llama-3.1-8b-instruct"
+    },
+    "confidence": 0.85,
+    "metadata": {
+      "environment": "dev"
+    },
+    "previous_hash": "4afeae951a0e9539b2a3af3a9240732c904daa4dbc535462076424c059de5a99",
+    "current_hash": "fe811fb64a9f769a19da1e29cab9576b7a7ab099412254d4148b685e8587a5f7"
+  },
+  {
+    "timestamp": "2026-03-13T14:07:05.283932+00:00",
+    "who": {
+      "patient_id": "pt-001"
+    },
+    "what": {
+      "input_context_snapshot": {
+        "get_patient_context": "{\n  \"name\": \"Somchai W.\",\n  \"gender\": \"male\",\n  \"age\": 54,\n  \"birth_date\": \"1971-08-14\",\n  \"mrn\": \"MRN-20190847\",\n  \"fhir_patient_id\": \"Patient/patient-56291047\"\n}",
+        "get_hard_constraints": "Gender-specific: Exclude female-only screenings (e.g., Mammogram, Pap Smear).",
+        "get_clinical_signals": "{\n  \"prediabetes_alert\": true,\n  \"dyslipidemia_alert\": true,\n  \"hypertension_alert\": true,\n  \"obesity_risk\": \"High\"\n}",
+        "get_biomarker_trends": "{\n  \"bmi_trend\": [\n    {\n      \"date\": \"2026-02-15\",\n      \"value\": 26.7\n    },\n    {\n      \"date\": \"2024-11-20\",\n      \"value\": 25.8\n    },\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": 24.9\n    }\n  ],\n  \"glucose_trend\": [\n    {\n      \"date\": \"2026-02-15\",\n      \"value\": 108\n    },\n    {\n      \"date\": \"2024-11-20\",\n      \"value\": 102\n    },\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": 96\n    }\n  ],\n  \"note\": \"Increasing trend observed in both BMI and Glucose over the last 3 years.\"\n}",
+        "get_program_ruleset": "{\n  \"Standard\": \"Default for low-risk patients under 35.\",\n  \"Advanced\": \"Recommended for age > 40 or presence of 1-2 mild clinical signals.\",\n  \"Premium\": \"Recommended for age > 50 or presence of multiple high-risk signals (e.g., Prediabetes + Hypertension).\"\n}"
+      }
+    },
+    "why": {
+      "reasoning_trace": "Patient Somchai W. is a 54-year-old male with multiple clinical signals, including prediabetes alert, dyslipidemia alert, hypertension alert, and high obesity risk. Although he does not meet the age criteria for Premium tier (age > 50), his biomarker trends show an increasing trend in both BMI and Glucose over the last 3 years, which warrants an upgrade to Advanced tier.",
+      "decision": "Advanced"
+    },
+    "how": {
+      "model_provider": "local",
+      "model_id": "meta-llama-3.1-8b-instruct"
+    },
+    "confidence": 0.85,
+    "metadata": {
+      "environment": "dev"
+    },
+    "previous_hash": "fe811fb64a9f769a19da1e29cab9576b7a7ab099412254d4148b685e8587a5f7",
+    "current_hash": "b06a8ac66731969d2beb4876f58abead13170edc2508b22b2e7650584566362b"
+  },
+  {
+    "timestamp": "2026-03-13T14:13:04.738830+00:00",
+    "who": {
+      "patient_id": "pt-001"
+    },
+    "what": {
+      "input_context_snapshot": {
+        "get_patient_context": "{\n  \"name\": \"Somchai W.\",\n  \"gender\": \"male\",\n  \"age\": 54,\n  \"birth_date\": \"1971-08-14\",\n  \"mrn\": \"MRN-20190847\",\n  \"fhir_patient_id\": \"Patient/patient-56291047\"\n}",
+        "get_hard_constraints": "Gender-specific: Exclude female-only screenings (e.g., Mammogram, Pap Smear).",
+        "get_clinical_signals": "{\n  \"prediabetes_alert\": true,\n  \"dyslipidemia_alert\": true,\n  \"hypertension_alert\": true,\n  \"obesity_risk\": \"High\"\n}",
+        "get_biomarker_trends": "{\n  \"bmi_trend\": [\n    {\n      \"date\": \"2026-02-15\",\n      \"value\": 26.7\n    },\n    {\n      \"date\": \"2024-11-20\",\n      \"value\": 25.8\n    },\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": 24.9\n    }\n  ],\n  \"glucose_trend\": [\n    {\n      \"date\": \"2026-02-15\",\n      \"value\": 108\n    },\n    {\n      \"date\": \"2024-11-20\",\n      \"value\": 102\n    },\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": 96\n    }\n  ],\n  \"note\": \"Increasing trend observed in both BMI and Glucose over the last 3 years.\"\n}",
+        "get_program_ruleset": "{\n  \"Standard\": \"Default for low-risk patients under 35.\",\n  \"Advanced\": \"Recommended for age > 40 or presence of 1-2 mild clinical signals.\",\n  \"Premium\": \"Recommended for age > 50 or presence of multiple high-risk signals (e.g., Prediabetes + Hypertension).\"\n}"
+      }
+    },
+    "why": {
+      "reasoning_trace": "Patient Somchai W. is a 54-year-old male with multiple clinical signals, including prediabetes alert, dyslipidemia alert, hypertension alert, and high obesity risk. Although he does not meet the age criteria for Premium tier (age > 50), his biomarker trends show an increasing trend in both BMI and Glucose over the last 3 years, which warrants an upgrade to Advanced tier.",
+      "decision": "Advanced"
+    },
+    "how": {
+      "model_provider": "local",
+      "model_id": "meta-llama-3.1-8b-instruct"
+    },
+    "confidence": 0.85,
+    "metadata": {
+      "environment": "dev"
+    },
+    "previous_hash": "b06a8ac66731969d2beb4876f58abead13170edc2508b22b2e7650584566362b",
+    "current_hash": "426ccbd40fdb7b01dd33dcba3731c593136d4a4d11348e34e2527da7d7ea7851"
+  },
+  {
+    "timestamp": "2026-03-13T14:13:55.597159+00:00",
+    "who": {
+      "patient_id": "pt-002"
+    },
+    "what": {
+      "input_context_snapshot": {
+        "get_patient_context": "{\n  \"name\": \"Somchai W.\",\n  \"gender\": \"male\",\n  \"age\": 54,\n  \"birth_date\": \"1971-08-14\",\n  \"mrn\": \"MRN-20190847\",\n  \"fhir_patient_id\": \"Patient/patient-56291047\"\n}",
+        "get_hard_constraints": "Gender-specific: Exclude female-only screenings (e.g., Mammogram, Pap Smear).",
+        "get_clinical_signals": "{\n  \"prediabetes_alert\": true,\n  \"dyslipidemia_alert\": true,\n  \"hypertension_alert\": true,\n  \"obesity_risk\": \"High\"\n}",
+        "get_biomarker_trends": "{\n  \"bmi_trend\": [\n    {\n      \"date\": \"2026-02-15\",\n      \"value\": 26.7\n    },\n    {\n      \"date\": \"2024-11-20\",\n      \"value\": 25.8\n    },\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": 24.9\n    }\n  ],\n  \"glucose_trend\": [\n    {\n      \"date\": \"2026-02-15\",\n      \"value\": 108\n    },\n    {\n      \"date\": \"2024-11-20\",\n      \"value\": 102\n    },\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": 96\n    }\n  ],\n  \"note\": \"Increasing trend observed in both BMI and Glucose over the last 3 years.\"\n}",
+        "get_program_ruleset": "{\n  \"Standard\": \"Default for low-risk patients under 35.\",\n  \"Advanced\": \"Recommended for age > 40 or presence of 1-2 mild clinical signals.\",\n  \"Premium\": \"Recommended for age > 50 or presence of multiple high-risk signals (e.g., Prediabetes + Hypertension).\"\n}"
+      }
+    },
+    "why": {
+      "reasoning_trace": "Patient Somchai W. is a 54-year-old male with multiple clinical signals, including prediabetes alert, dyslipidemia alert, hypertension alert, and high obesity risk. Although he does not meet the age criteria for Premium tier (age > 50), his biomarker trends show an increasing trend in both BMI and Glucose over the last 3 years, which warrants an upgrade to Advanced tier.",
+      "decision": "Advanced"
+    },
+    "how": {
+      "model_provider": "local",
+      "model_id": "meta-llama-3.1-8b-instruct"
+    },
+    "confidence": 0.85,
+    "metadata": {
+      "environment": "dev"
+    },
+    "previous_hash": "426ccbd40fdb7b01dd33dcba3731c593136d4a4d11348e34e2527da7d7ea7851",
+    "current_hash": "2259b6df0c5496c3fa571882fcd83c100808f2b82d1cd5355d0c60d6a2a8f50b"
+  },
+  {
+    "timestamp": "2026-03-13T14:18:20.645993+00:00",
+    "who": {
+      "patient_id": "pt-001"
+    },
+    "what": {
+      "input_context_snapshot": {
+        "get_patient_context": "{\n  \"name\": \"Somchai W.\",\n  \"gender\": \"male\",\n  \"age\": 54,\n  \"birth_date\": \"1971-08-14\",\n  \"mrn\": \"MRN-20190847\",\n  \"fhir_patient_id\": \"Patient/patient-56291047\"\n}",
+        "get_hard_constraints": "Gender-specific: Exclude female-only screenings (e.g., Mammogram, Pap Smear).",
+        "get_clinical_signals": "{\n  \"prediabetes_alert\": true,\n  \"dyslipidemia_alert\": true,\n  \"hypertension_alert\": true,\n  \"obesity_risk\": \"High\"\n}",
+        "get_biomarker_trends": "{\n  \"bmi_trend\": [\n    {\n      \"date\": \"2026-02-15\",\n      \"value\": 26.7\n    },\n    {\n      \"date\": \"2024-11-20\",\n      \"value\": 25.8\n    },\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": 24.9\n    }\n  ],\n  \"glucose_trend\": [\n    {\n      \"date\": \"2026-02-15\",\n      \"value\": 108\n    },\n    {\n      \"date\": \"2024-11-20\",\n      \"value\": 102\n    },\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": 96\n    }\n  ],\n  \"note\": \"Increasing trend observed in both BMI and Glucose over the last 3 years.\"\n}",
+        "get_program_ruleset": "{\n  \"Standard\": \"Default for low-risk patients under 35.\",\n  \"Advanced\": \"Recommended for age > 40 or presence of 1-2 mild clinical signals.\",\n  \"Premium\": \"Recommended for age > 50 or presence of multiple high-risk signals (e.g., Prediabetes + Hypertension).\"\n}"
+      }
+    },
+    "why": {
+      "reasoning_trace": "Patient Somchai W. is a 54-year-old male with multiple clinical signals, including prediabetes alert, dyslipidemia alert, hypertension alert, and high obesity risk. Although he does not meet the age criteria for Premium tier (age > 50), his biomarker trends show an increasing trend in both BMI and Glucose over the last 3 years, which warrants an upgrade to Advanced tier.",
+      "decision": "Advanced"
+    },
+    "how": {
+      "model_provider": "local",
+      "model_id": "meta-llama-3.1-8b-instruct"
+    },
+    "confidence": 0.85,
+    "metadata": {
+      "environment": "dev"
+    },
+    "previous_hash": "2259b6df0c5496c3fa571882fcd83c100808f2b82d1cd5355d0c60d6a2a8f50b",
+    "current_hash": "bd5d5cfddb73fbbd3a445abafae2214b42848c3b733441ca1d65d0cf99323eb1"
+  },
+  {
+    "timestamp": "2026-03-16T03:59:46.683102+00:00",
+    "who": {
+      "patient_id": "pt-001"
+    },
+    "what": {
+      "input_context_snapshot": {
+        "get_hard_constraints": {
+          "patient_token": "tok_hmac_965c8137",
+          "patient_demographics": {
+            "gender": "male",
+            "age": 35,
+            "date_of_birth_token": "dob_tok_19910301",
+            "ethnicity": "asian",
+            "bmi_threshold_profile": "asian_adjusted"
+          },
+          "eligibility_exclusions": [
+            {
+              "test_code": "mammogram",
+              "test_label": "Mammography (bilateral screening)",
+              "reason_code": "gender_male_ineligible",
+              "reason_label": "Mammography is not indicated for male patients",
+              "guideline": "USPSTF Breast Cancer Screening 2024",
+              "overridable": false
+            },
+            {
+              "test_code": "pap_smear",
+              "test_label": "Cervical cytology / Pap smear",
+              "reason_code": "gender_male_ineligible",
+              "reason_label": "Cervical cancer screening is not applicable for male patients",
+              "guideline": "USPSTF Cervical Cancer Screening 2018",
+              "overridable": false
+            }
+          ],
+          "active_safety_flags": [],
+          "tier_ceiling": null,
+          "computed_at": "2026-03-15T03:00:00Z",
+          "pipeline_run_id": "pipe_20260315_0300"
+        },
+        "get_patient_context": {
+          "gender": "male",
+          "age": 35,
+          "ethnicity": "asian"
+        },
+        "get_clinical_signals": {
+          "patient_token": "tok_hmac_965c8137",
+          "rule_preliminary_tier": "Standard",
+          "overall_risk_level": "Low",
+          "applicable_signals": [
+            "alcohol_risk",
+            "alt_status",
+            "ascvd_10yr_risk_status",
+            "ast_status",
+            "bmi_status",
+            "bp_category",
+            "ckd_comorbidity",
+            "dm_comorbidity",
+            "dm_organ_complication_screening",
+            "dyslipidemia_comorbidity",
+            "echo_gap",
+            "egfr_status",
+            "est_gap",
+            "family_hx_colon_ca",
+            "family_hx_premature_cad",
+            "fbs_status",
+            "fibroscan_indication",
+            "hba1c_status",
+            "hdl_status",
+            "hepatitis_b_vaccination_status",
+            "htn_comorbidity",
+            "influenza_vaccination_gap",
+            "ldl_status",
+            "occupational_risk",
+            "physical_activity_level",
+            "sleep_apnea_screen_result",
+            "smoking_status",
+            "tg_status",
+            "tsh_status",
+            "uric_acid_status"
+          ],
+          "signals_fired": [
+            "bmi_status",
+            "bp_category",
+            "smoking_status",
+            "physical_activity_level",
+            "ascvd_10yr_risk_status"
+          ],
+          "missing_signals": [
+            "tg_status",
+            "alt_status",
+            "ast_status",
+            "tsh_status",
+            "uric_acid_status",
+            "est_gap",
+            "echo_gap",
+            "hepatitis_b_vaccination_status",
+            "dm_organ_complication_screening",
+            "fibroscan_indication",
+            "sleep_apnea_screen_result"
+          ],
+          "risk_flags": [],
+          "comorbidity_tags": [],
+          "screening_gaps": [],
+          "vaccination_gaps": [
+            {
+              "vaccine_id": "influenza",
+              "label": "Influenza (seasonal)",
+              "last_administered_date": "2025-10-20",
+              "overdue_days": 0,
+              "recommended_annual": true,
+              "series_complete": null,
+              "doses_received": null,
+              "doses_required": null,
+              "eligible_since_age": null,
+              "age_at_evaluation": 35,
+              "years_until_due": 0,
+              "priority_color": "Green",
+              "guideline": "CDC ACIP 2024",
+              "note": "Last vaccination recorded approx 5 months ago; annual revaccination recommended in Q4 2026.",
+              "anti_hbs_checked": null
+            }
+          ],
+          "abnormal_triggers": [],
+          "family_history_flags": {
+            "ca_breast": false,
+            "ca_colon": false,
+            "ca_prostate": false,
+            "premature_cad": false,
+            "premature_cad_detail": null,
+            "ca_colon_detail": null
+          },
+          "behavioral_flags": {
+            "smoking": {
+              "status": "never",
+              "pack_years": null,
+              "quit_years_ago": null,
+              "lung_ct_threshold_met": false
+            },
+            "alcohol": {
+              "audit_c_score": 1.0,
+              "risk_level": "none",
+              "fibroscan_indicated": false,
+              "note": "Minimal social consumption."
+            },
+            "occupational": {
+              "tags": [],
+              "add_ons_triggered": []
+            },
+            "physical_activity": {
+              "days_per_week": 3,
+              "level": "moderate",
+              "add_ons_triggered": []
+            }
+          },
+          "symptom_tags": [],
+          "computed_at": "2026-03-15T03:00:00Z",
+          "pipeline_run_id": "pipe_20260315_0300"
+        },
+        "get_biomarker_trends": {
+          "patient_token": "tok_hmac_965c8137",
+          "bmi": {
+            "current": 22.4,
+            "unit": "kg/m2",
+            "threshold_profile": "asian_adjusted",
+            "category": "Normal",
+            "trend_direction": "stable",
+            "slope_per_year": 0.1,
+            "history": [
+              {
+                "date": "2023-08-20",
+                "value": 22.1
+              },
+              {
+                "date": "2024-09-10",
+                "value": 22.3
+              },
+              {
+                "date": "2026-03-05",
+                "value": 22.4
+              }
+            ],
+            "alert": null
+          },
+          "blood_pressure": {
+            "latest": {
+              "sbp": 116,
+              "dbp": 72,
+              "date": "2026-03-05"
+            },
+            "unit": "mmHg",
+            "category": "Normal",
+            "category_label": "Normal blood pressure (<120/<80)",
+            "trend_direction": "stable",
+            "sbp_slope_per_year": -0.4,
+            "history": [
+              {
+                "date": "2023-08-20",
+                "sbp": 117,
+                "dbp": 74
+              },
+              {
+                "date": "2024-09-10",
+                "sbp": 118,
+                "dbp": 75
+              },
+              {
+                "date": "2026-03-05",
+                "sbp": 116,
+                "dbp": 72
+              }
+            ],
+            "alert": null
+          },
+          "egfr": {
+            "current": 99.0,
+            "unit": "mL/min/1.73m2",
+            "loinc_code": "62238-1",
+            "ckd_stage": "G1",
+            "ckd_stage_label": "CKD Stage G1 \u2014 normal or high",
+            "annual_slope": -0.2,
+            "rapid_progression": false,
+            "rapid_progression_threshold": -5.0,
+            "history": [
+              {
+                "date": "2023-08-20",
+                "value": 100.0
+              },
+              {
+                "date": "2024-09-10",
+                "value": 99.5
+              },
+              {
+                "date": "2026-03-05",
+                "value": 99.0
+              }
+            ],
+            "alert": null
+          },
+          "labs": [
+            {
+              "lab_id": "fbs",
+              "label": "Fasting Blood Glucose",
+              "loinc_code": "1558-6",
+              "current_value": 91.0,
+              "unit": "mg/dL",
+              "reference_range": {
+                "low": 70.0,
+                "high": 99.0,
+                "optimal": null,
+                "borderline_high_low": null,
+                "borderline_high_high": null,
+                "normal_high": null,
+                "borderline_high": null,
+                "uln": null,
+                "uln_male": null,
+                "low_male": null,
+                "protective": null,
+                "desirable_high": null,
+                "age_adjusted_uln_50s": null
+              },
+              "interpretation": "N",
+              "category": "Normal",
+              "velocity_per_year": 0.8,
+              "trend_direction": "stable",
+              "trend_flag": "stable",
+              "history": [
+                {
+                  "date": "2023-08-20",
+                  "value": 89.0
+                },
+                {
+                  "date": "2024-09-10",
+                  "value": 90.0
+                },
+                {
+                  "date": "2026-03-05",
+                  "value": 91.0
+                }
+              ],
+              "alert": null,
+              "trend_data_note": null,
+              "sdm_note": null
+            },
+            {
+              "lab_id": "hba1c",
+              "label": "HbA1c",
+              "loinc_code": "4548-4",
+              "current_value": 5.3,
+              "unit": "%",
+              "reference_range": {
+                "low": null,
+                "high": 5.7,
+                "optimal": null,
+                "borderline_high_low": null,
+                "borderline_high_high": null,
+                "normal_high": null,
+                "borderline_high": null,
+                "uln": null,
+                "uln_male": null,
+                "low_male": null,
+                "protective": null,
+                "desirable_high": null,
+                "age_adjusted_uln_50s": null
+              },
+              "interpretation": "N",
+              "category": "Normal",
+              "velocity_per_year": -0.05,
+              "trend_direction": "stable",
+              "trend_flag": "stable",
+              "history": [
+                {
+                  "date": "2024-09-10",
+                  "value": 5.4
+                },
+                {
+                  "date": "2026-03-05",
+                  "value": 5.3
+                }
+              ],
+              "alert": null,
+              "trend_data_note": null,
+              "sdm_note": null
+            },
+            {
+              "lab_id": "ldl",
+              "label": "LDL Cholesterol",
+              "loinc_code": "13457-7",
+              "current_value": 109.0,
+              "unit": "mg/dL",
+              "reference_range": {
+                "low": null,
+                "high": null,
+                "optimal": 100.0,
+                "borderline_high_low": 130.0,
+                "borderline_high_high": 159.0,
+                "normal_high": null,
+                "borderline_high": null,
+                "uln": null,
+                "uln_male": null,
+                "low_male": null,
+                "protective": null,
+                "desirable_high": null,
+                "age_adjusted_uln_50s": null
+              },
+              "interpretation": "N",
+              "category": "Near-optimal",
+              "velocity_per_year": 0.5,
+              "trend_direction": "stable",
+              "trend_flag": "stable",
+              "history": [
+                {
+                  "date": "2023-08-20",
+                  "value": 108.0
+                },
+                {
+                  "date": "2024-09-10",
+                  "value": 110.0
+                },
+                {
+                  "date": "2026-03-05",
+                  "value": 109.0
+                }
+              ],
+              "alert": null,
+              "trend_data_note": null,
+              "sdm_note": null
+            },
+            {
+              "lab_id": "hdl",
+              "label": "HDL Cholesterol",
+              "loinc_code": "2085-9",
+              "current_value": 60.0,
+              "unit": "mg/dL",
+              "reference_range": {
+                "low": null,
+                "high": null,
+                "optimal": null,
+                "borderline_high_low": null,
+                "borderline_high_high": null,
+                "normal_high": null,
+                "borderline_high": null,
+                "uln": null,
+                "uln_male": null,
+                "low_male": null,
+                "protective": 60.0,
+                "desirable_high": null,
+                "age_adjusted_uln_50s": null
+              },
+              "interpretation": "N",
+              "category": "Protective",
+              "velocity_per_year": null,
+              "trend_direction": "insufficient_data",
+              "trend_flag": null,
+              "history": [
+                {
+                  "date": "2026-03-05",
+                  "value": 60.0
+                }
+              ],
+              "alert": null,
+              "trend_data_note": null,
+              "sdm_note": null
+            },
+            {
+              "lab_id": "tg",
+              "label": "Triglycerides",
+              "loinc_code": "2571-8",
+              "current_value": 100.0,
+              "unit": "mg/dL",
+              "reference_range": {
+                "low": null,
+                "high": 150.0,
+                "optimal": null,
+                "borderline_high_low": null,
+                "borderline_high_high": null,
+                "normal_high": null,
+                "borderline_high": null,
+                "uln": null,
+                "uln_male": null,
+                "low_male": null,
+                "protective": null,
+                "desirable_high": null,
+                "age_adjusted_uln_50s": null
+              },
+              "interpretation": "N",
+              "category": "Normal",
+              "velocity_per_year": null,
+              "trend_direction": "insufficient_data",
+              "trend_flag": null,
+              "history": [
+                {
+                  "date": "2026-03-05",
+                  "value": 100.0
+                }
+              ],
+              "alert": null,
+              "trend_data_note": null,
+              "sdm_note": null
+            }
+          ],
+          "ascvd_10yr_risk": {
+            "score": 0.014,
+            "score_pct": 1.4,
+            "category": "Low",
+            "category_label": "Low risk (<5%)",
+            "inputs_used": {
+              "age": 35,
+              "sex": "male",
+              "race": "other",
+              "total_cholesterol": 189.0,
+              "hdl": 60.0,
+              "systolic_bp": 116,
+              "bp_treatment": false,
+              "diabetes": false,
+              "smoking": "never"
+            },
+            "guideline": "ACC/AHA Pooled Cohort Equations 2013/2018",
+            "note": "Age 35 male with normal lipids and BP; clinical focus remains primary prevention through healthy lifestyle."
+          },
+          "waist_circumference": {
+            "value": 82.0,
+            "unit": "cm",
+            "threshold_male_asian": 90.0,
+            "category": "Normal",
+            "note": "Within healthy range for Asian male profile."
+          },
+          "computed_at": "2026-03-15T03:00:00Z",
+          "pipeline_run_id": "pipe_20260315_0300"
+        },
+        "get_program_ruleset": {
+          "patient_token": "tok_hmac_965c8137",
+          "ruleset_version": "v2026.03.1-draft",
+          "admin_last_updated": "2026-03-13T00:00:00Z",
+          "computed_at": "2026-03-16T03:59:02.653355Z",
+          "tier_selection_rules": [
+            {
+              "rule_id": "PREMIUM_SEVERE_SINGLE",
+              "priority": 1,
+              "tier": "Premium",
+              "match_logic": "ANY",
+              "_clinical_rationale": "A single high-severity condition that places the patient in active multi-organ disease or imminent serious-outcome territory. Any one is sufficient to warrant the Diamond (Premium) program.",
+              "_expert_review_note": "Please confirm: are these the correct conditions for mandatory Premium escalation? Should any be Advanced instead?",
+              "conditions": [
+                {
+                  "type": "signal_active",
+                  "signal_ids": [
+                    "ckd_rapid_progression"
+                  ],
+                  "description": "CKD rapid progression \u2014 eGFR annual decline > 5 mL/min/1.73m\u00b2. KDIGO 2022: urgent nephrology referral; comprehensive evaluation warranted beyond Advanced.",
+                  "guideline_ref": "clinical-guidelines-reference.md \u00a77.2"
+                },
+                {
+                  "type": "signal_active",
+                  "signal_ids": [
+                    "ascvd_very_high"
+                  ],
+                  "description": "ASCVD 10-year risk \u2265 20%. ACC/AHA 2013/2018: high-intensity statin mandatory + comprehensive cardiovascular workup beyond standard Enhanced screening.",
+                  "guideline_ref": "clinical-guidelines-reference.md \u00a75.1"
+                },
+                {
+                  "type": "signal_active",
+                  "signal_ids": [
+                    "hypertensive_crisis"
+                  ],
+                  "description": "Hypertensive crisis \u2014 SBP > 180 OR DBP > 120. ACC/AHA 2017: emergency evaluation; EST and contrast procedures contraindicated. Cannot proceed with routine checkup without specialist clearance.",
+                  "guideline_ref": "clinical-guidelines-reference.md \u00a72"
+                },
+                {
+                  "type": "signal_active",
+                  "signal_ids": [
+                    "diabetes_confirmed"
+                  ],
+                  "and_signal_active": [
+                    "dm_organ_complication_screening"
+                  ],
+                  "description": "Confirmed DM (HbA1c \u2265 6.5%) with active organ complication screening gap \u2014 at least one of: retinopathy, nephropathy, neuropathy, or cardiac screening overdue. ADA 2024: multi-organ surveillance program required.",
+                  "guideline_ref": "clinical-guidelines-reference.md \u00a71.2, \u00a76.2"
+                },
+                {
+                  "type": "signal_active",
+                  "signal_ids": [
+                    "liver_enzyme_elevation_significant"
+                  ],
+                  "and_signal_active": [
+                    "fibroscan_indication"
+                  ],
+                  "description": "ALT > 3\u00d7 ULN (significant hepatocellular injury) combined with liver disease risk indicator (NAFLD, alcohol, or high TG). AASLD 2023: comprehensive hepatic evaluation required \u2014 beyond basic LFT add-on.",
+                  "guideline_ref": "clinical-guidelines-reference.md \u00a71.4, \u00a78.1"
+                }
+              ],
+              "guideline_basis": "TOR \u00a73.2: Risk Level High \u2192 Premium/Personalized Package",
+              "admin_configurable": {
+                "tier_assignment": false,
+                "conditions": false,
+                "_note": "No admin-configurable fields. Any change to conditions requires clinical review and code release."
+              }
+            },
+            {
+              "rule_id": "PREMIUM_MULTI_SIGNAL",
+              "priority": 2,
+              "tier": "Premium",
+              "match_logic": "COUNT_THRESHOLD",
+              "_clinical_rationale": "Convergence of multiple independent moderate-severity risk signals across organ systems. Even without a single dominant condition, the cumulative burden exceeds what an Advanced (Platinum) package with add-ons can adequately address.",
+              "_expert_review_note": "CRITICAL CALIBRATION ITEM. The sample patient Somchai W. (sample_patient_checkup.json) fires 8 of 12 signals in this pool: prediabetes_confirmed, htn_active, dyslipidemia_active, ascvd_risk_intermediate, family_hx_premature_cad, at_risk_alcohol_use, lung_ct_threshold_met, uric_acid_hyperuricemia. With min_count: 5, Somchai resolves to Premium. Clinical question: Is Premium (Diamond) appropriate for Somchai's profile, or should he remain Advanced (Platinum)? If Somchai should be Advanced, either (a) raise min_count to 9, or (b) remove some signals from the pool (e.g., uric_acid_hyperuricemia, at_risk_alcohol_use) to reduce his match count below the threshold.",
+              "conditions": [
+                {
+                  "type": "signal_count_threshold",
+                  "signal_pool": [
+                    "prediabetes_confirmed",
+                    "htn_active",
+                    "dyslipidemia_active",
+                    "bmi_obese_asian",
+                    "ascvd_risk_intermediate",
+                    "bp_stage2_htn",
+                    "family_hx_premature_cad",
+                    "at_risk_alcohol_use",
+                    "fibroscan_indication",
+                    "lung_ct_threshold_met",
+                    "ckd_comorbidity",
+                    "uric_acid_hyperuricemia"
+                  ],
+                  "min_count": 5,
+                  "description": "\u2265 5 of 12 moderate-severity risk signals active simultaneously \u2014 indicates multi-system disease burden requiring comprehensive Premium evaluation.",
+                  "_signal_pool_rationale": {
+                    "prediabetes_confirmed": "Metabolic \u2014 pre-DM; organ risk precursor",
+                    "htn_active": "Cardiovascular \u2014 confirmed hypertension comorbidity",
+                    "dyslipidemia_active": "Cardiovascular \u2014 confirmed dyslipidemia comorbidity",
+                    "bmi_obese_asian": "Metabolic \u2014 Asian-adjusted obese (BMI \u2265 27.5); high NCD risk",
+                    "ascvd_risk_intermediate": "Cardiovascular \u2014 10-yr risk 7.5\u201319.9%; significant CV burden",
+                    "bp_stage2_htn": "Cardiovascular \u2014 Stage 2 HTN (SBP \u2265 140 or DBP \u2265 90)",
+                    "family_hx_premature_cad": "Genetic \u2014 first-degree premature CAD; ACC/AHA risk enhancer",
+                    "at_risk_alcohol_use": "Behavioral \u2014 AUDIT-C positive; liver + metabolic risk",
+                    "fibroscan_indication": "Hepatic \u2014 liver disease risk from BMI + ALT or alcohol + ALT",
+                    "lung_ct_threshold_met": "Oncologic \u2014 LDCT-eligible smoker; significant cancer risk",
+                    "ckd_comorbidity": "Renal \u2014 confirmed CKD any stage",
+                    "uric_acid_hyperuricemia": "Metabolic \u2014 hyperuricemia; associated with metabolic syndrome"
+                  }
+                }
+              ],
+              "guideline_basis": "TOR \u00a73.2: Risk Level High \u2192 Premium/Personalized Package",
+              "admin_configurable": {
+                "min_count": true,
+                "min_count_range": {
+                  "min": 3,
+                  "max": 12
+                },
+                "signal_pool": false,
+                "_note": "Admin may adjust min_count via Admin Panel. Signal pool membership requires code release + clinical review. Final threshold must be validated by MAT."
+              }
+            },
+            {
+              "rule_id": "ADVANCED_METABOLIC_OR_CVD",
+              "priority": 3,
+              "tier": "Advanced",
+              "match_logic": "ANY",
+              "_clinical_rationale": "Any single moderate-severity signal places the patient into elevated-risk territory requiring enhanced (Platinum) screening beyond the standard annual package. Alternatively, two or more lower-severity signals co-occurring indicates sufficient cumulative risk.",
+              "_expert_review_note": "Please verify: (1) Are all 7 single-signal qualifiers appropriate for Advanced? Should any be Standard instead? (2) Is min_count: 2 the right threshold for the low-moderate pool? (3) Are all 13 low-moderate pool signals correctly categorized?",
+              "conditions": [
+                {
+                  "type": "signal_active",
+                  "signal_ids": [
+                    "prediabetes_confirmed",
+                    "diabetes_confirmation_required"
+                  ],
+                  "description": "Pre-diabetes confirmed (FBS 100\u2013125 or HbA1c 5.7\u20136.4%) OR diabetes requiring confirmation (FBS \u2265 126, pending retest). ADA 2024: significantly elevated DM progression risk.",
+                  "guideline_ref": "clinical-guidelines-reference.md \u00a71.1, \u00a71.2"
+                },
+                {
+                  "type": "signal_active",
+                  "signal_ids": [
+                    "ascvd_risk_intermediate"
+                  ],
+                  "description": "ASCVD 10-year risk 7.5\u201319.9% (Intermediate). ACC/AHA 2018: moderate-intensity statin consideration + enhanced cardiovascular screening.",
+                  "guideline_ref": "clinical-guidelines-reference.md \u00a75.1"
+                },
+                {
+                  "type": "signal_active",
+                  "signal_ids": [
+                    "htn_active"
+                  ],
+                  "description": "Active hypertension comorbidity confirmed (Stage 1 or Stage 2 HTN with comorbidity tag). Requires enhanced monitoring beyond Standard package baseline.",
+                  "guideline_ref": "clinical-guidelines-reference.md \u00a72"
+                },
+                {
+                  "type": "signal_active",
+                  "signal_ids": [
+                    "lung_ct_threshold_met"
+                  ],
+                  "description": "LDCT lung cancer screening eligible \u2014 age 50\u201380, \u2265 20 pack-years, current smoker or quit \u2264 15 years. USPSTF 2021 Grade B: annual screening indicated.",
+                  "guideline_ref": "clinical-guidelines-reference.md \u00a74.4, \u00a710.1"
+                },
+                {
+                  "type": "signal_active",
+                  "signal_ids": [
+                    "ckd_comorbidity"
+                  ],
+                  "description": "CKD any stage confirmed. KDIGO 2022: requires structured monitoring and nephrology input beyond Standard baseline.",
+                  "guideline_ref": "clinical-guidelines-reference.md \u00a71.5, \u00a77.1"
+                },
+                {
+                  "type": "signal_active",
+                  "signal_ids": [
+                    "bmi_obese_asian"
+                  ],
+                  "description": "Obese by Asian-adjusted BMI (\u2265 27.5 kg/m\u00b2). WHO Asia-Pacific 2000: significantly elevated NCD risk requiring enhanced metabolic screening.",
+                  "guideline_ref": "clinical-guidelines-reference.md \u00a73"
+                },
+                {
+                  "type": "signal_count_threshold",
+                  "signal_pool": [
+                    "bmi_overweight_asian",
+                    "low_hdl",
+                    "high_triglycerides",
+                    "high_ldl",
+                    "bp_stage1_htn",
+                    "bp_worsening",
+                    "family_hx_premature_cad",
+                    "at_risk_alcohol_use",
+                    "office_syndrome",
+                    "night_shift_worker",
+                    "uric_acid_hyperuricemia",
+                    "dyslipidemia_active",
+                    "fibroscan_indication"
+                  ],
+                  "min_count": 2,
+                  "description": "\u2265 2 of 13 low-to-moderate severity signals active simultaneously \u2014 combined risk burden warrants enhanced screening beyond Standard.",
+                  "_signal_pool_rationale": {
+                    "bmi_overweight_asian": "Asian-adjusted overweight (BMI \u2265 23); elevated metabolic risk",
+                    "low_hdl": "HDL < 40 (M) / < 50 (F); CV risk factor",
+                    "high_triglycerides": "TG \u2265 200 mg/dL; metabolic + hepatic risk",
+                    "high_ldl": "LDL \u2265 160 mg/dL; CV risk",
+                    "bp_stage1_htn": "SBP 130\u2013139 or DBP 80\u201389 (ACC/AHA 2017 Stage 1); not yet active comorbidity",
+                    "bp_worsening": "BP trend worsening over serial readings",
+                    "family_hx_premature_cad": "First-degree premature CAD; ACC/AHA risk enhancer",
+                    "at_risk_alcohol_use": "AUDIT-C \u2265 3 (F) / \u2265 4 (M); liver + metabolic risk",
+                    "office_syndrome": "Prolonged sedentary desk work; MSK + metabolic risk",
+                    "night_shift_worker": "Rotating/permanent night shift; elevated DM + HTN + sleep risk",
+                    "uric_acid_hyperuricemia": "Uric acid above sex-specific threshold; metabolic syndrome marker",
+                    "dyslipidemia_active": "Confirmed dyslipidemia comorbidity",
+                    "fibroscan_indication": "Liver disease risk indicator (AASLD 2023)"
+                  }
+                }
+              ],
+              "guideline_basis": "TOR \u00a73.2: Risk Level Moderate \u2192 Advanced Package",
+              "admin_configurable": {
+                "min_count": true,
+                "min_count_range": {
+                  "min": 2,
+                  "max": 5
+                },
+                "signal_pool": false
+              }
+            },
+            {
+              "rule_id": "STANDARD_DEFAULT",
+              "priority": 4,
+              "tier": "Standard",
+              "match_logic": "DEFAULT",
+              "_clinical_rationale": "No Premium or Advanced rule matched. Patient has no active elevated-risk signals; routine preventive annual health screening (Gold package) is appropriate.",
+              "conditions": [],
+              "guideline_basis": "TOR \u00a73.2: Risk Level Low \u2192 Standard Package",
+              "admin_configurable": {
+                "tier_assignment": false,
+                "_note": "Default rule cannot be removed or reordered. Tier assignment cannot be changed."
+              }
+            }
+          ],
+          "applied_rule_id": "STANDARD_DEFAULT",
+          "applied_condition": null,
+          "rule_preliminary_tier": "Standard",
+          "package_resolution_map": {
+            "Standard": {
+              "male": {
+                "age_15_to_35": {
+                  "package_name": "Gold",
+                  "package_code": "GOLD_ANY",
+                  "price_thb": 5900,
+                  "source": "navavej-checkup-package-discovery.md \u00a72"
+                },
+                "age_36_plus": {
+                  "package_name": "Gold",
+                  "package_code": "GOLD_ANY",
+                  "price_thb": 5900,
+                  "source": "navavej-checkup-package-discovery.md \u00a72"
+                }
+              },
+              "female": {
+                "age_15_to_35": {
+                  "package_name": "Gold",
+                  "package_code": "GOLD_ANY",
+                  "price_thb": 5900,
+                  "source": "navavej-checkup-package-discovery.md \u00a72"
+                },
+                "age_36_plus": {
+                  "package_name": "Gold",
+                  "package_code": "GOLD_ANY",
+                  "price_thb": 5900,
+                  "source": "navavej-checkup-package-discovery.md \u00a72"
+                }
+              }
+            },
+            "Advanced": {
+              "male": {
+                "age_35_plus": {
+                  "package_name": "Platinum \u2014 Men",
+                  "package_code": "PLAT_M",
+                  "price_thb": 8700,
+                  "source": "navavej-checkup-package-discovery.md \u00a72"
+                }
+              },
+              "female": {
+                "age_35_plus": {
+                  "package_name": "Platinum \u2014 Women",
+                  "package_code": "PLAT_F",
+                  "price_thb": 13500,
+                  "source": "navavej-checkup-package-discovery.md \u00a72"
+                }
+              }
+            },
+            "Premium": {
+              "male": {
+                "age_40_plus": {
+                  "package_name": "Diamond \u2014 Men",
+                  "package_code": "DIAM_M",
+                  "price_thb": 15000,
+                  "source": "navavej-checkup-package-discovery.md \u00a72"
+                }
+              },
+              "female": {
+                "age_40_plus": {
+                  "package_name": "Diamond \u2014 Women",
+                  "package_code": "DIAM_F",
+                  "price_thb": 19000,
+                  "source": "navavej-checkup-package-discovery.md \u00a72"
+                }
+              }
+            }
+          },
+          "resolved_package": {
+            "tier": "Standard",
+            "gender": "male",
+            "age": 35,
+            "age_band": "age_15_to_35",
+            "package_name": "Gold",
+            "package_code": "GOLD_ANY",
+            "price_thb": 5900
+          },
+          "add_on_library": [],
+          "_add_on_library_filtered_count": 0,
+          "_add_on_library_excluded_count": 0,
+          "_add_on_library_excluded_items": []
+        }
+      }
+    },
+    "why": {
+      "reasoning_trace": "The rule_preliminary_tier is 'Standard', determined by the 'STANDARD_DEFAULT' rule, as the patient, tok_hmac_965c8137, does not meet the criteria for 'Premium' or 'Advanced' tiers. This AI confirms the 'Standard' tier recommendation.\n\nCardiovascular and Metabolic Health: The patient exhibits an excellent cardiovascular and metabolic profile. His BMI is 22.4 kg/m2, which is 'Normal' for an Asian-adjusted threshold, and has been stable. Blood pressure is 'Normal' at 116/72 mmHg and stable. Fasting blood glucose (FBS) is 91.0 mg/dL ('Normal') and HbA1c is 5.3% ('Normal'), both showing stable trends, indicating no prediabetes or diabetes. Lipid profile is favorable, with LDL cholesterol at 109.0 mg/dL ('Near-optimal'), HDL cholesterol at 60.0 mg/dL ('Protective'), and Triglycerides at 100.0 mg/dL ('Normal'). These values contribute to a very low 10-year ASCVD risk of 1.4%, categorized as 'Low' by ACC/AHA guidelines. There is no family history of premature CAD.\n\nKidney and Liver Health: eGFR is 99.0 mL/min/1.73m2, placing the patient in 'CKD Stage G1 \u2014 normal or high', with a stable annual slope, indicating healthy kidney function. Behavioral flags show 'never' smoking status and 'none' for alcohol risk (AUDIT-C score 1.0), which are positive indicators for overall health, including liver health.\n\nCancer Screening: As a 35-year-old male, there are no current age- or risk-indicated cancer screenings active (e.g., no lung CT due to 'never' smoking, no prostate screening indicated at this age, and no family history of colon cancer). Hard constraints correctly exclude gender-specific screenings like mammography and Pap smears.\n\nVaccination Status: The patient has an 'influenza_vaccination_gap' with a note indicating the last vaccination was approx 5 months ago, with annual revaccination recommended in Q4 2026. This is categorized as 'Green' priority, meaning it is not immediately overdue but should be planned for later in the year. Due to an empty `add_on_library` in the current ruleset, this cannot be formally added as an `add_on` at this time but should be a point of discussion during the consultation.\n\nBehavioral Profile: The patient is a 'never' smoker, engages in 'moderate' physical activity (3 days/week), and has 'none' for alcohol risk, all supporting a healthy lifestyle.\n\nMissing Signals: Several signals are noted as missing, including 'alt_status', 'ast_status', 'tsh_status', 'uric_acid_status', 'est_gap', 'echo_gap', 'hepatitis_b_vaccination_status', 'dm_organ_complication_screening', 'fibroscan_indication', and 'sleep_apnea_screen_result'. While 'tg_status' is listed as missing in signals, the patient's current triglyceride value (100.0 mg/dL) is available and normal in biomarker trends. The absence of a hepatitis B vaccination status and a sleep apnea screen result represent clinically significant gaps that could be considered for future evaluation to ensure comprehensive health assessment.\n\nOverall, the patient presents a healthy profile with no significant risk factors warranting escalation beyond the 'Standard' tier.",
+      "decision": "Standard"
+    },
+    "how": {
+      "model_provider": "gemini",
+      "model_id": "gemini-2.5-flash"
+    },
+    "confidence": null,
+    "metadata": {
+      "environment": "dev"
+    },
+    "previous_hash": "bd5d5cfddb73fbbd3a445abafae2214b42848c3b733441ca1d65d0cf99323eb1",
+    "current_hash": "10020ac1ee46686ef329e03300b7221644648860742aa770c66e07ce0480a8d1"
+  },
+  {
+    "timestamp": "2026-03-17T04:31:09.233731+00:00",
+    "who": {
+      "patient_id": "pt-001"
+    },
+    "what": {
+      "input_context_snapshot": {
+        "get_hard_constraints": {
+          "patient_token": "tok_hmac_965c8137",
+          "patient_demographics": {},
+          "eligibility_exclusions": [],
+          "active_safety_flags": [],
+          "tier_ceiling": null,
+          "computed_at": "",
+          "pipeline_run_id": ""
+        },
+        "get_patient_context": {
+          "gender": null,
+          "age": null,
+          "ethnicity": null
+        },
+        "get_clinical_signals": {
+          "patient_token": "tok_hmac_965c8137",
+          "rule_preliminary_tier": "Standard",
+          "overall_risk_level": "Low",
+          "applicable_signals": [],
+          "signals_fired": [],
+          "missing_signals": [],
+          "risk_flags": [],
+          "comorbidity_tags": [],
+          "screening_gaps": [],
+          "vaccination_gaps": [],
+          "abnormal_triggers": [],
+          "family_history_flags": {},
+          "behavioral_flags": {},
+          "symptom_tags": [],
+          "computed_at": "",
+          "pipeline_run_id": ""
+        },
+        "get_biomarker_trends": {
+          "patient_token": "tok_hmac_965c8137",
+          "bmi": {},
+          "blood_pressure": {},
+          "egfr": {},
+          "labs": [],
+          "ascvd_10yr_risk": {},
+          "waist_circumference": null,
+          "computed_at": "",
+          "pipeline_run_id": ""
+        },
+        "get_program_ruleset": {
+          "patient_token": "tok_hmac_965c8137",
+          "ruleset_version": "v2026.03.1",
+          "admin_last_updated": "",
+          "computed_at": "2026-03-17T04:30:17.512290Z",
+          "tier_selection_rules": [],
+          "applied_rule_id": "STANDARD_DEFAULT",
+          "applied_condition": null,
+          "rule_preliminary_tier": "Standard",
+          "package_resolution_map": {},
+          "resolved_package": {},
+          "add_on_library": [],
+          "_add_on_library_filtered_count": 0,
+          "_add_on_library_excluded_count": 0,
+          "_add_on_library_excluded_items": []
+        }
+      }
+    },
+    "why": {
+      "reasoning_trace": "TIER DETERMINATION: The rule-based Clinical Signal Engine assigned a preliminary tier of 'Standard' via applied_rule_id 'STANDARD_DEFAULT'. Reviewing the full signal picture, no signals_fired, no risk_flags, no comorbidity_tags, no screening_gaps, no vaccination_gaps, no abnormal_triggers, no family_history_flags, no behavioral_flags, and no symptom_tags are present in the clinical_signals payload. Biomarker trend data (BMI, blood pressure, eGFR, labs, ASCVD 10-year risk) are all absent or empty, yielding no quantitative triggers for tier escalation. The overall_risk_level is explicitly computed as 'Low'. There are no hard constraints, eligibility exclusions, or active safety flags that would restrict or mandate a different tier. The resolved_package and package_resolution_map in program_ruleset are empty, consistent with a default Standard assignment. Given complete absence of elevating signals, the Standard tier is clinically appropriate and no deviation is warranted.\n\nSIGNAL CLUSTER ANALYSIS:\na) Metabolic cluster: No FBS, HbA1c, lipid panel values, or velocity data are present. No pre-diabetes or dyslipidemia signals fired. No waist circumference recorded.\nb) Cardiovascular cluster: No blood pressure history, no ASCVD 10-year risk estimate, and no cardiac-related risk flags are available. Cannot assess intermediate vs. low ASCVD risk without data.\nc) Cancer screening cluster: No screening_gaps identified; no overdue colorectal, cervical, breast, or lung cancer screening flags fired.\nd) Vaccination cluster: No vaccination_gaps present.\ne) Kidney/Liver cluster: No eGFR slope, no creatinine, no liver enzyme trends available.\nf) Occupational/Behavioral cluster: No behavioral_flags (smoking pack-years, alcohol, sedentary) or occupational exposures documented.\ng) Missing signals: The missing_signals list is empty in the payload, meaning the pipeline did not flag specific expected-but-absent data points. However, the practical absence of all biomarker trend data represents a significant informational gap \u2014 baseline labs and vitals would normally be required to confirm Low risk classification with confidence.\n\nADD-ON SELECTION: The add_on_library is empty (0 items after filtering, 0 excluded). No trigger_signals are available to intersect with signals_fired (which is also empty). Therefore, no add-ons can be selected.\n\nCLINICAL NUANCE: While the Standard tier is appropriate given the data provided, the near-total absence of biomarker and demographic data means this recommendation rests on default assumptions rather than a rich clinical profile. The care team should ensure baseline health data collection is completed at the time of the checkup to enable more personalized risk stratification at the next review cycle. No safety flags or hard constraints alter this recommendation.",
+      "decision": "Standard"
+    },
+    "how": {
+      "model_provider": "local",
+      "model_id": "claude-sonnet-4.6"
+    },
+    "confidence": null,
+    "metadata": {
+      "environment": "dev"
+    },
+    "previous_hash": "10020ac1ee46686ef329e03300b7221644648860742aa770c66e07ce0480a8d1",
+    "current_hash": "0859c93f88f06bad0f8ea90354b318c63d76af5ec73fce1051d7cac65df9325f"
+  },
+  {
+    "timestamp": "2026-03-17T04:45:03.382929+00:00",
+    "who": {
+      "patient_id": "pt-001"
+    },
+    "what": {
+      "input_context_snapshot": {
+        "get_hard_constraints": {
+          "patient_token": "tok_hmac_965c8137",
+          "patient_demographics": {},
+          "eligibility_exclusions": [],
+          "active_safety_flags": [],
+          "tier_ceiling": null,
+          "computed_at": "",
+          "pipeline_run_id": ""
+        },
+        "get_patient_context": {
+          "gender": null,
+          "age": null,
+          "ethnicity": null
+        },
+        "get_clinical_signals": {
+          "patient_token": "tok_hmac_965c8137",
+          "rule_preliminary_tier": "Standard",
+          "overall_risk_level": "Low",
+          "applicable_signals": [],
+          "signals_fired": [],
+          "missing_signals": [],
+          "risk_flags": [],
+          "comorbidity_tags": [],
+          "screening_gaps": [],
+          "vaccination_gaps": [],
+          "abnormal_triggers": [],
+          "family_history_flags": {},
+          "behavioral_flags": {},
+          "symptom_tags": [],
+          "computed_at": "",
+          "pipeline_run_id": ""
+        },
+        "get_biomarker_trends": {
+          "patient_token": "tok_hmac_965c8137",
+          "bmi": {},
+          "blood_pressure": {},
+          "egfr": {},
+          "labs": [],
+          "ascvd_10yr_risk": {},
+          "waist_circumference": null,
+          "computed_at": "",
+          "pipeline_run_id": ""
+        },
+        "get_program_ruleset": {
+          "patient_token": "tok_hmac_965c8137",
+          "ruleset_version": "v2026.03.1",
+          "admin_last_updated": "",
+          "computed_at": "2026-03-17T04:44:18.508560Z",
+          "tier_selection_rules": [],
+          "applied_rule_id": "STANDARD_DEFAULT",
+          "applied_condition": null,
+          "rule_preliminary_tier": "Standard",
+          "package_resolution_map": {},
+          "resolved_package": {},
+          "add_on_library": [],
+          "_add_on_library_filtered_count": 0,
+          "_add_on_library_excluded_count": 0,
+          "_add_on_library_excluded_items": []
+        }
+      }
+    },
+    "why": {
+      "reasoning_trace": "TIER DETERMINATION: The rule-based Clinical Signal Engine assigned a preliminary tier of 'Standard' under applied rule 'STANDARD_DEFAULT' with an overall risk level of 'Low'. Reviewing the full signal picture: no risk flags, comorbidity tags, screening gaps, vaccination gaps, abnormal triggers, family history flags, behavioral flags, or symptom tags were fired. No biomarker trends are available (BMI, blood pressure, eGFR, labs, and ASCVD 10-year risk are all empty objects or null). No eligibility exclusions or active safety flags are present. The tier_ceiling is null, placing no upper constraint on tier assignment, and no tier_selection_rules were defined that would escalate this patient beyond Standard. Given the complete absence of elevating clinical signals, the 'Standard' tier designation is clinically appropriate and is confirmed without deviation. The resolved_package for the Standard tier, as defined in the program ruleset (v2026.03.1), serves as the appropriate baseline program for this patient.\n\nSIGNAL CLUSTER ANALYSIS:\na) Metabolic: No FBS, HbA1c, lipid panel, or BMI data are available. No pre-diabetes trajectory, dyslipidemia, or obesity signals were fired. No metabolic risk escalation is indicated at this time.\nb) Cardiovascular: Blood pressure history is empty; ASCVD 10-year risk is an empty object. No hypertension, ASCVD intermediate/high risk, or cardiovascular comorbidity signals were fired. No cardiovascular add-on escalation is warranted.\nc) Cancer Screening: No screening gaps were identified in the signals data. No overdue screening flags (e.g., colorectal, cervical, breast, lung) were fired. No cancer-related family history flags are present.\nd) Vaccination: No vaccination gaps were identified. No immunization add-ons are indicated.\ne) Kidney/Liver: eGFR slope data is absent; no CKD, hepatic, or renal signals were fired.\nf) Occupational/Behavioral: No behavioral flags (e.g., smoking pack-years, alcohol use) or occupational exposure signals are present.\ng) Missing Signals: The missing_signals list is empty per the clinical signals payload, however the complete absence of any populated biomarker trend data (labs, BP, BMI, ASCVD) represents a significant data gap. This may reflect a first-time patient with no prior records in the system, or a data pipeline issue. Clinically, this means the recommendation is based solely on the default rule and absence of signals rather than confirmed normal values. The care team should verify whether this is a truly data-absent new patient or a pipeline gap.\n\nADD-ON SELECTION: The add_on_library is empty (0 items after filtering, 0 excluded). No signals were fired that would trigger add-on selection. Accordingly, no add-ons are recommended.\n\nCLINICAL NUANCE: With no patient demographic data, no lab values, and no signals fired, this recommendation is inherently conservative and baseline. The Standard tier is appropriate as a starting point. Upon completion of the Standard checkup, all generated data (labs, vitals, screening results) should be fed back into the clinical signal engine to produce a data-informed recommendation for future cycles. The treating clinician should conduct a direct clinical interview to capture any unreported symptoms, family history, or behavioral risk factors not yet in the system. This is consistent with general preventive care best practices (e.g., USPSTF recommendations for periodic health examinations and Thai Ministry of Public Health preventive care guidelines).",
+      "decision": "Standard"
+    },
+    "how": {
+      "model_provider": "local",
+      "model_id": "claude-sonnet-4.6"
+    },
+    "confidence": null,
+    "metadata": {
+      "environment": "dev"
+    },
+    "previous_hash": "0859c93f88f06bad0f8ea90354b318c63d76af5ec73fce1051d7cac65df9325f",
+    "current_hash": "4982c91ae3a975fa5e2a2b7c0f42ad328edddf33caee8819bb8cd05e353806c6"
+  },
+  {
+    "timestamp": "2026-03-17T04:46:18.853629+00:00",
+    "who": {
+      "patient_id": "tok_hmac_56291047"
+    },
+    "what": {
+      "input_context_snapshot": {
+        "get_hard_constraints": {
+          "patient_token": "tok_hmac_4574273a",
+          "patient_demographics": {},
+          "eligibility_exclusions": [],
+          "active_safety_flags": [],
+          "tier_ceiling": null,
+          "computed_at": "",
+          "pipeline_run_id": ""
+        },
+        "get_patient_context": {
+          "gender": null,
+          "age": null,
+          "ethnicity": null
+        },
+        "get_clinical_signals": {
+          "patient_token": "tok_hmac_4574273a",
+          "rule_preliminary_tier": "Standard",
+          "overall_risk_level": "Low",
+          "applicable_signals": [],
+          "signals_fired": [],
+          "missing_signals": [],
+          "risk_flags": [],
+          "comorbidity_tags": [],
+          "screening_gaps": [],
+          "vaccination_gaps": [],
+          "abnormal_triggers": [],
+          "family_history_flags": {},
+          "behavioral_flags": {},
+          "symptom_tags": [],
+          "computed_at": "",
+          "pipeline_run_id": ""
+        },
+        "get_biomarker_trends": {
+          "patient_token": "tok_hmac_4574273a",
+          "bmi": {},
+          "blood_pressure": {},
+          "egfr": {},
+          "labs": [],
+          "ascvd_10yr_risk": {},
+          "waist_circumference": null,
+          "computed_at": "",
+          "pipeline_run_id": ""
+        },
+        "get_program_ruleset": {
+          "patient_token": "tok_hmac_4574273a",
+          "ruleset_version": "v2026.03.1",
+          "admin_last_updated": "",
+          "computed_at": "2026-03-17T04:45:34.894041Z",
+          "tier_selection_rules": [],
+          "applied_rule_id": "STANDARD_DEFAULT",
+          "applied_condition": null,
+          "rule_preliminary_tier": "Standard",
+          "package_resolution_map": {},
+          "resolved_package": {},
+          "add_on_library": [],
+          "_add_on_library_filtered_count": 0,
+          "_add_on_library_excluded_count": 0,
+          "_add_on_library_excluded_items": []
+        }
+      }
+    },
+    "why": {
+      "reasoning_trace": "TIER DETERMINATION: The rule-based Clinical Signal Engine assigned rule_preliminary_tier = 'Standard' via applied_rule_id = 'STANDARD_DEFAULT'. The overall_risk_level is recorded as 'Low'. Reviewing the full signal picture: no signals_fired are present, no risk_flags, no comorbidity_tags, no screening_gaps, no vaccination_gaps, no abnormal_triggers, no family_history_flags, no behavioral_flags, and no symptom_tags are populated. Biomarker trend data (BMI, blood pressure, eGFR, labs, ASCVD 10-year risk) are all empty objects with no computable values. Hard constraints show no eligibility_exclusions and no active_safety_flags, with no tier_ceiling restriction. Given the complete absence of any signal data that would elevate clinical risk, the 'Standard' tier assignment is appropriate and confirmed. No deviation is warranted.\n\nSIGNAL CLUSTER ANALYSIS:\na) Metabolic: No FBS, HbA1c, lipid panel, BMI, or waist circumference data are available. No pre-diabetes trajectory or dyslipidemia signals can be assessed.\nb) Cardiovascular: No blood pressure history, ASCVD 10-year risk estimate, or cardiac biomarkers are present. Cardiovascular risk stratification is not possible from the current data.\nc) Cancer Screening: No screening_gaps are identified. No overdue colorectal, cervical, breast, lung, or other cancer screening flags are fired.\nd) Vaccination: No vaccination_gaps are present. Immunization status appears current or indeterminate due to missing data.\ne) Kidney/Liver: No eGFR slope, creatinine trend, or liver function data are available.\nf) Occupational/Behavioral: No behavioral_flags (e.g., smoking pack-years, alcohol use) or occupational hazard signals are recorded.\ng) Missing Signals: The missing_signals array is empty in the provided clinical signals object, though substantively all biomarker and demographic fields are unpopulated. This represents a significant data completeness gap; however, since the system has not flagged specific missing_signal IDs, none can be formally listed per protocol constraints.\n\nCLINICAL NUANCE: With no patient demographics (age, sex), no lab values, and no signal firings, it is not possible to apply guideline-based screening recommendations (e.g., USPSTF 2021 Lung Cancer Screening, ADA 2024 Diabetes Standards, ACC/AHA 2019 ASCVD Risk Calculator, Thai NCD guidelines). The Standard package represents the appropriate baseline for a patient with low overall risk and no actionable clinical signals at this time. No add-ons can be selected because the add_on_library is empty (0 items after filtering) and no signals_fired exist to trigger add-on logic. The recommendation should be revisited once complete demographic and biomarker data are available.",
+      "decision": "Standard"
+    },
+    "how": {
+      "model_provider": "local",
+      "model_id": "claude-sonnet-4.6"
+    },
+    "confidence": null,
+    "metadata": {
+      "environment": "dev"
+    },
+    "previous_hash": "4982c91ae3a975fa5e2a2b7c0f42ad328edddf33caee8819bb8cd05e353806c6",
+    "current_hash": "906a859fa382bb4217847655718ba59d00806e21e723457c1d25e2802f5c99f5"
+  }
+]

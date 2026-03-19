@@ -1,0 +1,604 @@
+{
+  "schema_version": "signal_store_record_v1",
+  "patient_token": "tok_hmac_2bb52ad3",
+  "computed_at": "2026-03-15T03:00:00Z",
+  "pipeline_run_id": "pipe_20260315_0300",
+  "fhir_snapshot_version": "fhir_snap_20260315",
+  "hard_constraints": {
+    "patient_token": "tok_hmac_2bb52ad3",
+    "patient_demographics": {
+      "gender": "female",
+      "age": 51,
+      "date_of_birth_token": "dob_tok_19750319",
+      "ethnicity": "asian",
+      "bmi_threshold_profile": "asian_adjusted",
+      "name": "Iara Siriwat"
+    },
+    "eligibility_exclusions": [],
+    "active_safety_flags": [],
+    "tier_ceiling": null,
+    "computed_at": "2026-03-15T03:00:00Z",
+    "pipeline_run_id": "pipe_20260315_0300",
+    "patient_id": "id_2bb52ad3"
+  },
+  "clinical_signals": {
+    "patient_token": "tok_hmac_2bb52ad3",
+    "rule_preliminary_tier": "Premium",
+    "overall_risk_level": "Moderate",
+    "applicable_signals": [
+      "bmi_obese_asian",
+      "bp_stage1_htn",
+      "ckd_comorbidity",
+      "ckd_rapid_progression",
+      "colonoscopy_screening_gap",
+      "diabetes_confirmed",
+      "dyslipidemia_active",
+      "fibroscan_indication",
+      "frax_bone_density_risk",
+      "influenza_vaccination_gap",
+      "ldl_borderline_high",
+      "liver_enzyme_elevation_significant",
+      "low_hdl",
+      "lung_ct_threshold_met",
+      "mammogram_screening_gap",
+      "metabolic_syndrome_cluster",
+      "office_syndrome",
+      "physical_inactivity",
+      "pneumococcal_vaccination_gap",
+      "prediabetes_confirmed",
+      "shingrix_vaccination_gap",
+      "tg_borderline_high"
+    ],
+    "signals_fired": [
+      "bmi_obese_asian",
+      "bp_stage1_htn",
+      "ldl_borderline_high",
+      "tg_borderline_high",
+      "low_hdl",
+      "prediabetes_confirmed",
+      "office_syndrome",
+      "physical_inactivity",
+      "metabolic_syndrome_cluster"
+    ],
+    "missing_signals": [
+      "ckd_rapid_progression",
+      "diabetes_confirmed",
+      "liver_enzyme_elevation_significant",
+      "lung_ct_threshold_met",
+      "frax_bone_density_risk",
+      "fibroscan_indication",
+      "pneumococcal_vaccination_gap"
+    ],
+    "risk_flags": [
+      {
+        "flag_id": "bmi_obese_asian",
+        "label": "Obesity — Asian-adjusted BMI ≥ 27.5 kg/m²",
+        "severity": "Moderate",
+        "source_signals": [
+          "bmi_31_1"
+        ],
+        "guideline": "WHO Asia-Pacific BMI 2000",
+        "add_on_triggers": [
+          "dietary_counseling",
+          "sleep_apnea_screen"
+        ]
+      },
+      {
+        "flag_id": "bp_stage1_htn",
+        "label": "Stage 1 Hypertension (SBP 130–139 or DBP 80–89)",
+        "severity": "Moderate",
+        "source_signals": [
+          "sbp_138_mmhg",
+          "dbp_88_mmhg"
+        ],
+        "guideline": "ACC/AHA High Blood Pressure Guideline 2017",
+        "add_on_triggers": [
+          "home_bp_monitoring"
+        ]
+      },
+      {
+        "flag_id": "prediabetes_confirmed",
+        "label": "Pre-diabetes confirmed (FBS 100–125 or HbA1c 5.7–6.4%)",
+        "severity": "Moderate",
+        "source_signals": [
+          "fbs_111_mgdl",
+          "hba1c_6_2_pct"
+        ],
+        "guideline": "ADA Standards of Medical Care 2024",
+        "add_on_triggers": [
+          "hba1c_repeat_12_months",
+          "dm_lifestyle_program"
+        ]
+      },
+      {
+        "flag_id": "ldl_borderline_high",
+        "label": "LDL Borderline High (130–159 mg/dL)",
+        "severity": "Moderate",
+        "source_signals": [
+          "ldl_150_mgdl"
+        ],
+        "guideline": "ACC/AHA Cholesterol Guideline 2018",
+        "add_on_triggers": []
+      },
+      {
+        "flag_id": "tg_borderline_high",
+        "label": "Triglycerides borderline high (150–199 mg/dL)",
+        "severity": "Moderate",
+        "source_signals": [
+          "tg_192_mgdl"
+        ],
+        "guideline": "ACC/AHA Cholesterol Guideline 2018",
+        "add_on_triggers": [
+          "fibroscan_indication"
+        ]
+      },
+      {
+        "flag_id": "low_hdl",
+        "label": "HDL Cholesterol low for female (< 50 mg/dL)",
+        "severity": "Low-Moderate",
+        "source_signals": [
+          "hdl_39_5_mgdl"
+        ],
+        "guideline": "ACC/AHA Cholesterol Guideline 2018",
+        "add_on_triggers": []
+      }
+    ],
+    "comorbidity_tags": [
+      {
+        "tag": "Dyslipidemia",
+        "label": "Dyslipidemia",
+        "onset_year": 2023,
+        "organ_risk_tags": [
+          "cv_risk_elevated"
+        ],
+        "on_treatment": true,
+        "treatment_note": "Atorvastatin 10mg"
+      },
+      {
+        "tag": "Prediabetes",
+        "label": "Pre-diabetes",
+        "onset_year": 2024,
+        "organ_risk_tags": [
+          "dm_progression_risk"
+        ],
+        "on_treatment": false,
+        "treatment_note": null
+      }
+    ],
+    "screening_gaps": [
+      {
+        "screening_id": "mammogram",
+        "label": "Mammography (breast cancer screening)",
+        "last_performed_date": "2024-03-15",
+        "recommended_interval_months": 24,
+        "overdue_days": 0,
+        "overdue_score": 0.0,
+        "priority_color": "Green",
+        "guideline": "USPSTF Breast Cancer Screening 2024",
+        "note": "Up to date; next due in 2026."
+      }
+    ],
+    "vaccination_gaps": [
+      {
+        "vaccine_id": "influenza",
+        "label": "Influenza (seasonal)",
+        "last_administered_date": "2025-09-28",
+        "overdue_days": 169,
+        "recommended_annual": null,
+        "series_complete": null,
+        "doses_received": null,
+        "doses_required": null,
+        "eligible_since_age": null,
+        "age_at_evaluation": null,
+        "years_until_due": null,
+        "priority_color": "Yellow",
+        "guideline": "CDC ACIP 2024",
+        "note": "Due for annual shot next flu season.",
+        "anti_hbs_checked": null
+      },
+      {
+        "vaccine_id": "shingrix",
+        "label": "Shingles (RZV/Shingrix)",
+        "last_administered_date": null,
+        "overdue_days": null,
+        "recommended_annual": null,
+        "series_complete": null,
+        "doses_received": 0,
+        "doses_required": 2,
+        "eligible_since_age": null,
+        "age_at_evaluation": null,
+        "years_until_due": null,
+        "priority_color": "Green",
+        "guideline": "CDC ACIP 2017",
+        "note": "Age < 50; not yet indicated.",
+        "anti_hbs_checked": null
+      }
+    ],
+    "abnormal_triggers": [
+      {
+        "trigger_id": "metabolic_syndrome_cluster",
+        "label": "Metabolic syndrome: central obesity + elevated BP + atherogenic dyslipidemia",
+        "source_lab": null,
+        "source_value": null,
+        "source_unit": null,
+        "suggested_follow_up": [
+          "lifestyle_intensive_program",
+          "dietary_counseling",
+          "exercise_counseling"
+        ],
+        "urgency": "Routine"
+      }
+    ],
+    "family_history_flags": {
+      "ca_breast": false,
+      "ca_colon": false,
+      "ca_prostate": false,
+      "premature_cad": false,
+      "premature_cad_detail": null,
+      "ca_colon_detail": null
+    },
+    "behavioral_flags": {
+      "smoking": {
+        "status": "never",
+        "pack_years": null,
+        "quit_years_ago": null,
+        "lung_ct_threshold_met": false
+      },
+      "alcohol": {
+        "audit_c_score": 2.1,
+        "risk_level": "low",
+        "fibroscan_indicated": false,
+        "note": null
+      },
+      "occupational": {
+        "tags": [
+          "office_syndrome"
+        ],
+        "add_ons_triggered": [
+          "msk_assessment"
+        ]
+      },
+      "physical_activity": {
+        "days_per_week": 2,
+        "level": "insufficient",
+        "add_ons_triggered": [
+          "exercise_counseling"
+        ]
+      }
+    },
+    "symptom_tags": [
+      "fatigue",
+      "mild_sleep_disturbance"
+    ],
+    "computed_at": "2026-03-15T03:00:00Z",
+    "pipeline_run_id": "pipe_20260315_0300"
+  },
+  "biomarker_trends": {
+    "patient_token": "tok_hmac_2bb52ad3",
+    "bmi": {
+      "current": 31.1,
+      "unit": "kg/m2",
+      "threshold_profile": "asian_adjusted",
+      "category": "Obese",
+      "trend_direction": "increasing",
+      "slope_per_year": 0.9,
+      "history": [
+        {
+          "date": "2024-09-15",
+          "value": 30.0
+        },
+        {
+          "date": "2025-09-15",
+          "value": 30.6
+        },
+        {
+          "date": "2026-03-15",
+          "value": 31.1
+        }
+      ],
+      "alert": "Asian-adjusted obese; BMI trending upward."
+    },
+    "blood_pressure": {
+      "latest": {
+        "sbp": 138,
+        "dbp": 88,
+        "date": "2026-03-15"
+      },
+      "unit": "mmHg",
+      "category": "Stage1_HTN",
+      "category_label": "Stage 1 Hypertension (SBP 130–139 or DBP 80–89)",
+      "trend_direction": "increasing",
+      "sbp_slope_per_year": 2.9,
+      "history": [
+        {
+          "date": "2024-09-15",
+          "sbp": 130,
+          "dbp": 81
+        },
+        {
+          "date": "2025-09-15",
+          "sbp": 134,
+          "dbp": 84
+        },
+        {
+          "date": "2026-03-15",
+          "sbp": 138,
+          "dbp": 88
+        }
+      ],
+      "alert": null
+    },
+    "egfr": {
+      "current": 86.3,
+      "unit": "mL/min/1.73m2",
+      "loinc_code": "62238-1",
+      "ckd_stage": "G2",
+      "ckd_stage_label": "CKD Stage G2 — mildly decreased",
+      "annual_slope": -1.1,
+      "rapid_progression": false,
+      "rapid_progression_threshold": -5.0,
+      "history": [
+        {
+          "date": "2024-09-15",
+          "value": 89.7
+        },
+        {
+          "date": "2025-09-15",
+          "value": 87.7
+        },
+        {
+          "date": "2026-03-15",
+          "value": 86.3
+        }
+      ],
+      "alert": null
+    },
+    "labs": [
+      {
+        "lab_id": "fbs",
+        "label": "Fasting Blood Glucose",
+        "loinc_code": "1558-6",
+        "current_value": 111.0,
+        "unit": "mg/dL",
+        "reference_range": {
+          "low": 70.0,
+          "high": 99.0,
+          "optimal": null,
+          "borderline_high_low": null,
+          "borderline_high_high": null,
+          "normal_high": null,
+          "borderline_high": null,
+          "uln": null,
+          "uln_male": null,
+          "low_male": null,
+          "protective": null,
+          "desirable_high": null,
+          "age_adjusted_uln_50s": null
+        },
+        "interpretation": "H",
+        "category": "Prediabetic",
+        "velocity_per_year": 3.4,
+        "trend_direction": "increasing",
+        "trend_flag": "worsening",
+        "history": [
+          {
+            "date": "2024-09-15",
+            "value": 104.5
+          },
+          {
+            "date": "2025-09-15",
+            "value": 107.2
+          },
+          {
+            "date": "2026-03-15",
+            "value": 111.0
+          }
+        ],
+        "alert": null,
+        "trend_data_note": null,
+        "sdm_note": null
+      },
+      {
+        "lab_id": "hba1c",
+        "label": "HbA1c",
+        "loinc_code": "4548-4",
+        "current_value": 6.2,
+        "unit": "%",
+        "reference_range": {
+          "low": null,
+          "high": 5.7,
+          "optimal": null,
+          "borderline_high_low": null,
+          "borderline_high_high": null,
+          "normal_high": null,
+          "borderline_high": null,
+          "uln": null,
+          "uln_male": null,
+          "low_male": null,
+          "protective": null,
+          "desirable_high": null,
+          "age_adjusted_uln_50s": null
+        },
+        "interpretation": "H",
+        "category": "Prediabetic (5.7–6.4%)",
+        "velocity_per_year": 0.13,
+        "trend_direction": "increasing",
+        "trend_flag": "worsening",
+        "history": [
+          {
+            "date": "2024-09-15",
+            "value": 5.9
+          },
+          {
+            "date": "2026-03-15",
+            "value": 6.2
+          }
+        ],
+        "alert": null,
+        "trend_data_note": null,
+        "sdm_note": null
+      },
+      {
+        "lab_id": "ldl",
+        "label": "LDL Cholesterol",
+        "loinc_code": "13457-7",
+        "current_value": 150.0,
+        "unit": "mg/dL",
+        "reference_range": {
+          "low": null,
+          "high": null,
+          "optimal": 100.0,
+          "borderline_high_low": 130.0,
+          "borderline_high_high": 159.0,
+          "normal_high": null,
+          "borderline_high": null,
+          "uln": null,
+          "uln_male": null,
+          "low_male": null,
+          "protective": null,
+          "desirable_high": null,
+          "age_adjusted_uln_50s": null
+        },
+        "interpretation": "H",
+        "category": "Borderline High (130–159 mg/dL)",
+        "velocity_per_year": 8.2,
+        "trend_direction": "increasing",
+        "trend_flag": "worsening",
+        "history": [
+          {
+            "date": "2024-09-15",
+            "value": 136.0
+          },
+          {
+            "date": "2025-09-15",
+            "value": 143.0
+          },
+          {
+            "date": "2026-03-15",
+            "value": 150.0
+          }
+        ],
+        "alert": null,
+        "trend_data_note": null,
+        "sdm_note": null
+      },
+      {
+        "lab_id": "triglycerides",
+        "label": "Triglycerides",
+        "loinc_code": "2571-8",
+        "current_value": 192.0,
+        "unit": "mg/dL",
+        "reference_range": {
+          "low": null,
+          "high": null,
+          "optimal": null,
+          "borderline_high_low": null,
+          "borderline_high_high": 199.0,
+          "normal_high": 150.0,
+          "borderline_high": 199.0,
+          "uln": null,
+          "uln_male": null,
+          "low_male": null,
+          "protective": null,
+          "desirable_high": null,
+          "age_adjusted_uln_50s": null
+        },
+        "interpretation": "H",
+        "category": "Borderline High (150–199 mg/dL)",
+        "velocity_per_year": 13.2,
+        "trend_direction": "increasing",
+        "trend_flag": "worsening",
+        "history": [
+          {
+            "date": "2024-09-15",
+            "value": 172.5
+          },
+          {
+            "date": "2026-03-15",
+            "value": 192.0
+          }
+        ],
+        "alert": null,
+        "trend_data_note": null,
+        "sdm_note": null
+      },
+      {
+        "lab_id": "hdl",
+        "label": "HDL Cholesterol",
+        "loinc_code": "2085-9",
+        "current_value": 39.5,
+        "unit": "mg/dL",
+        "reference_range": {
+          "low": 50.0,
+          "high": null,
+          "optimal": null,
+          "borderline_high_low": null,
+          "borderline_high_high": null,
+          "normal_high": null,
+          "borderline_high": null,
+          "uln": null,
+          "uln_male": null,
+          "low_male": null,
+          "protective": null,
+          "desirable_high": null,
+          "age_adjusted_uln_50s": null
+        },
+        "interpretation": "L",
+        "category": "Low for female (< 50 mg/dL)",
+        "velocity_per_year": null,
+        "trend_direction": "insufficient_data",
+        "trend_flag": null,
+        "history": [
+          {
+            "date": "2026-03-15",
+            "value": 39.5
+          }
+        ],
+        "alert": null,
+        "trend_data_note": null,
+        "sdm_note": null
+      }
+    ],
+    "ascvd_10yr_risk": {
+      "score": 0.078,
+      "score_pct": 7.8,
+      "category": "Borderline",
+      "category_label": "Borderline risk (5–7.5%) approaching Intermediate",
+      "inputs_used": {
+        "age": 51,
+        "sex": "female",
+        "race": "other",
+        "total_cholesterol": 211.0,
+        "hdl": 39.5,
+        "systolic_bp": 138,
+        "bp_treatment": false,
+        "diabetes": false,
+        "smoking": "never"
+      },
+      "guideline": "ACC/AHA Pooled Cohort Equations 2013/2018",
+      "note": "Borderline ASCVD risk amplified by metabolic syndrome components."
+    },
+    "waist_circumference": {
+      "value": 95.8,
+      "unit": "cm",
+      "threshold_male_asian": null,
+      "category": "Above female Asian threshold",
+      "note": "Central obesity; key component of metabolic syndrome."
+    },
+    "computed_at": "2026-03-15T03:00:00Z",
+    "pipeline_run_id": "pipe_20260315_0300"
+  },
+  "metadata": {
+    "data_completeness_ratio": 0.88,
+    "total_key_fields": 42,
+    "populated_key_fields": 37,
+    "missing_data_fields": [
+      "sleep_apnea_screen_result",
+      "frax_bone_density_risk",
+      "dm_organ_complication_screening",
+      "fibroscan_indication",
+      "pneumococcal_vaccination_gap"
+    ]
+  },
+  "patient_id": "id_2bb52ad3"
+}

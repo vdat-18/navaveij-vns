@@ -1,0 +1,21 @@
+# MIG-1 Development Summary
+
+- Status: In progress
+- Completed:
+  - Replaced monolithic `GenerateRecommendation()` schema/function with 3-agent pipeline in `POC/v2/baml_src/clinical/recommendation_output.baml`.
+  - Added classes/functions aligned with v3:
+    - `ClinicalRiskProfile`
+    - `RecommendationPlan`
+    - `FinalRecommendation`
+    - `AnalyzeClinicalRisks(...)`
+    - `MatchProgramRules(...)`
+    - `ComposeRecommendation(...)`
+  - Preserved shared types for migration compatibility:
+    - `Tier`, `PriorityLevel`, `AddOnItem`, `CommunicationScript`
+  - Aligned three-agent output contract for downstream MIG-2 mapping:
+    - `FinalRecommendation.communication_script` is used instead of `script`.
+    - `ComposeRecommendation` now accepts `plan: RecommendationPlan`.
+    - `ClinicalRiskProfile.suggested_tier` is required (`Tier`).
+- Pending:
+  - Run BAML generation successfully in this environment.
+  - Verify generated client exports (`b.AnalyzeClinicalRisks`, `b.MatchProgramRules`, `b.ComposeRecommendation`).

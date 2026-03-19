@@ -87,6 +87,7 @@ Any one of these alone triggers Advanced.
 | `lung_ct_threshold_met` | USPSTF 2021 — age 50–80, ≥ 20 pack-years, current/quit ≤ 15yr |
 | `ckd_comorbidity` | KDIGO — CKD any stage confirmed |
 | `bmi_obese_asian` | WHO Asia-Pacific — BMI ≥ 27.5 (Asian-adjusted obese) |
+| `history_syncope` | History of loss of consciousness (syncope) — arrhythmia risk |
 
 #### Low-Moderate Pool (Advanced count-threshold qualifiers)
 Two or more of these signals co-occurring triggers Advanced.
@@ -99,6 +100,7 @@ Two or more of these signals co-occurring triggers Advanced.
 | `high_ldl` | ACC/AHA 2018 — LDL ≥ 160 mg/dL |
 | `bp_stage1_htn` | ACC/AHA 2017 — SBP 130–139 or DBP 80–89 (not yet confirmed comorbidity) |
 | `bp_worsening` | ACC/AHA 2017 — increasing BP trend over readings |
+| `fbs_upward_trend` | Fasting Blood Sugar upward trend (e.g. >5 mg/dL/yr) — metabolic risk |
 | `family_hx_premature_cad` | ACC/AHA 2018 Risk Enhancers |
 | `at_risk_alcohol_use` | NIAAA — AUDIT-C ≥ 3 (F) / ≥ 4 (M) |
 | `office_syndrome` | WHO Workers' Health 2008 — prolonged sedentary work |
@@ -106,6 +108,7 @@ Two or more of these signals co-occurring triggers Advanced.
 | `uric_acid_hyperuricemia` | ACR 2020 — uric acid above sex-specific threshold |
 | `dyslipidemia_active` | Active dyslipidemia comorbidity tag |
 | `fibroscan_indication` | AASLD 2023 — liver disease risk (BMI + ALT or alcohol + ALT) |
+| `diagnosis_fatty_liver` | Historical diagnosis of fatty liver (NAFLD/MASLD) |
 
 #### Multi-Signal Premium Threshold
 When a patient accumulates ≥ **N** signals from the moderate + low-moderate pools combined, the sheer volume of concurrent risk factors warrants Premium. The threshold **N** is admin-configurable (default: **5**).
@@ -132,7 +135,8 @@ For items where a specific signal context raises urgency above the default:
 
 | Add-On | Default | Override Signal | Override Priority |
 |---|---|---|---|
-| `colonoscopy` | Red | `family_hx_colon_ca_first_degree` | Red (confirm; no change but forced regardless of overdue days) |
+| `colonoscopy` | Red | `family_hx_colon_ca_first_degree` or `symptom_hematochezia` | Red (confirm; no change but forced regardless of overdue days) |
+| `upper_gi_endoscopy` | Red | `symptom_hematemesis` or `symptom_melena` | Red |
 | `exercise_stress_test` | Yellow | `ascvd_very_high` or `ascvd_high` | Red |
 | `fibroscan` | Yellow | `liver_enzyme_elevation_significant` | Red |
 | `hepatitis_b_vaccine` | Red | `hepatitis_b_series_incomplete` | Yellow (series started, just incomplete) |
@@ -189,38 +193,43 @@ Audit table for all add-on items. Each row traces from guideline → signal → 
 
 | # | item_code | clinical-guidelines-reference.md § | Trigger Signal(s) | Priority Default | Priority Rationale | gender_constraint | age_min | age_max | Navavej Product | Price (฿) | Open Question? |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | `colonoscopy` | §4.3 | `colonoscopy_screening_gap` | Red | First-degree FHx colon ca; overdue > 10yr interval qualifies immediately | null | 45 | 85 | Endoscopy Package (Upper GI) | 9,500 | #7 — confirm standalone colonoscopy |
-| 2 | `exercise_stress_test` | §5.2 | `est_gap`, `est_consideration`, `ascvd_risk_intermediate`, `ascvd_high` | Yellow | Moderate ASCVD risk — SDM appropriate; Red override if ascvd_very_high | null | 30 | null | Exercise Stress Test (EST) | 2,900 | — |
-| 3 | `echocardiogram` | §5.2, §6.2 | `echo_gap`, `dm_comorbidity`, `htn_active` | Yellow | DM/HTN organ risk screening; within standard follow-up window | null | 35 | null | Echocardiogram (ECHO) | 2,900 | — |
-| 4 | `ct_coronary_calcium` | §5.1 | `family_hx_premature_cad`, `ascvd_risk_intermediate`, `high_ldl` | Yellow | Risk enhancer — helps refine statin/further workup decision (ACC/AHA 2018) | null | 40 | null | CT Coronary Artery Calcium (CAC) | 3,900 | — |
-| 5 | `cardiac_patch_48h` | — (symptom-driven) | `symptom_palpitations` | Yellow | Palpitations — non-urgent arrhythmia workup; scheduled evaluation | null | 18 | null | 48-hr Cardiac Patch (S-Patch EX) | 7,742 | — |
-| 6 | `ldct_lung` | §4.4, §10.1 | `lung_ct_threshold_met` | Red | Never-screened eligible smoker = high severity; annual if previously done | null | 50 | 80 | Low-Dose CT Chest (LDCT Lung) | 3,900 | — |
-| 7 | `mammogram` | §4.1 | `mammogram_screening_gap` | Red (if overdue ≥ 48mo) / Orange (if overdue < 48mo) | Biennial interval; family hx forces Red regardless | female | 40 | 74 | Mammogram | 2,850 | — |
-| 8 | `cervical_cancer_hpv_screen` | §4.2 | `pap_smear_screening_gap` | Orange | Overdue ≤ 5yr (co-test interval) = Orange; overdue > 10yr = Red | female | 21 | 65 | Cervical Cancer + HPV Screening | 2,300 | — |
-| 9 | `dexa_bone_density` | §4.6 | `dexa_screening_gap` | Orange | Routine USPSTF grade B for female ≥ 65; insufficient evidence for males | female | 65 | null | Bone Density Scan DEXA (2 areas) | 1,450 | — |
-| 10 | `psa_sdm` | §1.7, §4.5 | `psa_sdm_status`, `family_hx_prostate_ca` | Green | SDM only — no universal recommendation; low urgency discussion item | male | 50 | 69 | PSA Standalone Test | TBD | #10 — confirm standalone PSA code |
-| 11 | `diabetes_screening_pro` | §1.1, §1.2, §6.1 | `prediabetes_confirmed`, `diabetes_confirmation_required`, `bmi_obese_asian` | Yellow | Pre-diabetes confirmed or suspected; 12-item panel includes HbA1c, insulin, HOMA-IR | null | 15 | null | Diabetes Screening Pro 1 | 2,134 | — |
-| 12 | `thyroid_pro1` | §1.6 | `tsh_status`, `symptom_palpitations` | Yellow | Abnormal TSH or palpitation symptom; 6-item basic thyroid panel | null | 15 | null | Thyroid Pro 1 | 2,134 | — |
-| 13 | `thyroid_pro2` | §1.6 | `tsh_borderline_high`, `hypothyroidism_likely`, `hyperthyroidism_possible` | Yellow | Confirmed abnormal TSH requires Free T3/T4 + antibodies (7-item) | null | 15 | null | Thyroid Pro 2 | 3,395 | — |
-| 14 | `fibroscan` | §8.1 | `fibroscan_indication`, `liver_enzyme_elevation_significant`, `high_triglycerides` | Yellow (Red if ALT > 3× ULN) | Liver disease risk; non-invasive fibrosis assessment | null | 18 | null | FibroTouch (Liver Fat Assessment) | 1,900 | — |
-| 15 | `hepatitis_abc_screen` | §8.2, §9.2 | `hepatitis_b_vaccination_status`, `hepatitis_b_anti_hbs_check_needed` | Yellow | Hepatitis B immunity check or incomplete screening; 5-item panel | null | 18 | null | Hepatitis A, B, C Screening (5 items) | 1,900 | — |
-| 16 | `kidney_screening` | §1.5, §7.1, §6.2 | `ckd_comorbidity`, `ckd_rapid_progression`, `dm_comorbidity`, `htn_active` | Yellow (Red if `ckd_rapid_progression`) | CKD monitoring or DM/HTN organ risk; ACR + eGFR panel | null | 18 | null | Kidney Disease Screening | 2,500 | — |
-| 17 | `abdominal_ultrasound_full` | §8.1, §11.1 | `at_risk_alcohol_use`, `fibroscan_indication`, `liver_enzyme_mildly_elevated` | Yellow | At-risk alcohol use + liver risk; abdominal organ survey | null | 18 | null | Abdominal Ultrasound (Full) | 2,550 | — |
-| 18 | `carotid_ultrasound` | §5.1 | `family_hx_premature_cad`, `ascvd_risk_intermediate`, `ascvd_high`, `bp_stage2_htn` | Yellow | ACC/AHA 2018 risk enhancer — subclinical atherosclerosis assessment | null | 50 | null | Carotid Artery Ultrasound | 5,096 | — |
-| 19 | `retinal_exam` | §6.2 | `dm_organ_complication_screening`, `dm_comorbidity` | Yellow | ADA 2024 — annual diabetic retinopathy screening once DM confirmed | null | 18 | null | Retinal Examination | 2,590 | — |
-| 20 | `spine_mri` | §11.2 | `office_syndrome`, `symptom_chronic_back_pain` | Green | Occupational risk (prolonged desk work) or patient-reported chronic back pain | null | 18 | null | Spine MRI (Cervical or Lumbar) | 6,500 | — |
-| 21 | `multi_cancer_spotmas` | §4.1, §4.3, §4.5 | `family_hx_colon_ca`, `family_hx_breast_ca`, `family_hx_prostate_ca` | Yellow | First-degree family history of hereditary cancers; blood-based multi-cancer panel | null | 40 | null | Multi-Cancer Screening SPOT-MAS | 15,900 | — |
-| 22 | `influenza_vaccine` | §9.1 | `influenza_vaccination_gap` | Orange | Annual — vaccination gap > 14 months; low burden, high preventive value | null | 1 | 59 | Influenza Vaccine (3-strain) | 490 | — |
-| 23 | `influenza_vaccine_senior` | §9.1 | `influenza_vaccination_gap` | Orange | Age ≥ 60 — high-dose or adjuvanted preferred by CDC ACIP 2024 | null | 60 | null | Senior Influenza Vaccine (High-Dose) | 2,300 | — |
-| 24 | `hepatitis_b_vaccine` | §9.2, §8.2 | `hepatitis_b_vaccination_status` | Red (not started) / Yellow (incomplete) | Not started = high urgency; series incomplete = continue | null | 1 | null | Hepatitis B Vaccine | TBD | confirm per-dose price |
-| 25 | `pneumococcal_vaccine` | §9.4 | `pneumococcal_vaccination_gap` | Orange | Age ≥ 65 routine — ACIP 2022; or high-risk < 65 conditions | null | 65 | null | Pneumococcal Vaccine | TBD | confirm product code + price |
-| 26 | `shingrix_vaccine` | §9.5 | `shingrix_vaccination_gap` | Yellow | Age ≥ 50 — 2-dose RZV series; not urgent but recommended | null | 50 | null | Shingrix (RZV) Zoster Vaccine | TBD | confirm per-dose price |
-| 27 | `sleep_apnea_psg` | §11.2 | `night_shift_worker`, `bmi_obese_asian`, `sleep_apnea_screen_result` | Yellow | Night shift + obesity risk combination; or positive sleep screen questionnaire | null | 18 | null | Full Sleep Test 1 Night PSG | 10,900 | — |
-| 28 | `menopause_screening` | §1.6 (TSH), §6.1 (endocrine) | `reproductive_history` | Yellow | Perimenopausal age signal; hormonal assessment panel (19 items) | female | 45 | 60 | Menopause Screening Pro Premium | 7,900 | — |
+| 1 | `colonoscopy` | §4.3 | `colonoscopy_screening_gap`, `symptom_hematochezia` | Red | First-degree FHx colon ca; overdue > 10yr interval; or red-flag symptom (blood in stool) | null | 45 | 85 | Colonoscopy (Lower GI) | TBD | #7 — confirm standalone colonoscopy |
+| 2 | `upper_gi_endoscopy` | §4.3 | `symptom_dyspepsia`, `symptom_hematemesis`, `symptom_melena` | Red | Red flag symptoms (vomit blood, black stool) or persistent dyspepsia | null | 18 | null | Endoscopy Package (Upper GI) | 9,500 | — |
+| 3 | `exercise_stress_test` | §5.2 | `est_gap`, `est_consideration`, `ascvd_risk_intermediate`, `ascvd_high` | Yellow | Moderate ASCVD risk — SDM appropriate; Red override if ascvd_very_high | null | 30 | null | Exercise Stress Test (EST) | 2,900 | — |
+| 4 | `echocardiogram` | §5.2, §6.2 | `echo_gap`, `dm_comorbidity`, `htn_active` | Yellow | DM/HTN organ risk screening; within standard follow-up window | null | 35 | null | Echocardiogram (ECHO) | 2,900 | — |
+| 5 | `ct_coronary_calcium` | §5.1 | `family_hx_premature_cad`, `ascvd_risk_intermediate`, `high_ldl` | Yellow | Risk enhancer — helps refine statin/further workup decision (ACC/AHA 2018) | null | 40 | null | CT Coronary Artery Calcium (CAC) | 3,900 | — |
+| 6 | `cardiac_patch_48h` | — (symptom-driven) | `symptom_palpitations`, `history_syncope`, `family_hx_sudden_cardiac_death` | Yellow | Palpitations or syncope history — arrhythmia workup; scheduled evaluation | null | 18 | null | 48-hr Cardiac Patch (S-Patch EX) | 7,742 | — |
+| 7 | `ldct_lung` | §4.4, §10.1 | `lung_ct_threshold_met`, `family_hx_lung_ca` | Red | Never-screened eligible smoker or family history = high severity | null | 50 | 80 | Low-Dose CT Chest (LDCT Lung) | 3,900 | — |
+| 8 | `mammogram` | §4.1 | `mammogram_screening_gap` | Red (if overdue ≥ 48mo) / Orange (if overdue < 48mo) | Biennial interval; family hx forces Red regardless | female | 40 | 74 | Mammogram | 2,850 | — |
+| 9 | `cervical_cancer_hpv_screen` | §4.2 | `pap_smear_screening_gap` | Orange | Overdue ≤ 5yr (co-test interval) = Orange; overdue > 10yr = Red | female | 21 | 65 | Cervical Cancer + HPV Screening | 2,300 | — |
+| 10 | `dexa_bone_density` | §4.6 | `dexa_screening_gap` | Orange | Routine USPSTF grade B for female ≥ 65; insufficient evidence for males | female | 65 | null | Bone Density Scan DEXA (2 areas) | 1,450 | — |
+| 11 | `psa_sdm` | §1.7, §4.5 | `psa_sdm_status`, `family_hx_prostate_ca` | Green | SDM only — no universal recommendation; low urgency discussion item | male | 50 | 69 | PSA Standalone Test | TBD | #10 — confirm standalone PSA code |
+| 12 | `diabetes_screening_pro` | §1.1, §1.2, §6.1 | `prediabetes_confirmed`, `diabetes_confirmation_required`, `bmi_obese_asian`, `fbs_upward_trend` | Yellow | Pre-diabetes confirmed or suspected; or upward trend >5mg/dL/yr | null | 15 | null | Diabetes Screening Pro 1 | 2,134 | — |
+| 13 | `thyroid_pro1` | §1.6 | `tsh_status`, `symptom_palpitations` | Yellow | Abnormal TSH or palpitation symptom; 6-item basic thyroid panel | null | 15 | null | Thyroid Pro 1 | 2,134 | — |
+| 14 | `thyroid_pro2` | §1.6 | `tsh_borderline_high`, `hypothyroidism_likely`, `hyperthyroidism_possible` | Yellow | Confirmed abnormal TSH requires Free T3/T4 + antibodies (7-item) | null | 15 | null | Thyroid Pro 2 | 3,395 | — |
+| 15 | `fibroscan` | §8.1 | `fibroscan_indication`, `liver_enzyme_elevation_significant`, `diagnosis_fatty_liver` | Yellow (Red if ALT > 3× ULN) | Liver disease risk or history of fatty liver | null | 18 | null | FibroTouch (Liver Fat Assessment) | 1,900 | — |
+| 16 | `hepatitis_abc_screen` | §8.2, §9.2 | `hepatitis_b_vaccination_status`, `hepatitis_b_anti_hbs_check_needed` | Yellow | Hepatitis B immunity check or incomplete screening; 5-item panel | null | 18 | null | Hepatitis A, B, C Screening (5 items) | 1,900 | — |
+| 17 | `kidney_screening` | §1.5, §7.1, §6.2 | `ckd_comorbidity`, `ckd_rapid_progression`, `dm_comorbidity`, `htn_active` | Yellow (Red if `ckd_rapid_progression`) | CKD monitoring or DM/HTN organ risk; ACR + eGFR panel | null | 18 | null | Kidney Disease Screening | 2,500 | — |
+| 18 | `abdominal_ultrasound_full` | §8.1, §11.1 | `at_risk_alcohol_use`, `fibroscan_indication`, `liver_enzyme_mildly_elevated` | Yellow | At-risk alcohol use + liver risk; abdominal organ survey | null | 18 | null | Abdominal Ultrasound (Full) | 2,550 | — |
+| 19 | `carotid_ultrasound` | §5.1 | `family_hx_premature_cad`, `ascvd_risk_intermediate`, `ascvd_high`, `bp_stage2_htn` | Yellow | ACC/AHA 2018 risk enhancer — subclinical atherosclerosis assessment | null | 50 | null | Carotid Artery Ultrasound | 5,096 | — |
+| 20 | `retinal_exam` | §6.2 | `dm_organ_complication_screening`, `dm_comorbidity` | Yellow | ADA 2024 — annual diabetic retinopathy screening once DM confirmed | null | 18 | null | Retinal Examination | 2,590 | — |
+| 21 | `spine_mri` | §11.2 | `office_syndrome`, `symptom_chronic_back_pain` | Green | Occupational risk (prolonged desk work) or patient-reported chronic back pain | null | 18 | null | Spine MRI (Cervical or Lumbar) | 6,500 | — |
+| 22 | `multi_cancer_spotmas` | §4.1, §4.3, §4.5 | `family_hx_colon_ca`, `family_hx_breast_ca`, `family_hx_prostate_ca` | Yellow | First-degree family history of hereditary cancers; blood-based multi-cancer panel | null | 40 | null | Multi-Cancer Screening SPOT-MAS | 15,900 | — |
+| 23 | `influenza_vaccine` | §9.1 | `influenza_vaccination_gap` | Orange | Annual — vaccination gap > 14 months; low burden, high preventive value | null | 1 | 59 | Influenza Vaccine (3-strain) | 490 | — |
+| 24 | `influenza_vaccine_senior` | §9.1 | `influenza_vaccination_gap` | Orange | Age ≥ 60 — high-dose or adjuvanted preferred by CDC ACIP 2024 | null | 60 | null | Senior Influenza Vaccine (High-Dose) | 2,300 | — |
+| 25 | `hepatitis_b_vaccine` | §9.2, §8.2 | `hepatitis_b_vaccination_status` | Red (not started) / Yellow (incomplete) | Not started = high urgency; series incomplete = continue | null | 1 | null | Hepatitis B Vaccine | TBD | confirm per-dose price |
+| 26 | `pneumococcal_vaccine` | §9.4 | `pneumococcal_vaccination_gap` | Orange | Age ≥ 65 routine — ACIP 2022; or high-risk < 65 conditions | null | 65 | null | Pneumococcal Vaccine | TBD | confirm product code + price |
+| 27 | `shingrix_vaccine` | §9.5 | `shingrix_vaccination_gap` | Yellow | Age ≥ 50 — 2-dose RZV series; not urgent but recommended | null | 50 | null | Shingrix (RZV) Zoster Vaccine | TBD | confirm per-dose price |
+| 28 | `sleep_apnea_psg` | §11.2 | `night_shift_worker`, `bmi_obese_asian`, `sleep_apnea_screen_result` | Yellow | Night shift + obesity risk combination; or positive sleep screen questionnaire | null | 18 | null | Full Sleep Test 1 Night PSG | 10,900 | — |
+| 29 | `menopause_screening` | §1.6 (TSH), §6.1 (endocrine) | `reproductive_history` | Yellow | Perimenopausal age signal; hormonal assessment panel (19 items) | female | 40 | 60 | Menopause Screening Pro Premium | 7,900 | — |
+| 30 | `dementia_screening` | — | `family_hx_dementia` | Yellow | Family history of dementia or age > 65 concern | null | 65 | null | Dementia / Cognitive Decline Screening | TBD | — |
+| 31 | `allergy_food_panel` | — | `symptom_food_intolerance` | Green | Patient-reported food intolerance | null | 18 | null | Food Allergy Test (20 items) | TBD | — |
+| 32 | `allergy_airborne_panel` | — | `occupational_exposure_risk` | Green | Environmental or occupational exposure risk | null | 18 | null | Airborne Allergy Test (20 items) | TBD | — |
+| 33 | `dengue_vaccine` | — | `dengue_vaccination_gap` | Green | Tropical endemic protection; ages 4-60 | null | 4 | 60 | Dengue Vaccine (Qdenga) | TBD | — |
 
-**Total add-on items:** 28 (25 gender-agnostic; 3 female-only: `mammogram`, `cervical_cancer_hpv_screen`, `dexa_bone_density`, `menopause_screening`; 1 male-only: `psa_sdm`)
+**Total add-on items:** 33 (30 gender-agnostic; 3 female-only: `mammogram`, `cervical_cancer_hpv_screen`, `dexa_bone_density`, `menopause_screening`; 1 male-only: `psa_sdm`)
 
-> **Note on `symptom_*` signals:** `symptom_palpitations`, `symptom_chronic_back_pain` are derived from the `symptom_tags[]` array in `get_clinical_signals`. They are not standalone signal IDs in the Field Dictionary today. Before the JSON files are generated, the clinical team must confirm whether these are added to the Signal Store Contract Field Dictionary as first-class signals or handled differently (e.g., a separate `get_symptom_tags` MCP tool). **This is an open item requiring decision before generating the JSON sample files.**
+> **Note on `symptom_*` signals:** `symptom_palpitations`, `symptom_chronic_back_pain` are derived from the `symptom_tags[]` array in `get_clinical_signals`. They are not standalone signal IDs in the Field Dictionary today. Before the JSON files are generated, the clinical team must confirm whether these are added to the Signal Store Contract Field Dictionary as first-class signals or handled differently (e.g., a separate `get_symptom_tags` MCP tool). **Update: Proceeding with Option A (First-Class Signals) for all symptom triggers.**
 
 ---
 
