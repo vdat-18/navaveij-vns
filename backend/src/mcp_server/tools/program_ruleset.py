@@ -15,8 +15,6 @@ from src.mcp_server.utils import (
 )
 
 
-
-
 def get_program_ruleset(patient_id: str) -> dict:
     """Retrieve complete program ruleset applicable to this patient.
 

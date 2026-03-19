@@ -1,57 +1,37 @@
-"""Orchestration Manager to coordinate workflows, safety, and audit."""
-
 from typing import Any
 
 from loguru import logger
-
-from src.services.mcp_client import MCPClientFactory
 from src.services.audit import AuditLogger
+from src.services.mcp_client import MCPClientFactory
 from src.services.privacy import PIIRehydrator
 from src.services.safety import ClinicalSafetyGuard
 from src.services.workflows.clinical import ClinicalReasoningWorkflow
+
 from shared.settings import settings
 
 
 class OrchestrationManager:
-    """High-level manager responsible for coordinating life-cycles.
-
-    Responsibilities:
-    - MCP Infrastructure setup/teardown via Factory.
-    - Execution of specific Workflows.
-    - Post-processing (Safety Validation, Audit Logging).
-    """
+    """Coordinates clinical workflows, safety checks, and audit logging."""
 
     def __init__(self):
-        """Initialize core components."""
+        """Initializes components."""
         self.safety_guard = ClinicalSafetyGuard()
         self.audit_logger = AuditLogger()
 
-    async def generate_recommendation(self, patient_id: str, patient_token: str | None = None, force_rule_based: bool = False) -> dict[str, Any]:
-        """Coordinate the full recommendation generation process.
-
-        Args:
-            patient_id: The patient to generate a recommendation for.
-            patient_token: Optional pre-existing token (useful for synthesized data).
-            force_rule_based: If True, bypass AI and use deterministic rules.
-
-        Returns:
-            A dictionary containing the recommendation and safety checks.
-        """
-        logger.info(f"Manager received request for patient: {patient_id} (force_rule_based={force_rule_based})")
+    async def generate_recommendation(self, patient_id: str, force_rule_based: bool = False) -> dict:
+        """Generates clinical recommendation with safety and audit."""
+        logger.info(f"Generating recommendation for: {patient_id} (force_rule_based={force_rule_based})")
 
         async with MCPClientFactory.get_client() as session:
-            # Initialize Workflow
             workflow = ClinicalReasoningWorkflow(session)
+            context = await workflow.execute(patient_id, force_rule_based=force_rule_based)
 
-            # Execute Workflow
-            context = await workflow.execute(patient_id, patient_token=patient_token, force_rule_based=force_rule_based)
-
-            # Post-process: Safety Validation
-            logger.info(f"Performing safety validation (force_rule_based={force_rule_based})")
-            safety_result = await self.safety_guard.validate(context.ai_output, context.raw_context, force_rule_based=force_rule_based)
+            logger.info(f"Safety validation (force_rule_based={force_rule_based})")
+            safety_result = await self.safety_guard.validate(
+                context.ai_output, context.raw_context, force_rule_based=force_rule_based
+            )
             context.ai_output["safety_check"] = safety_result
 
-            # Post-process: Audit Logging
             logger.info("Recording audit log")
             recommendation_hash = self.audit_logger.log_recommendation(
                 patient_id=patient_id,
@@ -59,19 +39,13 @@ class OrchestrationManager:
                 ai_output=context.ai_output,
                 model_id=settings.llm_model,
             )
-
             context.ai_output["recommendation_hash"] = recommendation_hash
-            
-            # Post-process: Rehydration (Restore PII values for Frontend display)
-            logger.info("Rehydrating AI output for frontend")
+
+            logger.info("Rehydrating AI output")
             rehydrator = PIIRehydrator(context.rehydration_map)
-            
-            # Keep a copy of the raw AI output (still masked) for demo purposes
             masked_ai_output = context.ai_output.copy()
-            
             rehydrated_output = rehydrator.rehydrate(context.ai_output)
 
-            # Expose raw data for visualization/HUDs
             result = {
                 **rehydrated_output,
                 "biomarker_trends": context.masked_context.get("get_biomarker_trends", {}),
@@ -79,35 +53,23 @@ class OrchestrationManager:
                 "security_metadata": {
                     "rehydration_map": context.rehydration_map,
                     "masked_ai_output": masked_ai_output,
-                    "is_poc_demo": True
-                }
+                    "is_poc_demo": True,
+                },
             }
-
-            # Final rehydration pass on the main results
             return rehydrator.rehydrate(result)
 
     async def record_decision(
-        self,
-        patient_id: str,
-        recommendation_hash: str,
-        decision: str,
-        physician_id: str,
-        notes: str = ""
+        self, patient_id: str, recommendation_hash: str, decision: str, physician_id: str, notes: str = ""
     ) -> dict[str, Any]:
-        """Record the final clinical decision in the immutable audit trail."""
-        logger.info(f"Recording {decision} decision for patient {patient_id}")
-        
-        decision_hash = self.audit_logger.log_decision(
+        """Records the final physician decision in audit trail."""
+        logger.info(f"Recording {decision} for {patient_id}")
+
+        hash_val = self.audit_logger.log_decision(
             patient_id=patient_id,
             recommendation_hash=recommendation_hash,
             decision=decision,
             physician_id=physician_id,
-            notes=notes
+            notes=notes,
         )
-        
-        return {
-            "status": "success",
-            "decision_hash": decision_hash,
-            "patient_id": patient_id,
-            "decision": decision
-        }
+
+        return {"status": "success", "decision_hash": hash_val, "patient_id": patient_id, "decision": decision}
